@@ -74,3 +74,20 @@ Schema (undocumented, determined by testing against the loader's own errors —
   </port>
 </ports>
 ```
+
+## addon_data/ -> `/storage/.kodi/userdata/addon_data/<addon>/settings.xml`
+
+**game.libretro.pcsx-rearmed** — four non-default settings, each fixing a
+symptom that took a long time to trace. None are cosmetic.
+
+| Setting | Why |
+|---|---|
+| `show_bios_bootlogo=enabled` | **Every PS1 game rendered a black screen without this.** It is the only option that sets `Config.SlowBoot`; the default fast-boots straight into the game executable and skips the BIOS, so the GPU is never initialised, `vout_set_mode()` is never called again and every frame handed to Kodi is blank. Costs a few seconds of real BIOS boot. |
+| `gpu_slow_llists=disabled` | Games rendered 26 of 60 frames. This is a compatibility hack that deliberately slows the emulated GPU; off, Tekken 3 holds a solid 60/60. **Suspect this first if a game glitches** — put it back to `auto`. |
+| `gpu_thread_rendering=enabled` | Moves the software rasteriser to its own core. Changed at the same time as the above, so its individual contribution is unverified. |
+| `neon_interlace_enable_v2=disabled` | Fight scenes run 368x480 interlaced and the NEON GPU renders alternating fields by default, which shreds moving objects into displaced horizontal bands. Full-frame rendering fixes it. A CRT shader hides the artefact, which is why it only became obvious with the shader off. |
+
+Diagnosing these: `display_fps_v2=extra` draws the core's own HUD, and the
+string is `FPS: <flip_cnt>/<psx_vsync_count>` — **left is the game's own render
+rate, right is emulation speed**. `30/60` on Driver is that game being 30fps by
+design, not a fault. `DRC: n` in the same HUD proves the dynarec is live.

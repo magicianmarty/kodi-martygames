@@ -1,0 +1,6 @@
+<settings version="2">
+    <setting id="pcsx_rearmed_show_bios_bootlogo">enabled</setting>
+    <setting id="pcsx_rearmed_gpu_thread_rendering">enabled</setting>
+    <setting id="pcsx_rearmed_gpu_slow_llists">disabled</setting>
+    <setting id="pcsx_rearmed_neon_interlace_enable_v2">disabled</setting>
+</settings>
