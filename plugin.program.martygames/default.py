@@ -82,6 +82,11 @@ def make_item(game):
     except AttributeError:
         pass  # older Kodi without InfoTagGame; the property above still works
     li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
+    # A home-screen tile opens the detail page rather than launching, so the
+    # Play row there is what starts the game - that is the only path carrying
+    # the gameclient property, which is what skips the emulator picker.
+    li.setProperty('marty_info', url(action='info', key=game['system'],
+                                     title=game['title']))
     describe(li, game, system)
     art = {}
     boxart = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
