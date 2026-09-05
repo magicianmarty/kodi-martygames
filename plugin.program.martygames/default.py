@@ -1,5 +1,6 @@
 """Marty Games - browse the ROM library and launch each game with the right core."""
 
+import json
 import os
 import sys
 from urllib.parse import parse_qsl, urlencode
@@ -19,6 +20,17 @@ ADDON = xbmcaddon.Addon()
 ROMS = ADDON.getSetting('rom_path') or '/storage/sdcard/roms'
 SAVES = xbmcvfs.translatePath('special://home/saves')
 RECENT_LIMIT = 20
+ARTWORK = os.path.normpath(os.path.join(ROMS, '..', 'artwork'))
+
+# Built by tools/fetch_metadata.py and cached beside the artwork, so a reinstall
+# of this add-on does not throw it away.
+try:
+    with open(os.path.join(ARTWORK, 'metadata.json'), encoding='utf-8') as _fh:
+        METADATA = json.load(_fh)
+except (OSError, ValueError):
+    METADATA = {}
+
+SEP = '   \u00b7   '
 
 
 def url(**kwargs):
@@ -68,12 +80,54 @@ def make_item(game):
     except AttributeError:
         pass  # older Kodi without InfoTagGame; the property above still works
     li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
-    art = os.path.join(ROMS, '..', 'artwork', game['system'],
-                       game['title'] + '.png')
-    art = os.path.normpath(art)
+    describe(li, game, system)
+    art = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
     if os.path.exists(art):
         li.setArt({'poster': art, 'thumb': art})
     return li
+
+
+def describe(li, game, system):
+    """Fill the hero area under a focused tile.
+
+    The lines are composed here rather than in the skin because a skin can only
+    concatenate: a missing publisher would strand its separator. They are plain
+    properties because ListItem.Plot does not resolve for a game item - Kodi
+    serves a game tag through RetroPlayer.* labels only (GamesGUIInfo.cpp has no
+    LISTITEM_ case at all), and giving the item a video tag to reach Plot would
+    make VIDEO::IsVideo() true and put the ROM in front of the video player.
+    """
+    meta = METADATA.get(game['system'], {}).get(game['title'])
+    if not meta:
+        return
+    genres = ', '.join(g for g in meta.get('genres', '').split('; ') if g)
+    players = meta.get('players')
+    if players:
+        players = '%s player%s' % (players, '' if players == '1' else 's')
+    facts = [f for f in (meta.get('year'), system.label if system else None,
+                         genres, players) if f]
+    if facts:
+        li.setProperty('facts_line', SEP.join(facts))
+    # Most games are self-published; saying the same name twice reads as an error.
+    people = [p for p in (meta.get('developer'), meta.get('publisher')) if p]
+    if len(people) == 2 and people[0] == people[1]:
+        people.pop()
+    if people:
+        li.setProperty('people_line', SEP.join(people))
+    if meta.get('overview'):
+        li.setProperty('plot_line', meta['overview'])
+
+    try:
+        tag = li.getGameInfoTag()
+        tag.setDeveloper(meta.get('developer', ''))
+        tag.setPublisher(meta.get('publisher', ''))
+        tag.setOverview(meta.get('overview', ''))
+        if genres:
+            tag.setGenres(genres.split(', '))
+        if meta.get('year', '').isdigit():
+            tag.setYear(int(meta['year']))
+    except AttributeError:
+        pass
 
 
 def list_root():

@@ -1,0 +1,24 @@
+{
+  "amiga": {
+    "Another World": "Out of This World",
+    "Parasol Stars": "Parasol Stars: Rainbow Islands 2"
+  },
+  "dos": {
+    "Doom II Hell On Earth": "DOOM II",
+    "Epic Pinball": "Epic Pinball: The Complete Collection",
+    "Keen 1 - Marooned on Mars": "Commander Keen 1: Marooned on Mars",
+    "Keen 2 - The Earth Explodes": "Commander Keen 2: The Earth Explodes",
+    "Keen 3 - Keen Must Die": "Commander Keen 3: Keen Must Die!",
+    "Keen 4 - Secret of the Oracle": "Commander Keen 4: Secret of the Oracle",
+    "Keen 5 - The Armageddon Machine": "Commander Keen 5: The Armageddon Machine",
+    "Stunts 1": "Stunts",
+    "Ufo Enemy Unknown": "X-COM: UFO Defense"
+  },
+  "megadrive": {
+    "Phantasy Star - The End of the Millenium": "Phantasy Star IV",
+    "Sonic and Knuckles & Sonic 1": "Sonic & Knuckles"
+  },
+  "nes": {
+    "Rainbow Islands - The Story of Bubble Bobble 2": "Rainbow Islands: Bubble Bobble 2"
+  }
+}

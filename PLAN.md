@@ -82,8 +82,12 @@ Virtual directories served: `All Games`, `By System`, `Recently Played`, `Random
 ### Phase 1 — Index and launch (no artwork)
 - Walk `/storage/sdcard/roms`, one row per game in SQLite.
 - Collapse multi-disk sets (Amiga `.m3u` files already exist); skip BIOS and side files.
-- **Launch with the core pinned per system**, e.g.
-  `PlayMedia(<path>, gameclient=game.libretro.genplus)`.
+- **Launch with the core pinned per system.** There is no
+  `PlayMedia(...,gameclient=...)` parameter — `PlayMedia` takes only `isdir`, `1`,
+  `resume`, `noresume`, `playoffset`, `playlist_type_hint` and `playnext`. What works is
+  the `gameclient` **property** on the item: a builtin fired from a container reaches
+  `PlayMediaEx`, and `PlayOrQueueMedia` copies the clicked item whole instead of rebuilding
+  it from the path.
   This deliberately fixes two problems already hit in practice:
   - the emulator **select dialog** appearing on every launch;
   - Kodi's **savestate pinning a game to the wrong core** (a `.cue` opened once with PUAE
@@ -109,14 +113,36 @@ DOS folder   Sid Meiers Civilization (1991)
 Approach: normalise (strip region/dump/revision/cracker tags, punctuation, leading articles)
 → fuzzy match → hand-maintained `overrides.json` for the tail. Budget for ~80% automatic.
 
-### Phase 3 — Metadata
-Year, publisher, genre, player count, description — enabling sort, filter and an info pane.
+### Phase 3 — Metadata ✅
+Year, developer, publisher, genre, player count and a description, from the **LaunchBox
+Games Database** dump (`gamesdb.launchbox-app.com/Metadata.zip`, 107 MB, no account and no
+API key). 68 of 69 games matched; the one miss is IK+ on C64, which LaunchBox's C64 set
+does not carry.
+
+libretro-database was the obvious first choice — same No-Intro naming as the artwork — but
+it splits metadata across per-field `.dat` directories (`developer/`, `genre/`,
+`releaseyear/`…) and **has no synopsis field at all**, which is most of what the hero area
+displays.
+
+`tools/fetch_metadata.py` streams the 509 MB `Metadata.xml` straight out of the zip with
+`iterparse`, and shares `titles.normalise` with the artwork fetcher so the two agree on
+what counts as the same game. Output is `data/metadata.json` (86 KB), deployed alongside
+the artwork cache.
+
+⚠️ **`ListItem.Plot` does not resolve for a game item.** `GamesGUIInfo.cpp` serves the game
+tag through `RetroPlayer.*` labels and has no `LISTITEM_` case at all. Giving the item a
+video tag to reach `Plot` would make `VIDEO::IsVideo()` true and route the ROM to the video
+player, so the add-on composes `facts_line` / `people_line` / `plot_line` as plain
+properties and the skin reads those.
 
 ### Phase 4 — Skin integration
 - Home: one to three rows (Recently Played / By System / Random), created by copying an
   existing row block and swapping `<content>`.
-- A dedicated Games category page — the skin ships an as-yet-unused `Includes_Games.xml`
-  to build on, reachable from the Games menu button already added to `Home.xml`.
+- A dedicated Games page: `MyGames.xml`, switched from the list view to the poster wall
+  with `MyVideoNav`'s view order and fanart backdrop, reached by pointing the Games button
+  at `ActivateWindow(Games,"plugin://plugin.program.martygames/",return)`.
+  (`Includes_Games.xml` is *not* free to repurpose — it is Estuary's game dialog includes,
+  `GameDialogControllers` and friends.)
 
 ### Phase 5 — Polish
 Fanart behind the carousel, system logos, play counts, and a "Continue" row driven by the

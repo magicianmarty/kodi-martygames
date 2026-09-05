@@ -12,7 +12,6 @@ import argparse
 import difflib
 import json
 import os
-import re
 import sys
 import time
 import urllib.parse
@@ -22,6 +21,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..',
                                 'plugin.program.martygames'))
 from resources.lib import scanner            # noqa: E402
 from resources.lib.systems import BY_KEY     # noqa: E402
+
+sys.path.insert(0, os.path.dirname(__file__))
+from titles import normalise                # noqa: E402
 
 REPOS = {
     'megadrive': 'Sega_-_Mega_Drive_-_Genesis',
@@ -35,23 +37,6 @@ REPOS = {
 }
 RAW = 'https://raw.githubusercontent.com/libretro-thumbnails/{repo}/master/{path}'
 TREE = 'https://api.github.com/repos/libretro-thumbnails/{repo}/git/trees/master?recursive=1'
-
-_ARTICLES = re.compile(r'^(the|a|an)\s+', re.I)
-_TAGS = re.compile(r'[\(\[][^\)\]]*[\)\]]')
-
-
-def normalise(name):
-    """Reduce a title to something comparable across naming conventions."""
-    s = os.path.splitext(name)[0]
-    s = _TAGS.sub(' ', s)                    # (World), [!], (1992)(Ocean)
-    # libretro-thumbnails writes '&' as '_' for filesystem safety
-    s = s.replace('&', ' and ').replace('_', ' and ')
-    s = re.sub(r'[^a-z0-9 ]', ' ', s.lower())
-    s = _ARTICLES.sub('', s.strip())
-    # trailing ", The" / ", A" as used by TOSEC and No-Intro alike
-    s = re.sub(r'\s+(the|a|an)$', '', s)
-    return re.sub(r'\s+', ' ', s).strip()
-
 
 def fetch_index(repo, attempts=3):
     # The DOS repo is large enough that the tree API intermittently 500s.
