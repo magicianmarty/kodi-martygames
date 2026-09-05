@@ -66,12 +66,31 @@ Kodi master** (3 `@todo`s as of today), so this is novel work, not a backport.
 Checked across all 75 cores in the repo: only **`mupen64plus-nx`** and **`vecx`**
 declare `true`. Everything else is software-rendered and works today.
 
-**The game-exit crash is ours to fix once we build.** It is a use-after-free
-between the peripheral scan thread (`CAgentInput::UpdateConnectedJoysticks` →
-`CPortInput::RegisterInput` → `CAddonInputHandling::Load`) and
-`CGameClientInput::CloseJoysticks()` freeing the `CGameClientJoystick` those
-ports point at. Unfixed upstream, unfixable from configuration — but a patch
-file is exactly the right vehicle. See [[ps1-black-screen-abi6-wrapper]].
+**The game-exit crash is ours to fix once we build — but the cause is not what
+I first said.** The crash is real and reproducible (exit any game), and the
+stack runs `CAgentInput::UpdateConnectedJoysticks` → `CPortInput::RegisterInput`
+→ `CAddonInputHandling::Load`, racing `CGameClientInput::CloseJoysticks()`.
+
+I described it as a use-after-free of the `CGameClientJoystick`. **That is
+wrong.** Reading 22.0b2:
+
+```cpp
+using JoystickMap = std::map<PortAddress, std::shared_ptr<CGameClientJoystick>>;
+```
+
+Both owners hold `shared_ptr` — `CGameClientInput::m_joysticks` and
+`CAgentInput::m_portMap` — so erasing from one cannot free a joystick the other
+still references. `CloseJoystick()` also takes a peripheral event lock *before*
+erasing, and that lock blocks until in-flight input is drained.
+
+So the dangling object is something else — most likely reached via
+`CAddonInputHandling::Load()`'s `m_peripheral`/`m_addon`, or the frames are
+mis-attributed through inlining, which crashlog symbolisation does routinely.
+
+**This is now gated on Phase 1**, not the other way round: diagnosing it needs a
+debug build with symbols, which needs the build pipeline. Writing a threading
+fix against a disproven theory and flashing it to the only media box in the
+house would be worse than leaving the crash alone.
 
 ---
 
@@ -302,3 +321,30 @@ if we stop there.
 **Then the ambitious part:** Phase 4 → 5, N64 then PSP and Dreamcast.
 
 Phase 6 (Saturn) can slot in anywhere; it needs ROMs and a BIOS, not code.
+
+
+---
+
+## 7. Delivery status
+
+Updated 2026-09-06.
+
+| Phase | State |
+|---|---|
+| 8 — Ingest pipeline | **Done.** `tools/ingest.py`, verified end to end |
+| 7 — Continue shelf | **Done.** Live on the box, showing real savestate captures |
+| 7 — Metadata shelves | **Route done** (`?action=shelf`); rows not yet placed on Home |
+| 0 — Backup | **Done.** `~/dev/kodi-martygames-backups/`, 58 MB, verified readable |
+| 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
+| 1 — Fork skeleton | **Done.** `~/dev/CoreELEC` on branch `marty-22`, with `FORK.md` |
+| 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
+| 1 — First build + flash | **Needs Marty.** Bricking risk; do not flash unattended |
+| 2 — Retire the wrapper | Blocked on Phase 1 |
+| 3 — Exit crash | **Blocked on a debug build**, and the original theory is disproven (§1) |
+| 4 — Hardware rendering | Not started. Weeks; the honest gate is Phase 1 |
+| 5 — PSP/Dreamcast packages | **Written, never built.** Metadata verified, make flags unproven |
+| 6 — Saturn | **Needs ROMs and a BIOS.** No code required |
+
+The pattern in what is left: everything outstanding needs either physical access
+to the box, or a working build pipeline to iterate against. Neither is something
+to fake progress on.
