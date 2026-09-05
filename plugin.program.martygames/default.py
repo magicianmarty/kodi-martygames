@@ -20,6 +20,8 @@ ADDON = xbmcaddon.Addon()
 ROMS = ADDON.getSetting('rom_path') or '/storage/sdcard/roms'
 SAVES = xbmcvfs.translatePath('special://home/saves')
 RECENT_LIMIT = 20
+# Kodi puts one parent entry at the top of every plugin listing.
+PARENT_ITEMS = 1
 ARTWORK = os.path.normpath(os.path.join(ROMS, '..', 'artwork'))
 
 # Built by tools/fetch_metadata.py and cached beside the artwork, so a reinstall
@@ -169,16 +171,30 @@ def list_root():
 def list_games(games, category, sort=True):
     xbmcplugin.setPluginCategory(HANDLE, category)
     xbmcplugin.setContent(HANDLE, 'games')
-    for game in games:
+    letters = {}
+    for index, game in enumerate(games):
+        first = (game['title'] or '?')[0].upper()
+        if not first.isalpha():
+            first = '#'
+        # Where each letter starts, so the skin's A-Z strip can jump to it
+        # rather than filter to it - picking Z should leave you somewhere you
+        # can scroll on from. Offset by the parent entry Kodi puts at the top
+        # of every plugin listing, which occupies position zero.
+        letters.setdefault(first, index + PARENT_ITEMS)
         # Direct ROM path. Routing playback through the plugin does not work:
         # RetroPlayer will not resolve a plugin:// URL, and Player().play() from
         # a plugin context never starts. The gameclient property below is what
         # selects the emulator; the scanner avoids extensions Kodi hijacks.
         xbmcplugin.addDirectoryItem(HANDLE, game['path'], make_item(game), False)
     # Recently Played is already in the order we want; a sort method would let
-    # Kodi re-order it back to alphabetical.
+    # Kodi re-order it back to alphabetical - and an A-Z strip over a listing
+    # sorted by when you last played is meaningless, so it only goes on the
+    # listings that are actually alphabetical.
     if sort:
         xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL)
+        xbmcplugin.setProperty(HANDLE, 'alphabet', '1')
+        for name, index in letters.items():
+            xbmcplugin.setProperty(HANDLE, 'letter_index_' + name, str(index))
     xbmcplugin.endOfDirectory(HANDLE)
 
 
