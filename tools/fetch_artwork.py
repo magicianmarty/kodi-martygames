@@ -50,7 +50,7 @@ def fetch_index(repo, attempts=3):
             if 'tree' not in data:
                 raise RuntimeError(data.get('message', 'no tree'))
             return [e['path'] for e in data['tree']
-                    if e['path'].startswith('Named_Boxarts/')
+                    if e['path'].startswith(('Named_Boxarts/', 'Named_Snaps/'))
                     and e['path'].endswith('.png')]
         except Exception as exc:                       # noqa: BLE001
             last = exc
@@ -86,44 +86,53 @@ def main():
 
         lookup = {}
         for path in index:
-            lookup.setdefault(normalise(os.path.basename(path)), path)
-        keys = list(lookup)
-        outdir = os.path.join(args.out, key)
-        os.makedirs(outdir, exist_ok=True)
-        print("  %s: %d games vs %d thumbnails" % (key, len(games), len(index)))
+            folder = path.split('/', 1)[0]
+            lookup.setdefault(folder, {}).setdefault(
+                normalise(os.path.basename(path)), path)
+        print("  %s: %d games vs %d boxarts, %d snaps" % (
+            key, len(games), len(lookup.get('Named_Boxarts', {})),
+            len(lookup.get('Named_Snaps', {}))))
 
-        for game in games:
-            dest = os.path.join(outdir, game['title'] + '.png')
-            if os.path.exists(dest):
-                matched += 1
-                continue
-            manual = overrides.get(key, {}).get(game['title'])
-            if manual:
-                path = 'Named_Boxarts/%s.png' % manual
-            else:
-                norm = normalise(game['title'])
-                hit = lookup.get(norm)
-                if not hit:
-                    close = difflib.get_close_matches(norm, keys, n=1,
-                                                      cutoff=args.cutoff)
-                    hit = lookup[close[0]] if close else None
-                path = hit
-            if not path:
-                print("      no match: %s" % game['title'])
-                missed += 1
-                continue
-            url = RAW.format(repo=REPOS[key],
-                             path=urllib.parse.quote(path))
-            try:
-                req = urllib.request.Request(url, headers={'User-Agent': 'martygames'})
-                with urllib.request.urlopen(req, timeout=60) as r:
-                    blob = r.read()
-                with open(dest, 'wb') as fh:
-                    fh.write(blob)
-                matched += 1
-            except Exception as exc:                   # noqa: BLE001
-                print("      download failed %s: %s" % (game['title'], exc))
-                missed += 1
+        for folder, subdir in (('Named_Boxarts', key),
+                               ('Named_Snaps', os.path.join('snaps', key))):
+            by_name = lookup.get(folder, {})
+            keys = list(by_name)
+            outdir = os.path.join(args.out, subdir)
+            os.makedirs(outdir, exist_ok=True)
+            for game in games:
+                dest = os.path.join(outdir, game['title'] + '.png')
+                if os.path.exists(dest):
+                    matched += 1
+                    continue
+                manual = overrides.get(key, {}).get(game['title'])
+                if manual:
+                    path = '%s/%s.png' % (folder, manual)
+                else:
+                    norm = normalise(game['title'])
+                    hit = by_name.get(norm)
+                    if not hit:
+                        close = difflib.get_close_matches(norm, keys, n=1,
+                                                          cutoff=args.cutoff)
+                        hit = by_name[close[0]] if close else None
+                    path = hit
+                if not path:
+                    if folder == 'Named_Boxarts':
+                        print("      no match: %s" % game['title'])
+                    missed += 1
+                    continue
+                url = RAW.format(repo=REPOS[key],
+                                 path=urllib.parse.quote(path))
+                try:
+                    req = urllib.request.Request(
+                        url, headers={'User-Agent': 'martygames'})
+                    with urllib.request.urlopen(req, timeout=60) as r:
+                        blob = r.read()
+                    with open(dest, 'wb') as fh:
+                        fh.write(blob)
+                    matched += 1
+                except Exception as exc:               # noqa: BLE001
+                    print("      download failed %s: %s" % (game['title'], exc))
+                    missed += 1
 
     print("\n  matched %d, missed %d" % (matched, missed))
 

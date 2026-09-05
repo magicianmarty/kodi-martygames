@@ -81,9 +81,17 @@ def make_item(game):
         pass  # older Kodi without InfoTagGame; the property above still works
     li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
     describe(li, game, system)
-    art = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
-    if os.path.exists(art):
-        li.setArt({'poster': art, 'thumb': art})
+    art = {}
+    boxart = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
+    if os.path.exists(boxart):
+        art.update(poster=boxart, thumb=boxart)
+    # An in-game screenshot as fanart: the home rows each draw one full-bleed
+    # image behind the hero text, and games were the only row without one.
+    snap = os.path.join(ARTWORK, 'snaps', game['system'], game['title'] + '.png')
+    if os.path.exists(snap):
+        art['fanart'] = snap
+    if art:
+        li.setArt(art)
     return li
 
 
