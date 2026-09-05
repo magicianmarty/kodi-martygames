@@ -338,7 +338,9 @@ Updated 2026-09-06.
 | 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
 | 1 — Fork skeleton | **Done.** `~/dev/CoreELEC` on branch `marty-22`, with `FORK.md` |
 | 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
-| 1 — First build + flash | **Needs Marty.** Bricking risk; do not flash unattended |
+| 1 — Build environment | **Done.** Containerised (`scripts-marty/`); `checkdeps` passes clean |
+| 1 — First image build | **Running.** 370 packages; hours |
+| 1 — Flash | **Needs Marty.** Bricking risk; do not flash unattended |
 | 2 — Retire the wrapper | Blocked on Phase 1 |
 | 3 — Exit crash | **Blocked on a debug build**, and the original theory is disproven (§1) |
 | 4 — Hardware rendering | Not started. Weeks; the honest gate is Phase 1 |
@@ -348,3 +350,13 @@ Updated 2026-09-06.
 The pattern in what is left: everything outstanding needs either physical access
 to the box, or a working build pipeline to iterate against. Neither is something
 to fake progress on.
+
+Two corrections worth carrying forward, both found by checking rather than
+assuming:
+
+- The build target is `PROJECT=Amlogic-ce DEVICE=Amlogic-no`, which the box
+  reports in `/etc/os-release`. An earlier draft of `FORK.md` said
+  `Amlogic/AMLGX` — different hardware, and hours of wasted build.
+- The host cannot build CoreELEC: `checkdeps` wants a dozen packages installed
+  as root. The build is containerised instead, which also makes it what CI
+  runs.
