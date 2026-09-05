@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import sys
 from urllib.parse import parse_qsl, urlencode
 
@@ -33,6 +34,14 @@ except (OSError, ValueError):
     METADATA = {}
 
 SEP = '   \u00b7   '
+
+# Kodi sorts labels with "ignore articles when sorting" on by default, so its
+# order and ours have to agree or the A-Z offsets below point at the wrong row.
+_ARTICLE = re.compile(r'^(the|a|an)\s+', re.I)
+
+
+def sort_key(title):
+    return _ARTICLE.sub('', title).lower()
 
 
 def url(**kwargs):
@@ -180,9 +189,11 @@ def list_root():
 def list_games(games, category, sort=True, detail=True):
     xbmcplugin.setPluginCategory(HANDLE, category)
     xbmcplugin.setContent(HANDLE, 'games')
+    if sort:
+        games = sorted(games, key=lambda g: sort_key(g['title']))
     letters = {}
     for index, game in enumerate(games):
-        first = (game['title'] or '?')[0].upper()
+        first = (sort_key(game['title'])[:1] or '?').upper()
         if not first.isalpha():
             first = '#'
         # Where each letter starts, so the skin's A-Z strip can jump to it
@@ -210,7 +221,10 @@ def list_games(games, category, sort=True, detail=True):
     # sorted by when you last played is meaningless, so it only goes on the
     # listings that are actually alphabetical.
     if sort:
-        xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL)
+        # NONE, not LABEL: Kodi would re-sort the list out from under the
+        # offsets just computed - its label sort drops leading articles, ours
+        # does too, but only one of them can own the final order.
+        xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_NONE)
         xbmcplugin.setProperty(HANDLE, 'alphabet', '1')
         for name, index in letters.items():
             xbmcplugin.setProperty(HANDLE, 'letter_index_' + name, str(index))
@@ -284,8 +298,7 @@ def main():
             return
         list_games(list(scanner.scan_system(ROMS, system)), system.label)
     elif action == 'all':
-        list_games(sorted(scanner.scan_all(ROMS), key=lambda g: g['title'].lower()),
-                   'All Games')
+        list_games(list(scanner.scan_all(ROMS)), 'All Games')
     elif action == 'info':
         show_game(args.get('key', ''), args.get('title', ''))
     elif action == 'recent':
