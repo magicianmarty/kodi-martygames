@@ -3,7 +3,12 @@
      In a game those must reach the EMULATOR, not the UI. An EMPTY action
      removes the inherited binding so the press falls through; "noop" would
      instead consume it and the game would never see the button.
-     Exit a game with: hold Back/View + press Start/Menu. -->
+     Exit a game with: hold Back/View + press Start/Menu.
+
+     <guide> is bound rather than cleared: the emulator never uses it, and the
+     inherited global binding is ActivateWindow(Home), which drops out of the
+     game. 10823 is WINDOW_DIALOG_GAME_VIDEO_FILTER - the shader picker, which
+     the in-game OSD offers no route to. -->
 <keymap>
   <FullscreenGame>
     <joystick profile="game.controller.default">
@@ -11,6 +16,7 @@
       <x></x>
       <y></y>
       <back></back>
+      <guide>ActivateWindow(10823)</guide>
     </joystick>
   </FullscreenGame>
 </keymap>
