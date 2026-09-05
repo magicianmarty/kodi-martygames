@@ -242,6 +242,9 @@ def show_game(key, title):
     poster = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
     if os.path.exists(poster):
         xbmcplugin.setProperty(HANDLE, 'game_poster', poster)
+    snap = os.path.join(ARTWORK, 'snaps', game['system'], game['title'] + '.png')
+    if os.path.exists(snap):
+        xbmcplugin.setProperty(HANDLE, 'game_fanart', snap)
     xbmcplugin.addDirectoryItem(HANDLE, game['path'], li, False)
     xbmcplugin.endOfDirectory(HANDLE)
 
