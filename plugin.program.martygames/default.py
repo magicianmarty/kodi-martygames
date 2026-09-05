@@ -109,7 +109,7 @@ def describe(li, game, system):
     """
     meta = METADATA.get(game['system'], {}).get(game['title'])
     if not meta:
-        return
+        return {}
     genres = ', '.join(g for g in meta.get('genres', '').split('; ') if g)
     players = meta.get('players')
     if players:
@@ -126,6 +126,9 @@ def describe(li, game, system):
         li.setProperty('people_line', SEP.join(people))
     if meta.get('overview'):
         li.setProperty('plot_line', meta['overview'])
+    lines = {'facts_line': SEP.join(facts) if facts else '',
+             'people_line': SEP.join(people) if people else '',
+             'plot_line': meta.get('overview', '')}
 
     try:
         tag = li.getGameInfoTag()
@@ -138,6 +141,7 @@ def describe(li, game, system):
             tag.setYear(int(meta['year']))
     except AttributeError:
         pass
+    return lines
 
 
 def list_root():
@@ -168,7 +172,7 @@ def list_root():
     xbmcplugin.endOfDirectory(HANDLE)
 
 
-def list_games(games, category, sort=True):
+def list_games(games, category, sort=True, detail=True):
     xbmcplugin.setPluginCategory(HANDLE, category)
     xbmcplugin.setContent(HANDLE, 'games')
     letters = {}
@@ -181,11 +185,21 @@ def list_games(games, category, sort=True):
         # can scroll on from. Offset by the parent entry Kodi puts at the top
         # of every plugin listing, which occupies position zero.
         letters.setdefault(first, index + PARENT_ITEMS)
-        # Direct ROM path. Routing playback through the plugin does not work:
-        # RetroPlayer will not resolve a plugin:// URL, and Player().play() from
-        # a plugin context never starts. The gameclient property below is what
-        # selects the emulator; the scanner avoids extensions Kodi hijacks.
-        xbmcplugin.addDirectoryItem(HANDLE, game['path'], make_item(game), False)
+        # In a browse window the tile opens the detail page; from a home row
+        # the same item still launches directly, through marty_click.
+        #
+        # Direct ROM path when it is playable. Routing playback through the
+        # plugin does not work: RetroPlayer will not resolve a plugin:// URL,
+        # and Player().play() from a plugin context never starts (verified
+        # again through RunPlugin). The gameclient property is what selects the
+        # emulator; the scanner avoids extensions Kodi hijacks.
+        if detail:
+            xbmcplugin.addDirectoryItem(
+                HANDLE, url(action='info', key=game['system'],
+                            title=game['title']), make_item(game), True)
+        else:
+            xbmcplugin.addDirectoryItem(HANDLE, game['path'], make_item(game),
+                                        False)
     # Recently Played is already in the order we want; a sort method would let
     # Kodi re-order it back to alphabetical - and an A-Z strip over a listing
     # sorted by when you last played is meaningless, so it only goes on the
@@ -195,6 +209,40 @@ def list_games(games, category, sort=True):
         xbmcplugin.setProperty(HANDLE, 'alphabet', '1')
         for name, index in letters.items():
             xbmcplugin.setProperty(HANDLE, 'letter_index_' + name, str(index))
+    xbmcplugin.endOfDirectory(HANDLE)
+
+
+def show_game(key, title):
+    """One game on its own page: art, facts and a single Play row.
+
+    A listing rather than a dialog, deliberately. Selecting the Play row goes
+    through the container's own click, which is the only path that carries the
+    gameclient property to RetroPlayer - a dialog button would have to fake that
+    click, and CGUIMediaWindow only launches on a GUI_MSG_CLICKED whose param is
+    ACTION_SELECT_ITEM, which SendClick does not send. Back then works by
+    itself, because it is just a folder you stepped into.
+    """
+    system = BY_KEY.get(key)
+    game = None
+    if system:
+        game = next((g for g in scanner.scan_system(ROMS, system)
+                     if g['title'] == title), None)
+    if game is None:
+        xbmcplugin.endOfDirectory(HANDLE, succeeded=False)
+        return
+
+    xbmcplugin.setPluginCategory(HANDLE, game['title'])
+    xbmcplugin.setContent(HANDLE, 'games')
+    li = make_item(game)
+    li.setLabel('Play')
+    # On the container, not just the item: Kodi puts a parent row above the
+    # Play row, and the page must read the same whichever of the two has focus.
+    for name in ('facts_line', 'people_line', 'plot_line'):
+        xbmcplugin.setProperty(HANDLE, 'game_' + name, li.getProperty(name))
+    poster = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
+    if os.path.exists(poster):
+        xbmcplugin.setProperty(HANDLE, 'game_poster', poster)
+    xbmcplugin.addDirectoryItem(HANDLE, game['path'], li, False)
     xbmcplugin.endOfDirectory(HANDLE)
 
 
@@ -230,6 +278,8 @@ def main():
     elif action == 'all':
         list_games(sorted(scanner.scan_all(ROMS), key=lambda g: g['title'].lower()),
                    'All Games')
+    elif action == 'info':
+        show_game(args.get('key', ''), args.get('title', ''))
     elif action == 'recent':
         played = [(last_played(g['path']), g) for g in scanner.scan_all(ROMS)]
         played = sorted((p for p in played if p[0]), key=lambda p: p[0], reverse=True)
