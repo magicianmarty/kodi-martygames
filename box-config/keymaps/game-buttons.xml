@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi's global joystick keymap binds b=Back, x=ContextMenu, y=FullScreen.
+     In a game those must reach the EMULATOR, not the UI. An EMPTY action
+     removes the inherited binding so the press falls through; "noop" would
+     instead consume it and the game would never see the button.
+     Exit a game with: hold Back/View + press Start/Menu. -->
+<keymap>
+  <FullscreenGame>
+    <joystick profile="game.controller.default">
+      <b></b>
+      <x></x>
+      <y></y>
+      <back></back>
+    </joystick>
+  </FullscreenGame>
+</keymap>
