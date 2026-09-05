@@ -65,12 +65,12 @@ EXCLUDE_NAMES = {
 
 # DOS folders often ship several executables; prefer one that looks like the game.
 DOS_EXE_BLOCKLIST = (
-    'install', 'setup', 'deice', 'unins', 'dosbox', 'config', 'readme',
+    'install', 'instl', 'setup', 'deice', 'unins', 'dosbox', 'config', 'readme',
     'sysinfo', 'edit', 'view', 'help',
     # DOS extenders and bundled utilities that sit next to the real game
     'dos4gw', 'dos32a', 'dos32', 'setsound', 'smkplay', 'mssw', 'mss',
     'patch', 'sbtest', 'modem', 'univbe', 'cwsdpmi', 'pkunzip', 'test',
     # manuals, intros, cheats and helpers that outweigh the real game on size
-    'guide', 'info', 'intro', 'cheat', 'cht', 'mouse', 'order', 'manual',
+    'guide', 'info', 'intro', 'cheat', 'cht', 'trainer', 'mouse', 'order', 'manual',
     'demo', 'insthd', 'terrtron', 'fix', 'nosound',
 )

@@ -50,6 +50,12 @@ def _pick_dos_executable(folder, max_depth=2):
         if depth >= max_depth:
             dirs[:] = []
         parent = os.path.basename(root).lower()
+        # Trainers, cheats and manuals ship in their own subfolder, and the
+        # executable inside is named nothing like them. Only below the top
+        # level: the game's own folder is the parent there, and its name is
+        # not ours to veto.
+        if depth > 0 and any(b in parent for b in DOS_EXE_BLOCKLIST):
+            continue
         for entry in sorted(files):
             low = entry.lower()
             if not low.endswith(('.exe', '.com', '.bat')):
@@ -71,6 +77,13 @@ def _pick_dos_executable(folder, max_depth=2):
                     break
             if len(parent) >= 3 and stem.startswith(parent):
                 score += 2          # omf/omf21.exe
+            # A subfolder named after the game holds the installed copy; the
+            # original disk directories sitting beside it (START0, START1)
+            # carry the same executables and must not outrank it. Only below
+            # the top level: there the parent is the game's own folder, so
+            # every loose executable would score the bonus.
+            if depth > 0 and any(tok in parent for tok in title_tokens):
+                score += 2
             score -= depth          # prefer shallower
             key = (score, size)
             if best is None or key > best[0]:
