@@ -1528,6 +1528,78 @@
   }
  },
  "psx": {
+  "Driver - You Are the Wheelman": {
+   "developer": "Reflections Interactive",
+   "genres": "Action; Racing",
+   "overview": "As Tanner, you're going undercover to be the wheelman for a crime syndicate in order to break open a big case. On the way, you'll eliminate competition, drive getaway cars, scare some people silly, evade plenty of police, dodge bad guys, smash through a few windows, save your love interest, and much more through four cities (Miami, San Francisco, Los Angeles, and New York). Perform authentic manuevers like donuts, 180 spin, 360 spin, reverse 180 spin, and more as you cut through alley ways, across sidewalks and parks, smash park benches and and drive over traffic cones. Many different cars to try (most you'll recognize). Will you save the day?",
+   "players": "1",
+   "publisher": "GT Interactive Software",
+   "year": "1999"
+  },
+  "Driver 2": {
+   "developer": "Reflections Interactive",
+   "genres": "Action; Racing",
+   "overview": "You are an undercover driver, trying to survive amidst an international war between American and Brazilian gangs. The action takes you to Chicago, Las Vegas, Rio and Havana, all of which are depicted in detail, with curved roads added from the first game. As before, you have full control over the car as it storms around the streets. A new feature is the ability to get out of the car, and carjack others. This is especially useful when you have fallen victim to the advanced damage modeling. There is a full sequence of missions to complete, as well as some pre-set challenges and a Free Driving mode allowing you to explore at your leisure.",
+   "players": "2",
+   "publisher": "Infogrames",
+   "year": "2000"
+  },
+  "Gran Turismo": {
+   "developer": "Polyphony Digital",
+   "genres": "Racing",
+   "overview": "Welcome to the most advanced racing game ever created! Encounter exhilarating high-speed racing in 11 stunning environments. Feel handling agility and throttle response so convincing, the car seems to be an extension of yourself. Experience the extraordinary world of Gran Turismo!",
+   "players": "2",
+   "publisher": "Sony Computer Entertainment",
+   "year": "1997"
+  },
+  "Gran Turismo 2": {
+   "developer": "Polyphony Digital",
+   "genres": "Racing",
+   "overview": "The world's most advanced racing game returns with thunderous new features. Over 500 racing machines from world-class manufacturers. - All vehicles are designed according to their exact specifications and are fully customizable. - Insane Arcade mode with power slides, burnouts, jumps and excessive speeds - Killer soundtrack from star-studded bands - Benchmark 3D graphics - Intense two player racing",
+   "players": "2",
+   "publisher": "Sony Computer Entertainment Europe",
+   "year": "1999"
+  },
+  "Grand Theft Auto": {
+   "developer": "Visual Sciences",
+   "genres": "Action; Adventure",
+   "overview": "In Grand Theft Auto, the player takes the role of a small-time criminal trying to make it big with the mob. Stealing cars, doing jobs for the gangsters and behaving generally anti-social are the way to success. The action moves through six levels spread over three different cities, each based on a real US city: Liberty City (based on New York City), San Andreas (based on San Francisco) and Vice City (based on Miami). To finish a level, a certain score must be reached. Stealing cars and crashing into traffic, driving over pedestrians and killing cops all raise the score, but the big points are made through jobs. Answering phones or entering special cars brings mission assignments, from simple \"ditch-a-hot-car\" jobs to supporting bank robberies or carrying out assassinations. Completing a mission will raise the score substantially and also increase the score multiplier, so that completing the next felony will gain even more points.",
+   "players": "1",
+   "publisher": "Rockstar Games",
+   "year": "1997"
+  },
+  "Metal Gear Solid": {
+   "developer": "Konami Computer Entertainment Japan",
+   "genres": "Shooter; Stealth",
+   "overview": "Metal Gear Solid follows Solid Snake, a soldier who infiltrates a nuclear weapons facility to neutralize the terrorist threat from FOXHOUND, a renegade special forces unit. Snake must liberate two hostages, the head of DARPA and the president of a major arms manufacturer, confront the terrorists, and stop them from launching a nuclear strike. Note: For those who don't have the box art of the back, this game uses a security feature of the time of telling you to use the station number on the back of the box. That radio frequency is \"140.15\"",
+   "players": "1",
+   "publisher": "Konami",
+   "year": "1998"
+  },
+  "Need for Speed - High Stakes": {
+   "developer": "Electronic Arts Canada",
+   "genres": "Racing; Sports",
+   "overview": "Just like its predecessors Need for Speed: High Stakes is an action racing game with a wide selection of exotic sports cars and many different types of tracks. The trademark Hot Pursuit mode game mode from the first game in the series is still present, where players race opponents on tracks filled with regular traffic and police cars that chase the racers. The classic pursuit mode is extended with two additional modes: Getaway and Time Trap. In Getaway the player needs to shake off the police in a set amount of time, or playing as the police trap a speeder before time runs out. In Time Trap an entire race needs to be completed before time runs out, or as the police all speeders need to be arrested. There are minor differences between the two platforms for this game mode, regarding spike strips, road blocks, and back-up. The latter for instance is unique to the PlayStation version. The Pursuit mode is available in multiplayer as well and players can take different sides or race together. It is the first game in the series to introduce a Career mode with a set of challenges. Beating these is rewarded with trophies for unlocks, and money to spend on new cars, repairs and upgrades. In the PlayStation version the Career mode is split up into two different sets of challenges: Tournament (required races) and Special Event (optional races). High Stakes in the title refers to races where players bet their cars. In the PC version these are a part of the Career mode when the player owns more than two cars. In the PlayStation version two players can insert their memory cards and race against each other. The winner immediately receives the opponent's car and it is deleted from the loser's memory card right away. In addition to the new game modes it is also the first game in the series to have a detailed physics models. Damage now affects both the appearance and the performance of the car for the first time.",
+   "players": "2",
+   "publisher": "Electronic Arts",
+   "year": "1999"
+  },
+  "Oddworld - Abe's Exoddus": {
+   "developer": "Oddworld Inhabitants",
+   "genres": "Platform; Puzzle",
+   "overview": "Oddworld: Abe's Exoddus is a 2D platform game very similar to its predecessor both visually and gameplay-wise. Like in the previous game, Abe has to outsmart his foes and avoid obstacles rather than confront them directly. The game is larger than its predecessor and is more oriented towards puzzle-solving, featuring more complex interaction with the Mudokons, who can now be angry, wired, depressed, sick, or blind. The first three problematic conditions can be removed with the appropriate \"Gamespeak\" command; sick Mudokons must be cured with a special item, while blind ones will follow Abe's voice and may fall to their deaths if Abe doesn't stop them in time.",
+   "players": "2",
+   "publisher": "GT Interactive Software",
+   "year": "1998"
+  },
+  "Oddworld - Abe's Oddysee": {
+   "developer": "Oddworld Inhabitants",
+   "genres": "Action; Adventure",
+   "overview": "In a lush of diabolical danger where everyone wants to eat you, you're the skinny guy with no weapons. Run, jump, hide, scramble and talk your way past the ugliest bunch of carnivorous crustaceans ever created. Unlock Abe's special powers then figure out your foes, and you might save your race. Don't, and you're dinner! Enter Oddworld's surreal, sensory overload of pure gaming and claim your destiny.",
+   "players": "2",
+   "publisher": "GT Interactive Software",
+   "year": "1997"
+  },
   "Tekken 3": {
    "developer": "Namco",
    "genres": "Fighting",
@@ -1535,6 +1607,22 @@
    "players": "2",
    "publisher": "Sony Computer Entertainment Europe",
    "year": "1998"
+  },
+  "Tomb Raider III - Adventures of Lara Croft": {
+   "developer": "Core Design",
+   "genres": "Action; Adventure",
+   "overview": "In the Prologue, millions of years ago, a meteor struck the then tropical environments of Antarctica. It was first discovered by a tribe of ancient Polynesians who settled there and constructed a city in the meteorite crater. They worshipped the immense supernatural powers it appeared to hold, fashioning four artefacts out of the meteorite's core material (which become the focus of the game). Shortly thereafter, the tribe laid witness to the deformed birth of their prophesied leader, born without a face, and fled Antarctica in fear of what the meteorite was capable of. In the present day, the ancient Polynesian city has been buried beneath snow and ice and RX Tech are excavating the site, investigating the meteorite. Led by Dr. Willard, the crew discovers remnants of the Polynesian city, ancient stone statues resembling the Easter Island Moai, and finds the grave of a man named Paul Caulfield of the HMS Beagle. When the game begins, Lara Croft is in India searching for a legendary stone in the ruins of an ancient temple once inhabited by the Infada tribe. She encounters Tony, an RX Tech employee who seems to be suffering from a severe bout of jungle fever. After parting ways, Tony remains one step ahead of Lara in their search for the stone, eventually finding it hidden deep within an underground cavern. After killing an oddly superhuman Tony, Lara takes the stone and exits. On her trek back to the Indian jungle, she is discovered by Dr. Willard.",
+   "players": "1",
+   "publisher": "Eidos Interactive",
+   "year": "1998"
+  },
+  "Tony Hawk's Pro Skater 2": {
+   "developer": "Neversoft Entertainment",
+   "genres": "Sports",
+   "overview": "Tony Hawk's Pro Skater 2 features the series' trademark open-ended gameplay, in which the player (playing as a professional skateboarder) completes a number of tasks which result in cash rewards. With money gained, the player can then purchase skill improvements and better skateboards. THPS2 was also the first game in the series to introduce the manual, a skateboarding trick where the performer balances on two wheels. This enables players to string together trick combos. The game also introduced the Noseslide, Tailslide, Bluntslide, Nosebluntside, Feeble, and Overcrook grinds. It was also the first of the Pro Skater games to feature Create-a-Skater and Park Editor features, now staples in the series.",
+   "players": "2",
+   "publisher": "Activision",
+   "year": "2000"
   }
  }
 }

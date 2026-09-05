@@ -30,9 +30,13 @@ SYSTEMS = [
     System('megadrive', 'Mega Drive', 'game.libretro.genplus',
            ('.md', '.gen', '.bin', '.smd', '.sms', '.gg', '.chd', '.cue'),
            'Sega Mega Drive'),
+    # No .m3u, for the same reason as Amiga: Kodi routes it to CVideoPlayer
+    # before any game client is considered. Verified on Metal Gear Solid - the
+    # playlist opened in the video player and the game never started. Multi-disc
+    # sets therefore start on disc 1's .cue; the .m3u files stay on disk unused.
     System('psx', 'PlayStation', 'game.libretro.pcsx-rearmed',
-           ('.cue', '.m3u', '.pbp', '.chd'), 'Sony PlayStation',
-           prefer=('.m3u', '.cue'), skip_exts=('.bin', '.img')),
+           ('.cue', '.pbp', '.chd'), 'Sony PlayStation',
+           prefer=('.cue',), skip_exts=('.bin', '.img')),
     System('nes', 'NES', 'game.libretro.nestopia',
            ('.nes', '.fds', '.unf'), 'Nintendo NES'),
     System('snes', 'SNES', 'game.libretro.snes9x',
