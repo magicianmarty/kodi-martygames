@@ -1,42 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The in-game OSD (window 10822) has no section in Kodi's joystick.xml, and
-     while a game is running the d-pad is still being consumed by the emulator,
-     so navigation never reaches the menu. Bind it explicitly for the OSD and
-     its sub-dialogs. -->
+<!-- Kodi's joystick.xml has no section for any of the in-game dialogs, so they
+     inherit <global>. That covers up/down/left/right/a/b, but maps <guide> to
+     ActivateWindow(Home) and <back> to Home as well, which drops out of the
+     game entirely. Rebind both so the button that opens the OSD closes it.
+
+     Directions are deliberately NOT bound: <global> already supplies them, and
+     putting them under <FullscreenGame> would break gameplay - CPortInput
+     registers its own keymap handler in front of the emulator's, so anything
+     bound there is swallowed before the game sees it. -->
 <keymap>
   <GameOSD>
     <joystick profile="game.controller.default">
-      <up>Up</up>
-      <down>Down</down>
-      <left>Left</left>
-      <right>Right</right>
-      <leftstick direction="up">Up</leftstick>
-      <leftstick direction="down">Down</leftstick>
-      <leftstick direction="left">Left</leftstick>
-      <leftstick direction="right">Right</leftstick>
-      <a>Select</a>
-      <b>Back</b>
       <guide>Back</guide>
+      <back>Back</back>
     </joystick>
   </GameOSD>
+  <InGameSaves>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </InGameSaves>
+  <GameAgents>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameAgents>
+  <GameDiscManager>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameDiscManager>
   <GameControllers>
     <joystick profile="game.controller.default">
-      <up>Up</up>
-      <down>Down</down>
-      <left>Left</left>
-      <right>Right</right>
-      <a>Select</a>
-      <b>Back</b>
+      <guide>Back</guide>
+      <back>Back</back>
     </joystick>
   </GameControllers>
-  <GameSaves>
+  <GameVideoFilter>
     <joystick profile="game.controller.default">
-      <up>Up</up>
-      <down>Down</down>
-      <left>Left</left>
-      <right>Right</right>
-      <a>Select</a>
-      <b>Back</b>
+      <guide>Back</guide>
+      <back>Back</back>
     </joystick>
-  </GameSaves>
+  </GameVideoFilter>
+  <GameStretchMode>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameStretchMode>
+  <GameVideoRotation>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameVideoRotation>
 </keymap>

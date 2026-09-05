@@ -11,14 +11,21 @@ they are hand-built and a Kodi/addon update can lose them.
   Using `noop` instead would *consume* the press and the game would never see
   it — that exact mistake made B/X/Y dead in every emulator.
   Exit a game with **hold Back/View + Start/Menu**.
-- **game-osd.xml** — the in-game OSD is window 10822 (`GameOSD`), and Kodi's
-  `joystick.xml` defines **no section for it** — none of the game dialogs
-  (`GameOSD`, `GameControllers`, `GameSaves`, `GameVideoFilter`...) appear
-  there, only `FullscreenGame`. It therefore falls back to `<global>`, but
-  while a game runs the d-pad is still routed to the emulator, so the menu
-  never sees it. This binds navigation explicitly for the OSD and the two
-  sub-dialogs reachable from it, and maps the Xbox/guide button to Back so the
-  button that opens the menu also closes it.
+- **game-osd.xml** — Kodi's `joystick.xml` defines no section for any of the
+  in-game dialogs (`GameOSD`, `GameSaves`, `GameControllers`...), so they fall
+  back to `<global>` — which does give them up/down/left/right/a/b. What it
+  also gives them is `guide` and `back` mapped to `ActivateWindow(Home)`, which
+  drops out of the game entirely; this rebinds both to Back so the button that
+  opens the OSD closes it.
+
+  **Do not bind directions under `<FullscreenGame>`.** While a game is loaded
+  `CPortInput::RegisterInput` puts its own keymap handler *in front of* the
+  emulator's, and that handler hard-codes its window to `FullscreenGame`
+  (`CPortInput::GetWindowID`). Anything bound there is consumed before the game
+  sees it, so `<down>Down</down>` would kill the d-pad in every emulator. It is
+  also unnecessary: the OSD pauses the game, the emulator's handler then stops
+  accepting input, and the press falls through to the peripheral's own keymap,
+  which uses the real window id.
 - **mouse-wheel.xml** — vertical wheel moves between rows rather than
   scrolling a horizontal carousel sideways. Horizontal wheel is not mappable:
   the parser accepts only leftclick/rightclick/middleclick/doubleclick/
