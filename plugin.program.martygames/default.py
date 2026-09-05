@@ -67,6 +67,28 @@ def quote(value):
     return '"%s"' % value.replace('\\', '\\\\').replace('"', '\\"')
 
 
+def savestate_dir(path):
+    return os.path.join(SAVES, os.path.basename(path))
+
+
+def savestate_thumb(path):
+    """The newest screenshot Kodi wrote beside a savestate, if any.
+
+    Kodi captures the frame it saved on, so this is a picture of where the
+    player actually left off - far better on a shelf than the box art, and it
+    costs nothing because the files are already there.
+    """
+    folder = savestate_dir(path)
+    try:
+        shots = [f for f in os.listdir(folder) if f.lower().endswith('.jpg')]
+    except OSError:
+        return None
+    if not shots:
+        return None
+    newest = max(shots, key=lambda f: os.path.getmtime(os.path.join(folder, f)))
+    return os.path.join(folder, newest)
+
+
 def last_played(path):
     """When this game was last opened, from the savestate directory Kodi creates.
 
@@ -166,6 +188,63 @@ def describe(li, game, system):
     except AttributeError:
         pass
     return lines
+
+
+def meta_of(game):
+    return METADATA.get(game['system'], {}).get(game['title'], {})
+
+
+def list_continue():
+    """Games with a savestate, shown as the frame they were left on."""
+    entries = []
+    for game in scanner.scan_all(ROMS):
+        thumb = savestate_thumb(game['path'])
+        if thumb:
+            entries.append((os.path.getmtime(thumb), game, thumb))
+    entries.sort(key=lambda e: e[0], reverse=True)
+
+    xbmcplugin.setPluginCategory(HANDLE, 'Continue')
+    xbmcplugin.setContent(HANDLE, 'games')
+    for _stamp, game, thumb in entries[:RECENT_LIMIT]:
+        li = make_item(game)
+        art = li.getArt('fanart')
+        li.setArt({'thumb': thumb, 'poster': thumb, 'fanart': art or thumb})
+        xbmcplugin.addDirectoryItem(
+            HANDLE, url(action='info', key=game['system'], title=game['title']),
+            li, True)
+    xbmcplugin.endOfDirectory(HANDLE)
+    set_view(WALL_VIEW)
+
+
+def list_shelf(args):
+    """One metadata-driven shelf: genre, player count, decade or unplayed."""
+    genre = args.get('genre', '')
+    players = args.get('players', '')
+    decade = args.get('decade', '')
+    unplayed = args.get('unplayed', '')
+
+    picked = []
+    for game in scanner.scan_all(ROMS):
+        meta = meta_of(game)
+        if genre and genre.lower() not in meta.get('genres', '').lower():
+            continue
+        if players:
+            try:
+                if int(meta.get('players') or 0) < int(players):
+                    continue
+            except ValueError:
+                continue
+        if decade:
+            year = meta.get('year', '')
+            if not (year.isdigit() and year[:3] == decade[:3]):
+                continue
+        if unplayed and last_played(game['path']):
+            continue
+        picked.append(game)
+
+    label = genre or decade or ('%s players' % players if players else '') \
+        or ('Never Played' if unplayed else 'Games')
+    list_games(picked, label)
 
 
 def list_root():
@@ -317,6 +396,10 @@ def main():
         played = [(last_played(g['path']), g) for g in scanner.scan_all(ROMS)]
         played = sorted((p for p in played if p[0]), key=lambda p: p[0], reverse=True)
         list_games([g for _, g in played[:RECENT_LIMIT]], 'Recently Played', sort=False)
+    elif action == 'continue':
+        list_continue()
+    elif action == 'shelf':
+        list_shelf(args)
     elif action == 'play':
         play(args['path'], args['core'])
     else:
