@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.martygames"
+       name="Marty Games"
+       version="0.1.0"
+       provider-name="marty">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Games browser for skin.martyedition</summary>
+        <description lang="en_GB">Indexes the ROM library and serves it as browsable directories with artwork, launching each game with its correct emulator core.</description>
+        <platform>all</platform>
+        <license>GPL-3.0-or-later</license>
+        <assets/>
+    </extension>
+</addon>
