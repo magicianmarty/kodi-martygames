@@ -8,6 +8,7 @@ import xbmc
 import xbmcaddon
 import xbmcgui
 import xbmcplugin
+import xbmcvfs
 
 from resources.lib import scanner
 from resources.lib.systems import BY_KEY, SYSTEMS
@@ -16,6 +17,8 @@ HANDLE = int(sys.argv[1])
 BASE = sys.argv[0]
 ADDON = xbmcaddon.Addon()
 ROMS = ADDON.getSetting('rom_path') or '/storage/sdcard/roms'
+SAVES = xbmcvfs.translatePath('special://home/saves')
+RECENT_LIMIT = 20
 
 
 def url(**kwargs):
@@ -24,6 +27,26 @@ def url(**kwargs):
 
 def log(msg):
     xbmc.log('[martygames] %s' % msg, xbmc.LOGINFO)
+
+
+def quote(value):
+    """Quote a path for a Kodi builtin: params are split on unquoted commas."""
+    return '"%s"' % value.replace('\\', '\\\\').replace('"', '\\"')
+
+
+def last_played(path):
+    """When this game was last opened, from the savestate directory Kodi creates.
+
+    Kodi makes special://home/saves/<rom filename>/ the moment a game is opened
+    and writes into it while it plays, so the directory's mtime is a last-played
+    stamp for free - no play tracking of our own, and it survives a reinstall of
+    this add-on. It is created even when the core cannot serialise (dosbox-pure
+    fails every save), which is what we want: the game was still played.
+    """
+    try:
+        return os.path.getmtime(os.path.join(SAVES, os.path.basename(path)))
+    except OSError:
+        return 0.0
 
 
 def make_item(game):
@@ -44,7 +67,7 @@ def make_item(game):
             tag.setPlatform(system.platform)
     except AttributeError:
         pass  # older Kodi without InfoTagGame; the property above still works
-    # Artwork lands here in phase 2; the skin resolves poster -> thumb -> landscape.
+    li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
     art = os.path.join(ROMS, '..', 'artwork', game['system'],
                        game['title'] + '.png')
     art = os.path.normpath(art)
@@ -63,6 +86,10 @@ def list_root():
                 present.append((system, len(games)))
 
     total = sum(n for _, n in present)
+    li = xbmcgui.ListItem(label='Recently Played')
+    li.setArt({'icon': 'DefaultAddonGame.png'})
+    xbmcplugin.addDirectoryItem(HANDLE, url(action='recent'), li, isFolder=True)
+
     li = xbmcgui.ListItem(label='All Games')
     li.setArt({'icon': 'DefaultAddonGame.png'})
     li.setProperty('total', str(total))
@@ -77,7 +104,7 @@ def list_root():
     xbmcplugin.endOfDirectory(HANDLE)
 
 
-def list_games(games, category):
+def list_games(games, category, sort=True):
     xbmcplugin.setPluginCategory(HANDLE, category)
     xbmcplugin.setContent(HANDLE, 'games')
     for game in games:
@@ -86,7 +113,10 @@ def list_games(games, category):
         # a plugin context never starts. The gameclient property below is what
         # selects the emulator; the scanner avoids extensions Kodi hijacks.
         xbmcplugin.addDirectoryItem(HANDLE, game['path'], make_item(game), False)
-    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL)
+    # Recently Played is already in the order we want; a sort method would let
+    # Kodi re-order it back to alphabetical.
+    if sort:
+        xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL)
     xbmcplugin.endOfDirectory(HANDLE)
 
 
@@ -122,6 +152,10 @@ def main():
     elif action == 'all':
         list_games(sorted(scanner.scan_all(ROMS), key=lambda g: g['title'].lower()),
                    'All Games')
+    elif action == 'recent':
+        played = [(last_played(g['path']), g) for g in scanner.scan_all(ROMS)]
+        played = sorted((p for p in played if p[0]), key=lambda p: p[0], reverse=True)
+        list_games([g for _, g in played[:RECENT_LIMIT]], 'Recently Played', sort=False)
     elif action == 'play':
         play(args['path'], args['core'])
     else:
