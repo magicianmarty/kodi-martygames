@@ -11,6 +11,14 @@ they are hand-built and a Kodi/addon update can lose them.
   Using `noop` instead would *consume* the press and the game would never see
   it — that exact mistake made B/X/Y dead in every emulator.
   Exit a game with **hold Back/View + Start/Menu**.
+- **game-osd.xml** — the in-game OSD is window 10822 (`GameOSD`), and Kodi's
+  `joystick.xml` defines **no section for it** — none of the game dialogs
+  (`GameOSD`, `GameControllers`, `GameSaves`, `GameVideoFilter`...) appear
+  there, only `FullscreenGame`. It therefore falls back to `<global>`, but
+  while a game runs the d-pad is still routed to the emulator, so the menu
+  never sees it. This binds navigation explicitly for the OSD and the two
+  sub-dialogs reachable from it, and maps the Xbox/guide button to Back so the
+  button that opens the menu also closes it.
 - **mouse-wheel.xml** — vertical wheel moves between rows rather than
   scrolling a horizontal carousel sideways. Horizontal wheel is not mappable:
   the parser accepts only leftclick/rightclick/middleclick/doubleclick/
