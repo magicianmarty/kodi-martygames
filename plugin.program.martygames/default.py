@@ -35,6 +35,16 @@ except (OSError, ValueError):
 
 SEP = '   \u00b7   '
 
+# Kodi keys a saved view by window and content type, so the browse listings and
+# the one-game page - both "games" in the same window - fight over one slot and
+# whichever was opened last wins. Each page therefore names its own view.
+WALL_VIEW = 500
+DETAIL_VIEW = 590
+
+
+def set_view(view_id):
+    xbmc.executebuiltin('Container.SetViewMode(%d)' % view_id)
+
 # Kodi sorts labels with "ignore articles when sorting" on by default, so its
 # order and ours have to agree or the A-Z offsets below point at the wrong row.
 _ARTICLE = re.compile(r'^(the|a|an)\s+', re.I)
@@ -229,6 +239,7 @@ def list_games(games, category, sort=True, detail=True):
         for name, index in letters.items():
             xbmcplugin.setProperty(HANDLE, 'letter_index_' + name, str(index))
     xbmcplugin.endOfDirectory(HANDLE)
+    set_view(WALL_VIEW)
 
 
 def show_game(key, title):
@@ -266,6 +277,7 @@ def show_game(key, title):
         xbmcplugin.setProperty(HANDLE, 'game_fanart', snap)
     xbmcplugin.addDirectoryItem(HANDLE, game['path'], li, False)
     xbmcplugin.endOfDirectory(HANDLE)
+    set_view(DETAIL_VIEW)
 
 
 def play(path, core):
