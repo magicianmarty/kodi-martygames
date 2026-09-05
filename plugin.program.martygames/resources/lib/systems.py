@@ -18,8 +18,12 @@ class System:
 
 SYSTEMS = [
     System('amiga', 'Amiga', 'game.libretro.uae',
-           ('.m3u', '.adf', '.adz', '.dms', '.ipf', '.lha'),
-           'Commodore Amiga', prefer=('.m3u',)),
+           # No .m3u: Kodi treats it as a VIDEO PLAYLIST and tries to demux each
+           # .adf ("Open - probing detected format [adf]" then CVideoPlayer),
+           # so it never reaches PUAE. Point at disk 1 and use RetroPlayer's
+           # disc control to swap; the .m3u files stay on disk unused.
+           ('.adf', '.adz', '.dms', '.ipf', '.lha'),
+           'Commodore Amiga'),
     # No .zip: Genesis Plus GX reports "Supports VFS: false" and its valid
     # extensions are m3u|mdx|md|smd|gen|bin|cue|iso|chd|... - a zipped ROM
     # simply fails with "Unable to open file". ROMs must be unpacked.

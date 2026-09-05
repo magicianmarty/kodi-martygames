@@ -81,25 +81,32 @@ def list_games(games, category):
     xbmcplugin.setPluginCategory(HANDLE, category)
     xbmcplugin.setContent(HANDLE, 'games')
     for game in games:
-        # Point straight at the ROM. RetroPlayer will not resolve a plugin://
-        # URL - it hands the URL itself to the core, which then reports
-        # "Unable to open file". The gameclient property on the ListItem is what
-        # selects the game player, so extension-based routing (.zip to the
-        # picture viewer, .bin to the video player) does not apply here.
+        # Direct ROM path. Routing playback through the plugin does not work:
+        # RetroPlayer will not resolve a plugin:// URL, and Player().play() from
+        # a plugin context never starts. The gameclient property below is what
+        # selects the emulator; the scanner avoids extensions Kodi hijacks.
         xbmcplugin.addDirectoryItem(HANDLE, game['path'], make_item(game), False)
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL)
     xbmcplugin.endOfDirectory(HANDLE)
 
 
 def play(path, core):
-    li = xbmcgui.ListItem(path=path)
+    """Start the game ourselves instead of letting Kodi route by extension.
+
+    Kodi picks a player from the file type before any game client is
+    considered: .m3u is treated as a video playlist (it tries to demux each
+    .adf), .zip goes to the picture viewer and .bin to the video player. Only
+    .adf/.nes/.wad/.gen are unambiguous. Driving Player().play() with a
+    ListItem that carries the gameclient bypasses all of that.
+    """
+    li = xbmcgui.ListItem(label=os.path.basename(path), path=path)
     li.setProperty('gameclient', core)
     try:
         li.getGameInfoTag().setGameClient(core)
     except AttributeError:
         pass
     log('launching %s with %s' % (path, core))
-    xbmcplugin.setResolvedUrl(HANDLE, True, li)
+    xbmc.Player().play(path, li)
 
 
 def main():

@@ -39,3 +39,23 @@ them — each emulated system uses its own feature names and needs its own
 Button indices were decoded from the evdev bitmaps (ascending code order):
 `0=KEY_RECORD 1=A 2=B 4=BTN_NORTH 5=BTN_WEST 7=LB 8=RB 11=View 12=Menu
 13=Guide 14=L3 15=R3`; axes `0/1=Lstick 2/3=Rstick 4=GAS 5=BRAKE 6/7=d-pad`.
+
+## ports/ -> `/storage/.kodi/userdata/addon_data/<core>/ports.xml`
+
+Overrides which controller a core's port gets. Without it Kodi binds the
+**first** profile the core's topology accepts — and uae lists `amiga.cd32`
+before `amiga.pro.joystick`, so every Amiga game got a CD32 pad.
+
+Neither removing the profile from the buttonmap nor disabling the
+`game.controller.amiga.cd32` addon changes the binding; only `ports.xml` does.
+
+Schema (undocumented, determined by testing against the loader's own errors —
+`<accepts>` is rejected with *"Inside \<port\> tag: Ignoring \<accepts\> tag"*):
+
+```xml
+<ports>
+  <port type="controller" id="1">
+    <controller id="game.controller.amiga.pro.joystick"/>
+  </port>
+</ports>
+```

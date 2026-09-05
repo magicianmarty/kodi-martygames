@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ports>
+  <port type="controller" id="1">
+    <controller id="game.controller.amiga.pro.joystick"/>
+  </port>
+  <port type="controller" id="2">
+    <controller id="game.controller.amiga.pro.joystick"/>
+  </port>
+</ports>

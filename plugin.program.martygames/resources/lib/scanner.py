@@ -121,6 +121,21 @@ def scan_system(root, system):
             continue
         groups.setdefault(clean_title(entry), []).append((ext, path))
 
+    # Multi-disk sets live in a subfolder of their own (Amiga). Treat each
+    # folder as one game and start it on disk 1 - RetroPlayer's disc control
+    # handles swapping from there.
+    for entry in sorted(os.listdir(base)):
+        folder = os.path.join(base, entry)
+        if not os.path.isdir(folder):
+            continue
+        disks = sorted(f for f in os.listdir(folder)
+                       if os.path.splitext(f)[1].lower() in system.exts)
+        if not disks:
+            continue
+        first = next((d for d in disks if re.search(r'disk\s*0*1\b', d, re.I)), disks[0])
+        groups.setdefault(clean_title(entry), []).append(
+            (os.path.splitext(first)[1].lower(), os.path.join(folder, first)))
+
     for title, files in sorted(groups.items()):
         for wanted in system.prefer:
             chosen = next((p for e, p in files if e == wanted), None)

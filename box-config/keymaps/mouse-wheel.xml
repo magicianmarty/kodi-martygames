@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vertical wheel moves between rows instead of scrolling a row sideways. -->
+<keymap>
+  <global>
+    <mouse>
+      <wheelup>up</wheelup>
+      <wheeldown>down</wheeldown>
+    </mouse>
+  </global>
+</keymap>
