@@ -20,8 +20,12 @@ SYSTEMS = [
     System('amiga', 'Amiga', 'game.libretro.uae',
            ('.m3u', '.adf', '.adz', '.dms', '.ipf', '.lha'),
            'Commodore Amiga', prefer=('.m3u',)),
+    # No .zip: Genesis Plus GX reports "Supports VFS: false" and its valid
+    # extensions are m3u|mdx|md|smd|gen|bin|cue|iso|chd|... - a zipped ROM
+    # simply fails with "Unable to open file". ROMs must be unpacked.
     System('megadrive', 'Mega Drive', 'game.libretro.genplus',
-           ('.zip', '.md', '.gen', '.bin', '.smd'), 'Sega Mega Drive'),
+           ('.md', '.gen', '.bin', '.smd', '.sms', '.gg', '.chd', '.cue'),
+           'Sega Mega Drive'),
     System('psx', 'PlayStation', 'game.libretro.pcsx-rearmed',
            ('.cue', '.m3u', '.pbp', '.chd'), 'Sony PlayStation',
            prefer=('.m3u', '.cue'), skip_exts=('.bin', '.img')),
