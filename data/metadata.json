@@ -226,6 +226,14 @@
    "publisher": "Epic Games",
    "year": "1994"
   },
+  "Heroes of Might and Magic": {
+   "developer": "New World Computing",
+   "genres": "Strategy",
+   "overview": "Heroes of Might and Magic is a turn-based strategy game in which the player takes on the role of one of four different heroes: the warlock, sorceress, barbarian, or knight. As the hero the player must build up his or her castle by adding different buildings to earn different units to strengthen the hero's army with. Units include dragons, cyclopes, phoenixes, paladins, and many more fantasy creatures. Bulidings and units cost money and resources. Buildings can also be upgraded to unlock new unit types. Another aspect of the game is exploring the world and discovering treasures, spells, mines to gather resources, nomad camps, magic lamps, ultimate artifacts, and more. The game uses a top down map in which the player can move his heroes a number of spaces each turn. Whenever the player encounters an enemy hero or castle a battle is shown in a close-up view. During battles all the player's units are shown as stacks. The player can move these stacks around on a hexagonal grid. Different units have different movement and attack capabilities requiring different strategies to use and overcome. The goal is to defeat all opponents by conquering their castles and defeating their heroes in battle. The player must also defend his own castles from enemy attacks. The player's heroes can collect spells to use in battle and can boost the units under their command, but they otherwise don't have a presence on the battlefields. The heroes collect experience points in typical RPG manner which boosts their stats. In addition items can be collected for additional bonuses.",
+   "players": "1",
+   "publisher": "New World Computing",
+   "year": "1995"
+  },
   "Jazz Jackrabbit": {
    "developer": "Epic Megagames",
    "genres": "Platform; Shooter",
@@ -289,6 +297,14 @@
    "publisher": "MicroProse Software",
    "year": "1996"
   },
+  "Monkey Island 2 - LeChucks Revenge": {
+   "developer": "Lucasfilm Games",
+   "genres": "Adventure",
+   "overview": "Guybrush Threepwood, the mighty pirate who can hold his breath for ten minutes, could have lived quietly and happily with his sweetheart Elaine, the governor of Melee Island. But the restless pirate spirit won't let Guybrush in peace. Things don't go very well with Elaine, and Guybrush (now with a beard) embarks on a new adventure: searching for the legendary treasure of Big Whoop. However, the evil ghost pirate LeChuck hasn't left the stage yet. His subordinates are trying to bring him back from the dead one more time. Will Guybrush be able to defeat his archenemy again? Monkey Island 2: LeChuck's Revenge is a puzzle-solving adventure game and a sequel to The Secret of Monkey Island. It utilizes the same command-based SCUMM interface (the player uses verb commands on highlighted objects) and branching dialogue system (choosing between several different responses during conversations) that were used in its predecessor. The game features hand-painted graphics, and is the first to utilize LucasArts' iMUSE system, which synchronizes music with visual action on the screen by providing smooth transition between themes. The events of the game take place on a new set of islands; a part of the game allows the player to explore several islands simultaneously. Uncommonly for adventure games, LeChuck's Revenge features two difficulty levels. The easier one is dubbed Monkey Island 2 Lite; it bypasses or simplifies some of the harder puzzles.",
+   "players": "1",
+   "publisher": "Lucasfilm Games",
+   "year": "1991"
+  },
   "One Must Fall 2097": {
    "developer": "Diversions Entertainment",
    "genres": "Fighting",
@@ -304,6 +320,14 @@
    "players": "1",
    "publisher": "Brøderbund Software",
    "year": "1990"
+  },
+  "Quake": {
+   "developer": "id Software",
+   "genres": "Shooter",
+   "overview": "From the creators of DOOM and DOOM II comes the most intense, technologically advanced 3-D experience ever captured on CD-ROM. Features free fluid motion, ambient sound and lighting, and unmatched multi-player capabilities (play with up to 15 others via internet, modem, LAN or serial connection). Rage through 32 single player levels and 6 deathmatch levels of sheer terror and fully immersive sound and lighting. Arm yourself against the cannibalistic Ogre, fiendish Vore and indestructible Shambler using lethal nails, fierce Thunderbolts and abominable Rocket and Grenade Launchers.",
+   "players": "15",
+   "publisher": "id Software",
+   "year": "1996"
   },
   "Settlers 2 Gold Edition": {
    "developer": "Blue Byte Studio",
@@ -321,6 +345,22 @@
    "publisher": "MicroProse Software",
    "year": "1991"
   },
+  "SimCity 2000": {
+   "developer": "Maxis Software",
+   "genres": "Construction and Management Simulation; Strategy",
+   "overview": "SimCity 2000 is the successor to the city simulation game Sim City. You are once again the mayor, but this time you can fully customize the terrain before building your city. The graphics are isometric, whereas the original had graphics displayed in a top-down fashion. This title adds numerous features over the original such as the ability of building \"light\" zones, subways, hospitals, colleges, zoos, and arcos which are actually cities in cities. You can now give names to places, and your city is surrounded by neighboring towns with which you can make trade. Finally, instead of the poll in the first game you now have the option of reading several newspapers to get an idea of your progress.",
+   "players": "1",
+   "publisher": "Mindscape",
+   "year": "1993"
+  },
+  "Star Wars TIE Fighter": {
+   "developer": "Totally Games",
+   "genres": "Action; Flight Simulator",
+   "overview": "The dark side beckons you on CD-ROM... Through their treachery on Yavin, the Alliance of rebels and other criminals has threatened the very foundation of the Empire. As an imperial navy starfighter pilot, your will safeguard imperiled lives throughout the galaxy. This compilation includes the campaigns from the original game Star Wars: TIE Fighter, the three campaigns from the add-on Star Wars: TIE Fighter - Defender of the Empire and also three new, never before released campaigns in a second add-on called Enemies of the Empire. In total there are more than 100 missions to fly and survive. In addition to the new missions, there are also some technical improvements to the game: Improved screen resolution to SVGA (640*480) Added new cut scenes Full voice mission briefings and radio calls (the so called \"Talkie\" version) Improved the interactive mission briefing",
+   "players": "1",
+   "publisher": "LucasArts Entertainment",
+   "year": "1995"
+  },
   "Stunts 1": {
    "developer": "Distinctive Software",
    "genres": "Racing",
@@ -336,6 +376,14 @@
    "players": "1",
    "publisher": "Electronic Arts",
    "year": "1994"
+  },
+  "The Secret of Monkey Island": {
+   "developer": "Lucasfilm Games",
+   "genres": "Adventure",
+   "overview": "Deep in the Caribbean lies Melee Island, ruled by the governor Elaine Marley. The cruel pirate LeChuck is deeply in love with her - so deeply that he refuses to accept his own death. As a ghost, he dwells with his undead crew somewhere near the mysterious Monkey Island. Meanwhile, a young fellow named Guybrush Threepwood is determined to become a real pirate. At the Scumm Bar he meets three pirates who tell him he has to complete three difficult tasks in order to be worthy of this title. But as Guybrush is trying to complete these tasks, he encounters the lovely governor, and this meeting changes his life forever. Risking to incur the wrath of LeChuck, Guybrush has to prove his wit is as sharp as his sword, and figure out a way to foil the ghost pirate's plans. The Secret of Monkey Island is an adventure game that utilizes the command verb-based SCUMM interface first introduced in Maniac Mansion: the player constructs commands for Guybrush by selecting an appropriate verb and then combining it with an object or an inventory item. Objects that can be interacted with are highlighted when the player places a cursor over them. The game is the first LucasArts adventure in which it is impossible to get irrevocably stuck; like in Loom, the player character also cannot die. The branching dialogue system, where the player chooses between several available responses during conversations, allows the player to talk to characters in different ways without fearing a wrong choice, and is often used as a humorous device. The puzzles are predominantly inventory-based; most of the problems in the game are solved by picking up items and combining them with each other or with objects (or people) in the game world. Several tasks are dialogue-based; among those is the humorous \"insult swordfighting\", which involves Guybrush learning and choosing witty insults while dueling pirates. The CD DOS and FM Towns versions of the game have slightly updated interface (with graphically represented inventory items instead of the text-only labels in the original version), as well as CD audio music tracks.",
+   "players": "1",
+   "publisher": "Lucasfilm Games",
+   "year": "1990"
   },
   "The Ultimate Doom": {
    "developer": "Bethesda Softworks",
@@ -376,6 +424,14 @@
    "players": "1",
    "publisher": "MicroProse Software",
    "year": "1993"
+  },
+  "Ultima VII - The Black Gate": {
+   "developer": "Origin Systems",
+   "genres": "Role-Playing",
+   "overview": "The Avatar sees a strange message on his computer screen. An unknown being who calls himself the Guardian claims that Britannia has entered a true age of enlightenment, and soon everyone, including the Avatar himself, shall bow before the new lord. At this moment, a moongate materializes, and the Avatar steps through it into Britannia. He emerges in the city of Trinsic, where his old friend Iolo tells him that two hundred years have passed since his last visit. A horrible ritualistic murder has just occurred - the body of the local blacksmith was found in the stables. The Avatar learns that a new organization known as the Fellowship has been recruiting more and more followers recently. The champion of Britannia must solve the murder and find out about the Fellowship's true purpose, while still pursued by the ominous warnings of the mysterious Guardian. Ultima VII: The Black Gate features revamped graphics and controls. The traditional Ultima top-down view of the world now fills the entire screen, with other informational windows overlaid on top of it only when necessary. Both world interaction and dialogue are fully mouse-controlled. Objects can be physically interacted with by dragging them with the mouse. Objects can also be stacked upon each other, and some puzzles are based on this feature. Equipment screen utilizes a \"paper doll\" concept: equipped items are graphically displayed on the character. It is also possible to physically manipulate inventory items, arranging them within bags and other containers. The tactical combat system of previous Ultima games has been replaced with a real-time system where only general strategies can be set and party members fight automatically, the player taking control of the Avatar alone. Combat pauses when the player accesses the inventory. Leveling up system is similar to the previous games, the Avatar's parameters increasing automatically once a sufficient amount of experience points has been accumulated. The Avatar and his companions must regularly eat in order to stay alive. The game's world is vast, populated by many non-playable characters with their own schedules. There are more extensive dialogue trees and individual conversation topics compared to the series' previous installments. As in the earlier Ultima games, the player is free to explore Britannia from the beginning of the game; certain tasks must be accomplished in a specific order to conclude the story.",
+   "players": "1",
+   "publisher": "Electronic Arts",
+   "year": "1992"
   },
   "Warcraft 2 Tides Of Darkness": {
    "developer": "Blizzard Entertainment",
