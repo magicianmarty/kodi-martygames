@@ -1,0 +1,20 @@
+{
+  "amiga": {
+    "James Pond 2 - RoboCod": "James Pond II - Codename RoboCod",
+    "Parasol Stars": "Parasol Stars - Rainbow Islands 2 (Europe)",
+    "Turrican II": "Turrican II - The Final Fight"
+  },
+  "dos": {
+    "Keen 1 - Marooned on Mars": "Commander Keen 1 - Marooned on Mars",
+    "Keen 2 - The Earth Explodes": "Commander Keen 2 - The Earth Explodes",
+    "Keen 3 - Keen Must Die": "Commander Keen 3 - Keen Must Die!",
+    "Keen 4 - Secret of the Oracle": "Commander Keen 4 - Secret of the Oracle",
+    "Keen 5 - The Armageddon Machine": "Commander Keen 5 - The Armageddon Machine",
+    "Settlers 2 Gold Edition": "Settlers II, The (Gold Edition)",
+    "Stunts 1": "Stunts (1990)"
+  },
+  "megadrive": {
+    "Phantasy Star - The End of the Millenium": "Phantasy Star IV (USA)",
+    "Sonic and Knuckles & Sonic 1": "Sonic _ Knuckles + Sonic The Hedgehog (USA, Europe)"
+  }
+}
