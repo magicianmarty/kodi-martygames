@@ -1,5 +1,13 @@
 {
  "amiga": {
+  "Agony": {
+   "developer": "Art & Magic",
+   "genres": "Shooter",
+   "overview": "This horizontally-scrolling shoot 'em up features six long levels, all with detailed and mellow background graphics, aiming for a less hectic feel than contemporaries such as Project X. As a magician's apprentice, you have been turned into an owl to give you the best chance of destroying the many dark creatures to be faced, and thus discovering the secret of cosmic strength. These dark creatures include piranhas, giant ants and mosquitoes. Extra weapons and invincibility periods can be collected. The technical details include 3 layers of multi-directional parallax scrolling, background animation, and different title and in-game music.",
+   "players": "1",
+   "publisher": "Psygnosis",
+   "year": "1992"
+  },
   "Alien Breed": {
    "developer": "Team17 Software",
    "genres": "Shooter",
@@ -7,6 +15,14 @@
    "players": "2",
    "publisher": "Team17 Software",
    "year": "1991"
+  },
+  "Alien Breed - Tower Assault": {
+   "developer": "Team17 Software",
+   "genres": "Shooter",
+   "overview": "A scientific outpost on a far off planet has been attacked. Nothing is known about the attackers, since all communications have been destroyed. A team of marines is dispatched to investigate and destroy the unknown invaders. As their dropships enter the atmosphere and approach the base, the defence lasers, damaged in the onslaught, move into action. They launch wild bursts of laser fire at the approaching marines, who are not prepared and take heavy losses. Rookies Nash and Jordan crash-land, and must fight off the alien force. As with the previous Alien Breed, the gameplay is viewed from above. Your soldier shoots his way through the levels, collecting keys, ammunition and credits along the way. Computers can be logged into to buy new weapons. A new 'retreat' mode allows you to fire while moving backwards. The game is largely non-linear, as most levels have multiple exits, and the game can be moved through in different ways. There is a variety of indoor and outdoor levels, although you spend most time inside some of the multi-level towers. After activating a self-destruct mechanism, you must escape the building quickly.",
+   "players": "2",
+   "publisher": "Team17 Software",
+   "year": "1994"
   },
   "Another World": {
    "developer": "Delphine Software International",
@@ -23,6 +39,38 @@
    "players": "2",
    "publisher": "Play Byte",
    "year": "1992"
+  },
+  "Assassin": {
+   "developer": "Psionic Systems",
+   "genres": "Platform; Shooter",
+   "overview": "Side-scrolling action game in the style of Turrican and Strider. The basic storyline is that you're a top assassin (hence the title) dropped behind enemy lines in search of the evil tyrant, Midan. You must navigate his highly complex underground lair, defeating all manner of baddies, until you finally put an end to his evil deeds. There are a variety of weapons (including your standard boomerang!) and powerups to help you along your way through the five different levels.",
+   "players": "1",
+   "publisher": "Team17 Software",
+   "year": "1992"
+  },
+  "Banshee": {
+   "developer": "Core Design",
+   "genres": "Shooter",
+   "overview": "A vertically-scrolling shoot 'em up from the old school, with similarities to games like 1942 and SWIV. There are lots of big, brash enemy vehicles to take on, plus individual soldiers (these often lie in a pool of blood afterwards, a gruesome sight making full use of AGA graphics) and civilians. Many of the enemies have good hiding places and can emerge surprisingly, Commando-style. There are four large levels, which also scroll a small amount horizontally, the idea being that you can evade some opposition. There's a special loop-the-loop type feature available, which can double as an attack or an evasive move.",
+   "players": "2",
+   "publisher": "Core Design",
+   "year": "1994"
+  },
+  "Beneath a Steel Sky": {
+   "developer": "Revolution Software",
+   "genres": "Adventure",
+   "overview": "In futuristic Australia, there are giant cities owned solely by corporations, separated by a giant wasteland known as The Gap. When Robert Foster's Gap-dwelling tribe is killed by soldiers from Union City who capture him, everything changes for him. After a narrow escape from the helicopter bringing him there as it inexplicably crashes, Robert and his droid Joey must search the decaying city, attempting to befriend both the snobby rich and the frustrated poor as the two attempt to get out of the city, but in the middle of everything they uncover the dark truth about LINC, the bizarre computer which makes the city tick. The game uses the Virtual Theatre engine from Lure of the Temptress, which allows its characters to move freely independent of the player's input, making the game world more dynamic than it is usually the case in comparable games. Otherwise, the engine provides traditional point-and-click adventure gameplay.",
+   "players": "1",
+   "publisher": "Virgin Interactive Entertainment (Europe)",
+   "year": "1994"
+  },
+  "Body Blows": {
+   "developer": "Team17 Software",
+   "genres": "Fighting",
+   "overview": "Around the time of the Amiga version of Street Fighter 2, Amiga specialists Team 17 came up with a similar one on one beat 'em up, designed around the machine's strengths and weaknesses. AGA version, released a year later, featured entirely redrawn backgrounds, doubled the playable characters and locations. In the 1993 version you had four characters to choose from - brothers Dan and Nik play identically, Lo-Ray is a Buddhist Monk, and Junior a failed boxer. The opponents include a Ninja warrior, a businessman whose post-fight catchphrase is 'I'm sorry about that', and a thin Spanish girl. The backdrops feature lots of color and animation, varying from wrestling rings to building sites and beaches. The 1994 release let you play any of the aforementioned characters. The control is designed around one-button controllers, with special moves generated by pushing in a certain direction and pressing fire, and one 'super special' move by holding fire for a few seconds. The real skill is in combining these moves effectively.",
+   "players": "2",
+   "publisher": "Team17 Software",
+   "year": "1993"
   },
   "Bubble Bobble": {
    "developer": "Software Creations",
@@ -48,11 +96,67 @@
    "publisher": "Renegade Software",
    "year": "1994"
   },
+  "Defender of the Crown": {
+   "developer": "Master Designer Software",
+   "genres": "Action; Strategy",
+   "overview": "Defender of the Crown puts the player in the role of one of four Saxon knights in medieval England, in a time where the land is in turmoil as the King is dead and his crown was stolen. The Saxons and the Normans blame each other and fight for control of England. After a short introduction by Robin of Locksley himself, the game starts with a single castle and 10 soldiers at your command. From there, you have to build your army, take control of additional territories and fight and defeat the three Norman lords - and sometimes your Saxon friends as well. In addition to the basic ' build your army and conquer your opponents' the game offers several events and options that can be used to fine tune your play style: You may engage in a jousting contest where you have to knock your opponent off his horse, gaining either fame or land, or you can go raid a castle for loot or the hand of a princess, joining your houses and territories.",
+   "players": "1",
+   "publisher": "Cinemaware",
+   "year": "1986"
+  },
+  "Deluxe Galaga": {
+   "developer": "Edgar M. Vigdal",
+   "genres": "Shooter",
+   "overview": "Edgar M. Vigdal: \"Deluxe Galaga is based on the game StarBattle on the old VIC20. That was one excellent game, that I had a lot of fun with. It's also some features from the games Galaga and Galaxions. I played Galaga on an arcade machine, but it was so long ago that I have forgotten how it looked like. My version of Galaga (or StarBattle) is a simple shoot'em up game with good game play, but not so much fancy graphics. Many of today games have lots and lots of graphics, but when it comes to game play they really sucks. They have manuals covering hundreds of pages, and you need hours and days to get into the game. What I want from a game is some relaxation for a couple of minutes, and then be able to quit the game and do some more work. And not to mark the calendar for when I want to play the 60MB hi-tech game! You are in control of a small starfighter, and your mission is to protect the earth from alien attackers. When you start, your ship have limited supply of bullets and are moving a bit to slow, but by shooting the aliens you can collect the falling bonuses and get all sorts of weapons, extra speed and a lot of other goodies! When you are hit, some of the weapon power is lost and also speed and any bonus time you have collected. This loss is bigger on the hard level. There are double shoot, triple shoot, super weapon, extra life, smart bombs, money, warps, secret bonus level and much more to be collected and added to the starfighter. Look out for mother ships, rockets, warp malfunctions, super guardians and Super Cash Ship! There is also a lot of secrets in the game, you can find this secrets yourself, or you can buy them in space-shop. The space-shop will appear every fourth level, but you must have more than 50 credits to enter the shop. There are more than 10 secrets hidden in the game and some that are not listed in the game! The Sub Games: Meteor Storm: You must navigate you ship through a field of big rocks floating in space. Some of the rocks have bonus point on surface and can be collected. There are also some money containers floating around. Collect these and get some extra shopping money. You will get a super bonus if you complete the meteor storm. The Memory Station: Try and find a pair (Two blocks that look the same) in a matrix of blocks. If you find a pair you will get the bonus that are one the blocks. You only have limited time to find as many pairs as possible. If you find all the pairs you will get a bonus. The Warp Malfunction: Shoot and try to survive the attack of the warped beast from outer hyperspace.\"",
+   "players": "2",
+   "publisher": "Edgar M. Vigdal",
+   "year": "1995"
+  },
+  "Disposable Hero": {
+   "developer": "Euphoria",
+   "genres": "Shooter",
+   "overview": "This horizontally scrolling R-Type-influenced shoot 'em up features 5 levels to blast through, with bosses at the end of each level as well as tough mini-bosses as you go through it. There are four difficulty levels, with the easiest acting as a trainer, as you can't reach the final level or complete the game properly with it. You can customize exactly how loud the music and sound effects are relative to each other, and there lots of subtle visual effects, such as a smoke haze coming off your ship as it incurs gradual damage. The game's power-up system is worthy of note. Rather than simply picking up new weapons, or all-purpose tokens which can be traded in at the press of a button, you collect blueprints for a total of 32 different weapons as well as upgrades to the maximum amount of power your ship can unleash at a time. Once you reach a power-up bay (which are depicted as blue domes at the base of the level), you can add or remove weapons so as to maximize your attack capabilities.",
+   "players": "1",
+   "publisher": "Gremlin Graphics Software",
+   "year": "1994"
+  },
+  "Elite": {
+   "developer": "Mr. Micro",
+   "genres": "Construction and Management Simulation; Flight Simulator; Shooter",
+   "overview": "Elite is a free-form space trading and combat simulation, commonly considered the progenitor of this sub-genre. The player initially controls a character referred to as \"Commander Jameson\", starting at Lave Station with 100 credits and a lightly armed trading ship called Cobra Mark III. Most of the game consists of traveling to various star systems, trading with their inhabitants, gaining money and reputation. Money can also be gained by other means beside trading; these include undertaking military missions, bounty hunting, asteroid mining, and even piracy. As the player character earns money, he becomes able to upgrade his ships with enhancements such as better weapons, shields, increased cargo capacity, an automated docking system, etc.",
+   "players": "1",
+   "publisher": "Rainbird Software",
+   "year": "1988"
+  },
+  "First Samurai": {
+   "developer": "Vivid Image",
+   "genres": "Beat 'em Up; Platform",
+   "overview": "The First Samurai is a platform action game very much similar to other platform games, but with a medieval oriental touch to it in addition to various unique features. Arriving in the new unknown land, you are defenceless hence your fists and kicks. But as you journey forth, you'll find your trusty magical sword as well as throwing weapons such as knives and axes. With your martial art skills, your enemy best beware with those sudden moves that may prove fatal!",
+   "players": "1",
+   "publisher": "Image Works",
+   "year": "1991"
+  },
   "Flashback": {
    "genres": "Platform; Shooter",
    "overview": "The year is 2142. The player takes control of Conrad B. Hart, a man who has lost his memory. After barely escaping from hostile aliens, Conrad's bike crashes on an unknown planet. Conrad finds himself in the jungle, and from that moment on his quest for survival and his lost identity begins. Flashback: The Quest for Identity incorporates elements of platforming, shooting, and problem-solving. The game can be described as a \"cinematic platformer\" (commonly referred to as Prince of Persia-style), following a design philosophy that was also manifested in Delphine Software's previous work, Another World. Compared to that game, Flashback focuses more on platforming and exploration of large levels. Unofficial CD32 version Features: Psygore's WHDLoad slave with CD32 joypad support, speed corrected cutscenes and level/difficult select capability. Controls screen. Level and difficulty selection screen. Multiple language support - English, German, Czech, Italian and French. NEW: CDXL intro, derived from the 2013 remake - now redone in HAM8. NEW: Support for FastRAM equipped CD32's (eg TerribleFire)",
    "players": "1",
    "year": "2018"
+  },
+  "Frontier - Elite II": {
+   "developer": "Frontier Developments",
+   "genres": "Construction and Management Simulation; Flight Simulator; Shooter",
+   "overview": "There is no plot within Frontier, nor are there pre-scripted missions (as there are in its sequel, First Encounters). Instead, players explore space while trading legally or illegally, carrying out missions for the military, ferrying passengers from system to system, engaging in piracy or any combination of the above. As a consequence, Frontier cannot be completed or \"won\", and players instead decide what to aspire to and set out to achieve it. In Frontier, the player begins in the year 3200 and assumes the role of one of Commander Jameson's grandchildren, having inherited one hundred credits and an Eagle Long Range Fighter from him. By the game’s standards, these are very modest resources, and are intended as a spur to encourage players to earn money by whatever means they feel is appropriate. Though the plot is minimal, some background information about the universe of Frontier is provided. There are two major factions in the galaxy: The \"Federation\", based in the Sol system, and the \"Empire\", based in the Achenar system. These two factions are bitter enemies, but at the time of the game they have established a tense cease-fire, akin to the Cold War. Players are free to side themselves with the Federation, the Empire, both, or neither; the game does not restrict one's political career. Both sides have military forces that a player can run freelance missions for, with successes leading to a military promotion. The ranks of the Federation and Empire are independent of each other. Playing for both sides adds to the difficulty to acquire a rank promotion for either.",
+   "players": "1",
+   "publisher": "GameTek",
+   "year": "1993"
+  },
+  "Gloom": {
+   "developer": "Black Magic Software",
+   "genres": "Shooter",
+   "overview": "This first person shooter for Amiga & Amiga CD32 is very much in the style of Doom. Game play consists of walking through corridors and shooting bad guys, dinosaurs and aliens.",
+   "players": "2",
+   "publisher": "Guildhall Leisure Services",
+   "year": "1995"
   },
   "Gods": {
    "developer": "JOTD",
@@ -62,6 +166,38 @@
    "publisher": "JOTD",
    "year": "2018"
   },
+  "Hired Guns": {
+   "developer": "DMA Design",
+   "genres": "Role-Playing",
+   "overview": "The year is 2712, and four mercenaries have been sent to the planet Graveyard on a hostage rescue mission. Upon arriving, however, they discover that the call for help was just an excuse to lure them into proving grounds, where they will have to fight genetically engineered creatures. Hired Guns is an action RPG using square-based movements, à la Dungeon Master, in which up to four players can take part and set in a futuristic setting. The screen is split into 4 parts (or 3 in case 3 players play together), each one representing the viewpoint of the characters, these being selected from a team of 12 available mercenaries. If one player plays alone, he will control all 4 characters, using the mouse to navigate between each character viewpoints. A follow mode is available to avoid tedious numerous amounts of clicking when moving several characters. If two players play together, then each player will use a mouse to control two characters. In three or four-player mode, players can freely choose to control their characters via either a joystick/joypad or some of the predefined keyboard layouts or a mouse. When 4 people play together, the screen will display 4 viewpoints, like in 1 and 2-player modes. In 3-player mode, the top of the screen displays two viewpoints for player 1 and 2, but the lower part of the screen displays a single viewpoint, centered, for player 3. Three game modes are available. The Training mode features 5 simple maps on which the player(s) can learn how to move, use inventory items etc... The Full Campaign mode takes the player(s) to the far reaches of the Luyten planetary system, on the planet Graveyard. Battling through more than 20 theaters of engagement, your team of mercenaries test their limits of military prowess in order to wipe out all threats on the planet surface. To this end, they have to make their way through the different missions and gather 4 fusion power core rings, before entering the final mission in the Spaceport. Finally, in Short Action game mode, the player(s) can choose between 17 maps. On those maps, the player(s) will have to fight some enemies to reach the exit within a specified time limit. Additionally, when more than one player takes part in the mission, players will compete with each other since only the first to reach the exit will win.",
+   "players": "4",
+   "publisher": "Psygnosis",
+   "year": "1993"
+  },
+  "Hybris": {
+   "developer": "Cope-com",
+   "genres": "Shooter",
+   "overview": "Hybris is a classic vertically scrolling shoot-em-up which has its roots firmly with arcade stalwarts like Capcom’s 1942. The back story takes place in 2461 A. D. and concerns an Earth colony being lost on an alien planet known as Jurica. The space station Hybris cannot establish communications with the colony. So a scout ship must be sent on a rescue mission over this seemingly desolate desert-like expanse to find the colonists, and subsequently return them to safety. Warning: Inbound Hostiles . .! The game is for one, and the player can select from two Ace pilots - J.P. Maverick or K. Lovett. You navigate the scout ship around the screen at will. The aim is to shoot everything that moves, whilst outmanoeuvring enemy fire. One contends with spiralling waves of alien nasties which move into the play area from multiple direction’s something akin to Galaga, as well as stationary gun turrets & other surface installations that periodically spew projectiles. At times a power cube bonus will drift onto the screen. Which upon being shot by the player, will reveal a strength upgrade feature for the scout ship. Each subsequent upgrade collected will progressively beef up the ship (which is visually realised in real-time), in turn increasing your firepower. The scout ship can also be expanded on the fly into unique power configurations attributed to which cube bonus has been collected. You also have control of a smart-bomb feature which can relieve sticky situations.",
+   "players": "1",
+   "publisher": "Discovery Software International",
+   "year": "1988"
+  },
+  "IK+": {
+   "developer": "Software Studios",
+   "genres": "Fighting; Sports",
+   "overview": "International Karate + (IK+) is a simple side-on beat 'em up. 3 characters appear on the screen - either 1 player and 2 AI, or 2 player and 1 AI - and proceed to kick seven bells out of each other via various karate moves. Each of the moves scores a different number of points and if you come last in a particular round you are eliminated. There are some sub-games too, involving your karate-master holding a shield and defending himself against bouncing balls from both directions, and kicking bombs off the screen before they explode. All in the pursuit of that elusive black belt...",
+   "players": "2",
+   "publisher": "System 3 Software",
+   "year": "1994"
+  },
+  "Indiana Jones and the Fate of Atlantis": {
+   "developer": "Lucasfilm Games",
+   "genres": "Adventure",
+   "overview": "Indiana Jones is back! The great archaeologist and adventurer has to solve a grand mystery once again, aided by his trusty whip, his sharp wit, and his courage. A man who calls himself Mr. Smith is interested in a certain ancient statue. When the unsuspecting Indy hands it over to the client, he finds out that Mr. Smith is in fact a colonel in the Nazi army! Why was he so interested in that statue? A young woman who had once worked together with Indy, the pretty red-haired (and a bit troublesome) Sophia, tells him the whole thing must have a connection with the legendary lost continent Atlantis. Gathering clues from all over the world, Indy and Sophia embark on a grand journey across the globe.",
+   "players": "1",
+   "publisher": "Lucasfilm Games",
+   "year": "1993"
+  },
   "James Pond 2 - RoboCod": {
    "developer": "VectorDean",
    "genres": "Action; Platform",
@@ -70,11 +206,35 @@
    "publisher": "Millennium Interactive",
    "year": "1993"
   },
+  "Kick Off 2": {
+   "developer": "Dino Dini",
+   "genres": "Sports",
+   "overview": "The original Kick Off was expanded on in many ways for this sequel. The game now features full tournament modes (although the players on the teams are fictitious) and four different pitches (including an implementation of plastic pitches, whose uneven bounce cause controversy when several British clubs tried them in the 1980s). Viewed top-down, the controls involve trapping the ball under your foot, giving you time to prepare passes. Running with the ball is tricky at first, as it doesn't stick to your foot the way it did in contemporary football games. Complex moves such as overhead kicks, back-heels and long-range through-ball passes can be completed with practice.",
+   "players": "2",
+   "publisher": "Anco Software",
+   "year": "1990"
+  },
   "Lotus Turbo Challenge": {
    "developer": "Magnetic Fields",
    "players": "2",
    "publisher": "Gremlin Graphics Software",
    "year": "1991"
+  },
+  "Nitro": {
+   "developer": "Psygnosis",
+   "genres": "Racing",
+   "overview": "Nitro is an top-down perspective arcade racer for the Amiga and Atari ST. It was developed and published in 1990 by Psygnosis. This game contains no clear background or storyline, just white-knuckle video game racing. After choosing whether to play with one, two or three (via keyboard) players, the player(s) must select a car and buy accessories at the \"pit stop\" before proceeding to the race. Three vehicles are available; namely the racing car, sports car, and turbo buggy. Accessories include nitros, high speed, acceleration, traction, fix damage, a change of car, as well as fuel which is imperative to the racing campaign. The game consists of 32 levels, but the game ends when the fuel is depleted. To prevent this, the player must finish in a high place on most races, which rewards the player with up to 600 gasoline units. In addition, power-ups float around in the levels as well as being placed on the track, but these may be picked up by any of the four cars. There are four different environments. Starting on city roads, the player advance through forest and desert tracks before playing the last levels in a wasteland terrain. (Evidently, the Nitro story is that the apocalypse occurs, and the races go on. \"The end of the world is nigh\" is graffitied on the track.) Every four races there are night levels, which means that the screen is pitch-black save for the small area illuminated by headlights. Double headlights are available as a floating power-up. Obstacles during races are commonplace. Examples are cones and holes in the road, which mainly slow down the player, and (blue) oil spillage which causes the car to spin. The Nitro manual makes reference to pedestrians, and says that in some races extra points are given for hitting pedestrians—however During a replay only 1 of the 32 levels has a message prior to entering the race, mentioning : money awarded for hitting pedestrians. Nitro was also available as part of the Psygnosis monster pack, volume I, along with the original Shadow of the Beast and Infestation. The \"monsters\" in the game may refer to the players—namely, Clint Eastwood (P1—white), Rambo (P2—yellow), and James Bond (P3—red).",
+   "players": "4",
+   "publisher": "Psygnosis",
+   "year": "1990"
+  },
+  "North & South": {
+   "developer": "Infogrames",
+   "genres": "Action; Strategy",
+   "overview": "Based on the Belgian comic book, \"Les Tuniques Bleues\", this strategy game allows you to replay the American Civil War from both the North and the South sides. In the strategy part of the game, you can move your troops on a map of the US. If two opposing armies enter the same state, the battle is played out in an action sequence. Additional action sequences must be accomplished when capturing an enemy fort or train. The game also offers a two-player-mode.",
+   "players": "2",
+   "publisher": "Infogrames",
+   "year": "1989"
   },
   "Parasol Stars": {
    "developer": "Ocean Software",
@@ -92,6 +252,46 @@
    "publisher": "21st Century Entertainment",
    "year": "1992"
   },
+  "Pinball Fantasies": {
+   "developer": "Digital Illusions",
+   "genres": "Pinball",
+   "overview": "Like Pinball Dreams, Pinball Fantasies contains four themed tables with various difficulty levels. \"Party Land\", the table included in the shareware release, is oriented around an amusement park, where the letters of either PARTY or CRAZY must be lit to start a high-scoring event. \"Speed Devils\" is focused on car racing, and the player must overtake cars to take the lead. \"Billion Dollar Gameshow\" is a game show-style table where the player attempts to win prizes by achieving certain combinations of ramps. \"Stones 'N Bones\" is based on a haunted house, where the player must light eight successively more rewarding modes by completing a bank of targets marked STONE-BONE and then cycle continuously through the modes. All four tables award one extra ball at the instant the highest score in the list is exceeded, and when the match at the end succeeds. Each table has one special ramp, usually one but with two on Speed Devils, which keeps track of the number of hits as a running total of Cyclones (Party Land), Miles (Speed Devils), Skills (Billion Dollar) or Screams (Stones). The first shot counts for two. Each of these shots is worth 100,000 in the bonus. Except for Party Land, the tables also award special awards at specific numbers. Each of the four tables has one or two high-scoring rounds that can be started by achieving certain objectives. Specific numbers of Miles and Skills trigger their respective tables' rounds. The scores for these modes, excluding Tower Hunt, are awarded as part of the bonus though not multiplied, and can be lost if the game is tilted.",
+   "players": "8",
+   "publisher": "21st Century Entertainment",
+   "year": "1992"
+  },
+  "Populous": {
+   "developer": "Bullfrog Productions",
+   "genres": "Strategy",
+   "overview": "You play a god, gaming against other gods in a celestial game of conquest. To win, you must help your chosen people take over the world and wipe out the vermin who worship that other god. Each god starts out with a single human, dumped into the middle of the wilderness. Sometimes there is inhabitable land in sight, sometimes not. To get a chance to win, you must change the landscape, creating flat land for your followers to build on. The more followers you have, the more powerful you will be, so take care of them. Build as fast as you can, because the other god is doing the same. When you have enough followers, you can make the leader of your people into a hero. He will then go around the land you have built, literally taking strength from the people into himself, and working his way toward the enemy. When he gets there, he will engage in holy warfare upon your enemy's people. He will burn; he will kill. And he won't stop until they're all dead... or he is.",
+   "players": "2",
+   "publisher": "Electronic Arts",
+   "year": "1989"
+  },
+  "Prince of Persia": {
+   "developer": "Brøderbund Software",
+   "genres": "Action; Platform",
+   "overview": "The Grand Vizier Jaffar has thrown you into a dark dungeon and plans to marry the girl of your dreams in an hour. You're not going to let that happen are you? Try to escape from the dungeon, take out Jaffar's guards, find your way through the Sultan's palace and defeat Jaffar himself. Now go, you've got 60 minutes! Prince of Persia is a 2D platformer with run and jump gameplay. Your hero must avoid deadly traps, solve some simple puzzles and engage in sword fights with the guards. The player has an infinite amount of lives, but has to restart at the beginning of a level each time he dies, and must complete the game within an hour. An especially noteworthy aspect of the game is the very fluent animation of your character.",
+   "players": "1",
+   "publisher": "Brøderbund Software",
+   "year": "1990"
+  },
+  "Project-X": {
+   "developer": "Team17 Software",
+   "genres": "Shooter",
+   "overview": "Taking place many years in the future in colonized space, military scientists have disposed of countless, defective military droids on an un-colonized terrestrial planet called Ryxx. The droids eventually become sentient and, by way of revenge, start an attack against mankind, using a station to continually create more war machines. It is the player's mission to undergo Project X and eliminate the droid forces.",
+   "players": "2",
+   "publisher": "Team17 Software",
+   "year": "1992"
+  },
+  "Pushover": {
+   "developer": "Red Rat Software",
+   "genres": "Puzzle",
+   "overview": "You're playing a small ant that is willing to help a friend in rather inconvenient situation. Apparently, your friend, doggie, likes to eat cookies that has his picture on their box, and he got himself so carried away that he lost the balance, and a bag of cookies fell deep down into an ant-hill. Now, you're goin' in, in a mission of solving puzzles, and retrieving the cookies for your friend. Now, this ant-hill is a bit different from the ones you saw, and especially from the one you live in. It's path is filled up with boulders, and all the gates, and you must travel the quest to find the cookies. After each different place inside, you'll fins a small bag of cookie, and bring it back to your friend doggie.",
+   "players": "1",
+   "publisher": "Ocean Software",
+   "year": "1992"
+  },
   "Rainbow Islands": {
    "developer": "Graftgold",
    "genres": "Platform",
@@ -99,6 +299,14 @@
    "players": "2",
    "publisher": "Ocean Software",
    "year": "1990"
+  },
+  "Rick Dangerous": {
+   "developer": "Core Design",
+   "genres": "Platform",
+   "overview": "The game is largely based on the Indiana Jones movie Raiders of the Lost Ark. Set in 1945, British agent Rick Dangerous travels to the Amazon jungle to search for the lost Goolu tribe. His plane crashes in the jungle, and Rick must escape from the enraged Goolu. When the game starts Rick finds himself in a cave running from a rolling boulder, a famous scene from the Indiana Jones movie. Armed with a pistol and dynamite, Rick must fight hostiles and evade countless traps in three more levels. The second level is set inside a pyramid in Egypt. In level three, Rick must venture to the Nazi stronghold of Schwarzendumpf castle to rescue captured Allied soldiers. The rescued soldiers tell him that the Nazis are planning a missile attack on London. Therefore, in the last level Rick must infiltrate their secret missile base.",
+   "players": "1",
+   "publisher": "Firebird Software",
+   "year": "1989"
   },
   "Ruff n Tumble": {
    "developer": "Wunderkind",
@@ -116,6 +324,14 @@
    "publisher": "Renegade Software",
    "year": "1992"
   },
+  "Sensible World of Soccer": {
+   "developer": "Sensible Software",
+   "genres": "Sports",
+   "overview": "Sensible World of Soccer is an enhanced version of Sensible Soccer. Virtually every important soccer league in the world is included in this game, with some countries not only having premier / first division, but 2nd, 3rd, and more divisions. All important international competitions are also included (club- and national-team based). The game has a career mode, where you may play up to 20 seasons as player manager or manager only. During a career as a coach you're not tied to one club / national team, meaning if you're good enough one (or more) big clubs make offers to you to coach their team.",
+   "players": "4",
+   "publisher": "Renegade Software",
+   "year": "1994"
+  },
   "Shadow of the Beast": {
    "developer": "Reflections Interactive",
    "genres": "Platform",
@@ -123,6 +339,14 @@
    "players": "1",
    "publisher": "Psygnosis",
    "year": "1989"
+  },
+  "Shadow of the Beast II": {
+   "developer": "Reflections Interactive",
+   "genres": "Action; Platform",
+   "overview": "Shadow of the Beast II finds the hero in half-beast form, wandering the lands of Karamoon in search of his kidnapped sister. She had been taken away from her mother's cottage by the dragon-form of the Beast Mage, Zelek, servant to Maletoth. Along the way, Aarbron befriends the wise dragon Barloom and must defeat the evil dragon Ishran. Tree Pygmies in the forest and the goblins in the Crystal Caverns serve as interactive, complicated foes. For example, a bottle of booze picked up at the Karamoon oasis must be given to the goblin jailer to free Aarbron from his cell. Only after Aarbron gives the old man his ring and his parchment does he obtain a spell powerful enough to harm Zelek.",
+   "players": "1",
+   "publisher": "Psygnosis",
+   "year": "1990"
   },
   "Speedball 2": {
    "developer": "The Bitmap Brothers",
@@ -132,6 +356,28 @@
    "publisher": "Image Works",
    "year": "1988"
   },
+  "Stunt Car Racer": {
+   "genres": "Racing",
+   "overview": "Race a single computer opponent for first place on a unique racetrack -- 100 feet in the air! You start in the fourth three-man division of a league, all racing each other twice, and must come top to progress. The action is viewed from within the car throughout the 3-lap races, with the distance between you always on screen. Jump chasms, jumps, and drawbridges; take banks hard or slow; pass your opponent on the track or while catching mass air. Your car has the ability to burn a limited amount of turbo boost fuel as a way to accelerate faster and achieve higher speeds, but don't use it all up at once or you'll fall behind. Don't damage your engine too much; severe dents will show up during your next race. Whatever you do, don't fall off the track, as this will cost you time as you are placed back on.",
+   "players": "2",
+   "year": "2021"
+  },
+  "Super Cars II": {
+   "developer": "Magnetic Fields",
+   "genres": "Racing",
+   "overview": "The follow up to Magnetic Fields' earlier racing game develops the format in several ways. As before, the racing is overhead view and against a field of 9 computer cars, with championship points awarded for finishing positions. The computer drivers now take on the humourous names from Lotus 1, such as 'Ayrton Sendup' and 'T Hairy Bootson'. The most noticeable addition is a split screen 2 player mode. The power ups have been changed around from the original, with the handling improvements gone, so as to put more of an emphasis on learning to control the slippery cars. These have been replaced by further weapons and more engine upgrades. The questions from the original have been replaced by mock driving test questions about stopping distances and the like - as before, money and points are won and lost depending on your answers.",
+   "players": "2",
+   "publisher": "Gremlin Graphics Software",
+   "year": "1991"
+  },
+  "Super Skidmarks": {
+   "developer": "Acid Software",
+   "genres": "Racing",
+   "overview": "Experience total rally rage with Super Skidmarks. Race at top speed, slide, scream, and crush car metal over the toughest dirt tracks devised. Choose from a variety of challenging play modes and thrill to simultaneous four-player power. Super Skidmarks features six unique vehicles (bug, 4x4, sports car, compact, grand prix car, and cow -- yes, cow) plus ultimate turbo models of each, 24 of the wildest 3D isometric tracks with twisting gradients, and full and split-screen modes for up to four at once.",
+   "players": "4",
+   "publisher": "Codemasters",
+   "year": "1995"
+  },
   "Superfrog": {
    "developer": "Team17 Software",
    "genres": "Platform",
@@ -140,6 +386,29 @@
    "publisher": "Team17 Software",
    "year": "1994"
   },
+  "Syndicate": {
+   "developer": "Bullfrog Productions",
+   "genres": "Action; Strategy",
+   "overview": "In the future, the world is controlled by a handful of global corporations (syndicates). You are the Marketing director (hit man) for one of these companies. It is your job to take control away from the competitors. The job is not one of diplomacy, but one of brute force and physical control. Advance your way to the top of the corporation by successfully completing your missions and managing the money you make from your territories. The gameplay is visually reminiscent of X-Com, with an angled top-down perspective, but it is real time rather than turn based. You have missions ranging from infiltrate and capture, to seek and destroy. In each of these you direct a team of four agents as they move through the world shooting at anything that gets in their way. You can upgrade and modify your agents, as well as equip them with tools you have researched or liberated from opposing syndicates. As you complete missions, you gain more funds to use for purchasing agents or researching upgrades and equipment.",
+   "players": "1",
+   "publisher": "Mindscape",
+   "year": "1995"
+  },
+  "Turrican": {
+   "developer": "Factor 5",
+   "genres": "Platform; Shooter",
+   "overview": "The lost colony of Alterra is a completely man-made lifeworld abandoned long ago in a nearby galaxy. Alterra is actually five colonies in one. Each self-contained habitat has been separately bio-engineered by a powerful ecosystem generation network known as a Multiple Organism Unit Link. MORGUL, for short. Early colonists used MORGUL to render Alterra inhabitable. But a cataclysmic quake severed all system interface functions, and MORGUL murderously rebelled. The few colonists lucky enough to escape told a grim tale of a higher intelligence gone berserk. For generations, mankind sought a return to Alterra. Finally, genetic science created a saviour: Turrican, a mutant warrior, bio-engineered for the task of planetary reclamation. In the meantime, MORGUL has diligently twisted Alterran life forms to his brutal, destructive purposes. Thus, Turrican's challenges consist in eliminating hostile organisms from Alterra's five multi-level worlds and, finally, destroying the three faces of MORGUL.",
+   "players": "1",
+   "publisher": "Rainbow Arts",
+   "year": "1990"
+  },
+  "Turrican 3": {
+   "developer": "Scum Amiga Software",
+   "genres": "Platform",
+   "overview": "An unfinished PD platform game roughly in the form of a Turrican-like fighter who can blast and jump over the ghostly baddies in front of him.",
+   "players": "1",
+   "year": "1995"
+  },
   "Turrican II": {
    "developer": "Factor 5",
    "genres": "Platform; Shooter",
@@ -147,6 +416,37 @@
    "players": "1",
    "publisher": "Renegade Software",
    "year": "1993"
+  },
+  "Uridium 2": {
+   "developer": "Graftgold Creative Software",
+   "genres": "Shooter",
+   "overview": "Re-enter your manta in the sequel to one of the fastest 8-bit action games. You are sent out to take out half a dozen enemy battle groups, each consisting of four huge spaceships. Similar to the first Uridium, you face increasing numbers of unfriendly fighter wings and stationary defenses while sweeping over the carriers. The real challenge here is to avoid the many walls on the back of the vessel while you are under attack. After the exterior has been cleaned from most of the enemy presence you take care of the ships' reactor core in a jump-and-run-like sequence. While floating in a non-gravity surrounding, lower the core's shields and then destroy it. The game also gives you a number of extra weapons that can be collected by either flying over pick-ups left from dead enemy wings or by catching them after the power generator has been destroyed.",
+   "players": "2",
+   "publisher": "Renegade Software",
+   "year": "1993"
+  },
+  "Walker": {
+   "developer": "Ian Dunlop",
+   "genres": "Action",
+   "players": "1",
+   "publisher": "Psygnosis",
+   "year": "1993"
+  },
+  "Wings": {
+   "developer": "Cinemaware",
+   "genres": "Flight Simulator; Shooter",
+   "overview": "You are an allied fighter pilot in WW1, duking it out with the \"Huns\" up in the sky in over 200 missions. The missions usually come in three flavors: Top-down view bombing missions where you have to take out strategically important targets, isometric strafing runs where you get to blast anything that you fancy blasting with an unlimited supply of ammo, and of course the main part: Dogfights in the sky. Rendered in 3D, seems from behind your head. The game is set in the years 1916 through 1918, and to loosen things up a little, we get to read a page of our character's new entry for the diary-like journal in his company between every mission.",
+   "players": "1",
+   "publisher": "Cinemaware",
+   "year": "1990"
+  },
+  "Worms": {
+   "developer": "Team17 Software",
+   "genres": "Action; Strategy",
+   "overview": "Worms is a turn-based strategy game. It features up to 4 teams of 4 worms, aiming to destroy the others on a generated terrain. Each worm has 100 hit points, and dies when his hit points fall to 0. Upon death, a worm explodes, causing damage to everyone around. Gameplay is turn-based. Each turn, the player can control one specific worm from his team. The worm can crawl left and right or jump. However, there is a time limit to make a move; also, if the worm falls from a great height, it loses health and the turn ends immediately; and if a worm falls into water or offscreen, it dies. Each turn, a worm can also make a single attack: the player can aim up and down, choose a weapon and then fire it. After attacking, the turn ends.",
+   "players": "4",
+   "publisher": "Ocean Software",
+   "year": "1995"
   }
  },
  "c64": {
@@ -178,6 +478,61 @@
   }
  },
  "dos": {
+  "Alone In The Dark": {
+   "developer": "Infogrames Europe",
+   "genres": "Action; Adventure; Horror",
+   "overview": "Jeremy Hartwood has committed suicide in his Louisiana mansion, Derceto. You take the role of either Edward Carnby, a private investigator, or Emily Hartwood, Jeremy's niece, and investigate the suspicious death. The three-floor mansion is reputed to be haunted by its eccentric past owner. Very quickly, you realise that it is. Warped rats, zombies and giant worms are among the foes who are after you, and you must somehow escape. Alone in the Dark is an action-adventure survival horror game. The action is displayed from a number of fixed viewpoints. The backgrounds are 2D painted images, while the player character, all items and monsters are rendered as 3D models. To escape the mansion, you'll have to solve a number of puzzles. They usually involve finding an item and using it in a proper place. Apart from items necessary for the puzzles, you can also find books and documents that can be read, healing items which can be consumed to restore hit points, and weapons. Weapons come in handy, since Derceto is full of various monsters. Some monsters can be killed with weapons, but others are either impossible to kill or require a bit of thinking to take down. Note also that you have limited amounts of ammunition, so you have to use firearms carefully.",
+   "players": "1",
+   "publisher": "Infogrames Europe",
+   "year": "1992"
+  },
+  "Another World": {
+   "developer": "TWIM",
+   "genres": "Action; Adventure",
+   "overview": "Father World is an action game with adventure elements. Peace in a megalopolis is threatened by a mysterious demon and his cyborg minions. A lone hero agrees to do what the authorities can't: single-handedly avert the threat. The game is very similar to Another World visually, though it contains by far less platforming elements and setpieces, and focuses on exploration, making it feel more like an adventure game. The player navigates the protagonist through side-view environments, talking to characters, obtaining quests, and occasionally engaging in combat and avoiding obstacles. Character animation is almost identical to that of Another World; the hero is able to run, jump, perform a running jump, and crouch.",
+   "publisher": "TWIM",
+   "year": "1994"
+  },
+  "Beneath A Steel Sky": {
+   "developer": "Revolution Software",
+   "genres": "Adventure",
+   "overview": "In futuristic Australia, there are giant cities owned solely by corporations, separated by a giant wasteland known as The Gap. When Robert Foster's Gap-dwelling tribe is killed by soldiers from Union City who capture him, everything changes for him. After a narrow escape from the helicopter bringing him there as it inexplicably crashes, Robert and his droid Joey must search the decaying city, attempting to befriend both the snobby rich and the frustrated poor as the two attempt to get out of the city, but in the middle of everything they uncover the dark truth about LINC, the bizarre computer which makes the city tick. The game uses the Virtual Theatre engine from Lure of the Temptress, which allows its characters to move freely independent of the player's input, making the game world more dynamic than it is usually the case in comparable games. Otherwise, the engine provides traditional point-and-click adventure gameplay. The iPhone version introduces a touch-based interface, new animated movies by Dave Gibbons, a context-sensitive hint system and a remastered audio track.",
+   "players": "1",
+   "publisher": "Virgin Interactive Entertainment",
+   "year": "1994"
+  },
+  "Betrayal at Krondor": {
+   "developer": "Dynamix",
+   "genres": "Role-Playing",
+   "overview": "Based on Raymond E. Feist's Riftwar saga (and co-written by Feist himself), Betrayal at Krondor is a medieval fantasy-themed role-playing game set in the Riftwar universe. The story begins as Gorath, a moredhel (dark elf) renegade, who intended to warn the people of Krondor of the upcoming moredhel invasion, is attacked by an assassin. Locklear, a nobleman who serves the crown of Krondor, and a young magician named Owyn decide to accompany Gorath to Krondor, where they'll have to think of a plan to stop the moredhel leader Delekhan. The game's story is divided into nine chapters. Each chapter has a goal to achieve before moving on to the next one, but the player is given considerable freedom to explore the vast world of the game and undertake side quests. Gorath, Locklear, and Owyn are the first party of characters the player controls; however, characters may leave and others may join the party later, as dictated by the events of the story. Exploration in Betrayal at Krondor takes place in a 3D world viewed from first-person perspective. Towns, however, are presented as a series of still screens representing locations (temple, tavern, inn, etc.). Combat takes place on separate grid-based screens. The player moves the characters on these screens in a turn-based fashion, attacking physically, defending, and casting spells. Only two character classes are present in the game: fighters and magicians. Fighters use swords or crossbows (for long-ranged attacks); magicians can fight with staves, or cast spells. Characters have four attributes: health, strength, speed, and stamina. The latter is depleted when a character uses weapons or casts magic. The role-playing system of the game relies on skills. Each character has a set of skills, ranging from weapon proficiencies to abilities such as bartering or stealth. Skills improve after continuous usage. The player can \"emphasize\" a skill in order to make it improve faster.",
+   "players": "1",
+   "publisher": "Sierra On-Line",
+   "year": "1993"
+  },
+  "Blake Stone Aliens Of Gold": {
+   "developer": "JAM Productions",
+   "genres": "Action; Shooter",
+   "overview": "You're pitted against Dr. Pyrus Goldfire. He's found a way to replicate pure gold, which he's using to fund his maniacal plan. Goldfire has built six highly-secure, futuristic locations where his creations are being hatched. It's up to you to penetrate his security and stop him at all costs.",
+   "players": "1",
+   "publisher": "Apogee Entertainment",
+   "year": "1993"
+  },
+  "Blood": {
+   "developer": "Monolith Productions",
+   "genres": "Horror; Shooter",
+   "overview": "You carved your soul to shreds in servitude to a dark god, but false promises and betrayal were your only reward. Now you have a score to settle and it will be measured in blood! Experience the madness in one carnage-soaked package! All the gore, all the unholy war! Zombies, gargoyles, hellhounds and blood-crazed hordes of horrors await! Crush loathsome evil of the mighty Tchernobog! Or condemn yourself to eternal damnation in this leviathan of unhallowed gaming action!",
+   "players": "48",
+   "publisher": "GT Interactive Software",
+   "year": "1997"
+  },
+  "Cannon Fodder": {
+   "developer": "Sensible Software",
+   "genres": "Action; Strategy",
+   "overview": "Guide a team of up to six soldiers through 72 levels of combat in this top-down action/strategy hybrid, best thought of as Lemmings crossed with Commando crossed with Dune 2. The characters are controlled indirectly using the mouse, as you activate each soldier or group of them by highlighting them, click the left button to move them to a particular spot, and the right button for them to fire guns at an enemy. You can also pick up grenades or rockets, which can be used to destroy groups of enemies, buildings or some vehicles (by pressing both buttons at once). Each mission has a specific objective, and some feature vehicles such as tanks that used make things easier. Your troops can cross water but can't shoot within it, so finding and controlling bridges is often crucial. You can use the arrangement of trees to find hiding places to shoot from, and should watch out for CPU soldiers also doing so.",
+   "players": "1",
+   "publisher": "Codemasters",
+   "year": "1993"
+  },
   "Command & Conquer": {
    "developer": "Westwood Studios",
    "genres": "Strategy",
@@ -185,6 +540,22 @@
    "players": "4",
    "publisher": "Virgin Interactive Entertainment",
    "year": "1995"
+  },
+  "Crusader No Remorse": {
+   "developer": "Origin Systems",
+   "genres": "Shooter",
+   "overview": "You are a silencer, the elite of the elite soldiers of World Economic Consortium. You are used to orders of hunting down the Resistance, a ragtag band of rebels committing sabotage and other acts of terrorism against the WEC, but slowly, you realized the WEC is not quite what it appears to be... then one day you and two other Silencers, your best buddies, were ambushed by a WEC mech patrol when it was supposed to be a routine mission. You alone survived. It is clear that the Silencer is being silenced... and the only place to turn is the Resistance... Crusader: No Remorse is the first in the series, which is best described as a 2D isometric shooter. Your silencer can roll left, roll right, kneel, jump, run, and perform other acrobatic moves. You get plenty of different weapons, from assault rifles and shotguns to grenade launchers and lasers, to really exotic weapons like microwave cannon, EMP discharger, and even plasma cannons. You're up against the full military might of the WEC, from simple guards to full-fledged Guardmechs and elite forces (though none are quite as good as you). You can find supplies and money off of killed enemies (if you left a body, that is, and some of the extreme weapons don't). You'll often need to bypass traps, open doors, disable alarms, take out security cameras, and more. The action is intense, and there's usually a bit of puzzle involved. It's often a matter of exploring the map to find a switch or a terminal with the code that'll let you access another part or another level of the map. Between missions you can chat in the Resistance base and/or buy/sell weapons. You can also find recharge stations to replenish your energy and health (you can also find batteries and first aid kits too). The missions range from simple sabotage to rescue.",
+   "players": "1",
+   "publisher": "Electronic Arts",
+   "year": "1995"
+  },
+  "Crystal Caves": {
+   "developer": "Apogee Entertainment",
+   "genres": "Action; Platform",
+   "overview": "The game begins with Mylo rocketing to the Altairian star system on a simple treasure hunt. But what happens is far more dangerous than even Mylo bargained for. He enters an underground world of chambers full of alien technology and traps. Strange alien creatures and robots inhabit the caves, protecting the priceless crystals from money-greedy explorers. There are three unique episodes to the Crystal Caves saga: \"The Trouble with Twibbles\", \"Slugging it Out\", and \"Mylo Verses the Supernova\". Each episode has a unique story twist and graphics. Can you help Mylo strike it rich and quit his day job?",
+   "players": "1",
+   "publisher": "Apogee Entertainment",
+   "year": "1991"
   },
   "Descent": {
    "developer": "Parallax Software",
@@ -194,6 +565,22 @@
    "publisher": "Interplay",
    "year": "1995"
   },
+  "Descent II": {
+   "developer": "Parallax Software",
+   "genres": "Flight Simulator; Shooter",
+   "overview": "Descent II is a 1996 first-person shooter video game developed by Parallax Software and published by Interplay Productions. It is the second game in the Descent video game series and a sequel to the original Descent. Unlike standard first-person shooters, the player must control a flying ship that has a six degrees of freedom movement scheme, allowing the player to move in any 3D direction. The game received very positive reviews from video game critics. A sequel, Descent 3, was released in 1999.",
+   "players": "8",
+   "publisher": "Interplay Productions",
+   "year": "1996"
+  },
+  "Discworld": {
+   "developer": "Teeny Weeny Games",
+   "genres": "Adventure",
+   "overview": "This adventure game puts the player in the shoes of Rincewind, a wizard whose sole purpose in life is to stay alive. He appears to be very good at it as well, because apparently the universe has decided to continuously challenge him. The game takes place in the humorous fantasy world created by Terry Pratchett. The world is called the Discworld, as it is actually a flat disc carried on the backs of four gigantic elephants, which themselves stand on the back of an even larger turtle. The story is loosely based on the novel \"Guards! Guards!\". Both in the book and the game, a dragon is summoned by a group of mysterious conspirators and now terrorizes the city state of Ankh-Morpork. Being the most expendable wizard of the Unseen University, Rincewind is given the task to get rid of the beast (only in the game though; in the book, the city's nightwatch has to deal with the problem). Discworld is a classical point-and-click adventure game with a few original features. For example, Rincewind's inventory is limited to two objects, and the majority of his belongings is stored in the Luggage, an intelligent chest with dozens of little feet. Furthermore, at a certain point in the game the player gains access to a time-traveling device and has to send Rincewind to the past and back in order to solve some of the puzzles.",
+   "players": "1",
+   "publisher": "Psygnosis",
+   "year": "1995"
+  },
   "Doom II Hell On Earth": {
    "developer": "id Software",
    "genres": "Horror; Shooter",
@@ -201,6 +588,14 @@
    "players": "4",
    "publisher": "id Software",
    "year": "1994"
+  },
+  "Duke Nukem 2": {
+   "developer": "3D Realms Entertainment",
+   "genres": "Action; Platform; Shooter",
+   "overview": "Set in the year 1997, your mission is to stop Dr. Proton, a madman bent on ruling the world with his army of Techbots. As the irrepressible hero Duke Nukem, you'll chase Dr. Proton deep into the Earth, then to his lunar space station, and eventually into the Earth's nuclear ravished future.",
+   "players": "1",
+   "publisher": "3D Realms",
+   "year": "1991"
   },
   "Duke Nukem 3D": {
    "developer": "3D Realms Entertainment",
@@ -226,6 +621,22 @@
    "publisher": "Epic Games",
    "year": "1994"
   },
+  "Flashback The Quest for Identity": {
+   "developer": "Delphine Software International",
+   "genres": "Platform; Puzzle; Shooter",
+   "overview": "The year is 2142. The player takes control of Conrad B. Hart, a man who has lost his memory. After barely escaping from hostile aliens, Conrad's bike crashes on an unknown planet. Conrad finds himself in the jungle, and from that moment on his quest for survival and his lost identity begins. Flashback: The Quest for Identity incorporates elements of platforming, shooting, and problem-solving. The game can be described as a \"cinematic platformer\" (commonly referred to as Prince of Persia-style), following a design philosophy that was also manifested in Delphine Software's previous work, Another World. Compared to that game, Flashback focuses more on platforming and exploration of large levels. While a large bulk of the gameplay is dedicated to running, jumping, and shooting enemies, there is also a considerable exploration element in the game, as well as some puzzle-solving. The player navigates Conrad through platform structures, performing various moves. It is possible to simply jump or do a longer run-and-jump, run, climb, hang off ledges, and pick up objects lying on the ground. To defend himself, Conrad can shoot enemies with his gun and also use various objects (such as stones) to harm or distract them. Crouching and rolling are possible (and often essential) moves that can be executed during combat. The gun has unlimited ammunition; however, shields that Conrad uses to protect himself from attacks are depleted when he is hit, and can be recharged at special stations. Though most environments in the game are hostile, there are a few locations that are devoid of enemies. The player is usually required to talk to characters, gather information and compete tasks in an adventure-like fashion in these areas.",
+   "players": "1",
+   "publisher": "U.S. Gold",
+   "year": "1993"
+  },
+  "Heretic": {
+   "developer": "Raven Software",
+   "genres": "Shooter",
+   "overview": "The world has been attacked by the three Serpent Riders from the Abyss. Their mysterious power makes people obey and follow them like sheep. Only the ancient Sidhe elves are immune to the Riders' influence, which led to them being branded heretics. With most of their work done, the two elder Riders leave, leaving only D'Sparil, the youngest and weakest Rider, behind to oversee the oppression. He sends the armies of the Seven Kings against the Sidhe, who have no choice but to extinguish the Seven Candles, vanquishing the armies. The retribution is swift and hard, and most of the elves are destroyed. Now, one of the last remaining Sidhe must take the fight to D'Sparil himself, being the only hope his world has left. Heretic is the first game in the Heretic / Hexen franchise. It uses the engine from id Software's DOOM and transplants that game's first person shooter gameplay into a fantasy setting. Like DOOM, Heretic consists of three distinct episodes, playable in any order, the first being available as shareware. The hunt for D'Sparil begins in the City of the Damned, continues in the alternate dimension of the Hell's Maw and comes to an end in The Dome of D'Sparil. Every episode consists of nine levels, one of them a hidden one. The goal in each level is to find the exit, killing everything standing in one's way. Keys must be found and buttons pressed to advance. Enemies include gargoyles, golems, undead knights, sorcerers, ophidian beasts and more. Most enemies exist in several varieties: some have additional range attacks, others have ghost forms and are impervious to certain weapons. The weapon arsenal is large and varied: the basic weapons are a wooden staff and the Elvenwand that shoots low-damage magic bullets. More powerful equipment must be found: the Ethereal Crossbow dispenses a spread of arrows doing high damage, but at a low firing rate. The Dragon's Claw and Hellstaff shoot with a higher frequency: the Claw hits enemies instantly, the Staff's energy bullets need to travel to them first. The Phoenix Rod fires explosive charges and must be handled with care. The Firemace unleashes steel metal projectiles that bounce across the room towards the enemy. A better melee weapon than the wooden staff are the Gauntlets of the Necromancer, which dispense deadly energy. Heretic goes beyond DOOM in certain aspects. The engine has been enhanced with the ability to look up and down and the ability to fly, and wind currents pushing the player in (often unwanted) directions have been added. Also new is an inventory system. Many different power-ups can be collected and then be used at the correct time. These include health flasks, invisibility and invincibility upgrades, time bombs, and torches to light dark rooms. The Morph Ovum transforms enemies into chickens for easier dispatching, the Wings of Wrath allow one to fly, and the Tome of Power gives all weapons a substantial upgrade: projectiles become more powerful or split up upon impact; the Phoenix Rod becomes a flamethrower and the Gauntlets remove life force from an enemy and transfer it to the player. Heretic includes the same multiplayer options as DOOM: both cooperative team play and competitive deathmatch are included.",
+   "players": "4",
+   "publisher": "id Software",
+   "year": "1994"
+  },
   "Heroes of Might and Magic": {
    "developer": "New World Computing",
    "genres": "Strategy",
@@ -233,6 +644,30 @@
    "players": "1",
    "publisher": "New World Computing",
    "year": "1995"
+  },
+  "Hexen Beyond Heretic": {
+   "developer": "Raven Software",
+   "genres": "Shooter",
+   "overview": "Hexen is the sequel to Heretic. While the Heretic was destroying D'Sparil, the other two Serpent Riders have come to your dimension and slaughtered everyone. Or so they thought. Three humans have managed to escape with their lives and now seek vengeance against the Serpent Rider Korax who remains in their world. Like Heretic, Hexen is a fantasy game based on an enhanced DOOM engine. All of Heretic's innovations like vertical looking, flying, and the inventory system have been carried over. The new major changes this time around are three characters for the player to choose from and the level hub system. The characters are the Fighter, the Cleric, and the Mage. Each one has four unique weapons and different levels of speed and armor. The hub system steps away from the traditional \"single levels stringed along into episodes\" system which had been carried over into the FPS genre from sidescrollers and made popular by Wolfenstein 3D. In Hexen's hub system each episode is still made up of interconnected levels, but most of the levels are connected to a single \"hub\" level through portals. There are also portals between some of the \"spoke\" levels. Many of the puzzles in Hexen require travel back and forth between different levels. Other innovations in Hexen included weather effects, jumping, earth-quakes, and destructible objects such as trees and vases.",
+   "players": "4",
+   "publisher": "id Software",
+   "year": "1995"
+  },
+  "Hocus Pocus": {
+   "developer": "Moonlite Software",
+   "genres": "Action; Platform",
+   "overview": "Hocus Pocus is a young magician apprentice who has two goals in life: to join the Council of Wizards in the land of Lattice, and to marry his sweetheart Popopa. Unfortunately, both objectives cannot be accomplished without embarking on a long and dangerous journey to gather magical crystals on behalf of the wizard chief Terexin. The quest for career and love begins! Hocus Pocus is an action platform game. Controlling the young magician, players run, jump, and climb through levels populated by various types of monsters. Hocus will encounter many magic potions on his way; some will restore health, others will grant special powers; such as as a super-jump that will allow access new areas, or laser shot which offers a better attack.",
+   "players": "1",
+   "publisher": "3D Realms",
+   "year": "1994"
+  },
+  "Indiana Jones And The Fate Of Atlantis": {
+   "developer": "Lucasfilm Games",
+   "genres": "Adventure",
+   "overview": "Indiana Jones is back! The great archaeologist and adventurer has to solve a grand mystery once again, aided by his trusty whip, his sharp wit, and his courage. A man who calls himself Mr. Smith is interested in a certain ancient statue. When the unsuspecting Indy hands it over to the client, he finds out that Mr. Smith is in fact a colonel in the Nazi army! Why was he so interested in that statue? A young woman who had once worked together with Indy, the pretty red-haired (and a bit troublesome) Sophia, tells him the whole thing must have a connection with the legendary lost continent Atlantis. Gathering clues from all over the world, Indy and Sophia embark on a grand journey across the globe. Indiana Jones and the Fate of Atlantis is a puzzle-solving adventure game conceived in the spirit of Indiana Jones movies; however, it is not based on a specific movie, introducing a new, independent story. The game utilizes LucasArts' SCUMM system, with action verbs the player chooses from a menu; objects that can be interacted with are highlighted. The game contains many puzzles of various kinds (mostly inventory-based) and dialogues with multiple choices. There are also a few simple hand-to-hand fights against the Nazis, some of which can be avoided. The middle part of the game can be played in three \"modes\": co-operation (Indy and Sophia), adventure (Indy alone), and action (Indy alone, with less puzzles and more action). In each mode there are different locations to visit, different puzzles to solve, and different characters to meet. The CD version of the game adds voice-overs to all the conversations.",
+   "players": "1",
+   "publisher": "Lucasfilm Games",
+   "year": "1992"
   },
   "Jazz Jackrabbit": {
    "developer": "Epic Megagames",
@@ -289,6 +724,38 @@
    "publisher": "Psygnosis",
    "year": "1991"
   },
+  "Loom": {
+   "developer": "Lucasfilm Games",
+   "genres": "Adventure",
+   "overview": "The Age of the Great Guilds has arrived. Communities and states comprised of people united by a common trade were created. The Guild of Weavers has achieved such mastery in their trade that they discovered the secret of weaving the very fabric of reality. They were treated with suspicion by other guilds, who eventually accused them of practicing witchcraft and banned them to a secluded island, which they called Loom. Bobbin Threadbare is a young man from the Guild of Weavers. He is outcast from the guild and blamed for the lack of prosperity in recent times, though he does not know why. On his seventeenth birthday he is summoned by the Elders of the guild, who intend to decide his fate. However, shortly thereafter all the inhabitants of the village except Bobbin are turned into swans. Bobbin finds out that he is the child of the Great Loom, found by Lady Cygna, who tried to use the loom's powers to save the guild. Bobbin's stepmother Dame Hetchel teaches him the art of weaving magical drafts, and Bobbin embarks on a journey to find the lost flock, and the answers to his questions. Loom is an adventure game that sets itself apart from other titles in the genre through its unique gameplay system: the player character does not carry items around, but rather manipulates objects through the use of spells (called \"drafts\" in the game). The drafts themselves are woven by playing magical notes on a special instrument called \"distaff\". All the puzzles in the game are solved by learning and correctly applying these drafts. Each draft is a sequence of four notes within one octave. The player learns new drafts by exploring the environment and interacting with it through a simple point-and-click interface. Once a draft has been learned, it may be applied in a different situation in order to solve a problem. Drafts range from simple general actions (such as opening) to more specific and complex commands, e.g. turning straw into gold. Drafts can also be \"reversed\", i.e. played backwards, in order to execute the opposite action (for example, closing something instead of opening). As the game progresses Bobbin learns to play higher notes on the distaff, allowing him to access more drafts. The game features three difficulty levels, differentiating them by changing the way the interface works. The easiest level displays names of the notes as well as marking the correspondent areas on the distaff; Standard level features the distaff with the marks at the bottom of the screen, but no written notes; whereas Expert does not display the marks at all, requiring the player to memorize and play the drafts by ear. The CD DOS version of the game has enhanced 256-color graphics, audio tracks, and full voice acting. However, it also removes a few close-up scenes and conversations. The FM Towns version preserves these scenes and includes similar graphical and musical enhancements, but has no voice acting.",
+   "players": "1",
+   "publisher": "Lucasfilm Games",
+   "year": "1990"
+  },
+  "Magic Carpet": {
+   "developer": "Bullfrog Productions",
+   "genres": "Action; Flight Simulator; Shooter; Strategy",
+   "overview": "Magic Carpet is a first-person perspective game, in which you are a mage who flies on a, well, magic carpet and casts spells. The game has 50 levels, called \"worlds\"; each of those is set in a sea terrain with several mountainous islands. Your goal on each level is to amass enough mana within your castle to \"restore the equilibrium\" within the world. Once this happens, you can head to the next level. To collect mana, you have to find it (it is represented by golden spheres) and cast a specific spell to make it \"yours\". To collect this mana, you have to use a special spell to raise a castle of your own out of the ground. A balloon will appear over the newly created castle; it will proceed to fly around the level and collect \"your\" mana. Initially, your castle will be small and won't be able to hold much mana, so you'll have to keep casting the \"castle\" spell at it to make it bigger. The levels typically have monsters and rival mages in them. Not only they can hurt you with their attacks, but killing them is often necessary, as upon death they will release some of the mana you need to complete the level. To attack your enemies, you have a variety of spells at your disposal: fireballs, lightning bolts and meteors. There are also many other spells available to you - they allow you to heal yourself, surround yourself with a protective shield, teleport around, summon a skeleton army, or even modify the terrain by creating volcanoes and splitting landmasses. Not all spells are available to you from the beginning, though. Throughout all the levels, you are on your flying carpet, which can move in 3 dimensions. You can bring up a top-down map at any time. ---- Magic Carpet Plus is the U.S. re-release of the game complete with the Hidden Worlds expansion. In Europe, the re-release was still titled Magic Carpet.",
+   "players": "2",
+   "publisher": "Electronic Arts",
+   "year": "1994"
+  },
+  "Maniac Mansion - Day Of The Tentacle": {
+   "developer": "LucasArts Entertainment Company",
+   "genres": "Adventure",
+   "overview": "Five years after the events of Maniac Mansion, Purple Tentacle—a mutant monster and lab assistant created by mad scientist Dr. Fred Edison—drinks toxic sludge from Dr. Fred's laboratory. The sludge causes him to grow a pair of flipper-like arms and develop a vastly increased intelligence and a thirst for global domination. Dr. Fred plans to resolve the issue by killing Purple Tentacle and his harmless, friendly brother Green Tentacle, but before he can Green Tentacle sends a plea of help to his old friend, the nerd Bernard Bernoulli. Bernard travels to the Edison family motel with his two housemates, deranged medical student Laverne and roadie Hoagie, and frees the tentacles. Purple Tentacle escapes to resume his quest to take over the world.",
+   "players": "1",
+   "publisher": "LucasArts Entertainment Company",
+   "year": "1993"
+  },
+  "Master Of Magic": {
+   "developer": "SimTex",
+   "genres": "Strategy",
+   "overview": "The plot of Master of Magic is to become the dominant wizard on two 'planes' of existence, the normal Earth-like one and the fantasy based plane \"Myrror\". You can do this by destroying your competing wizards (up to 4 computer players) or by casting the Spell of Mastery. Game play is carried out in a 2D top down perspective. You move your armies around the board, fighting monsters to get treasure, and more importantly 'nodes'. Once you control a node you can summon a spirit to meld with the node and gain mana from it. You also must build up your cities so you can support and train your army. City management is very much like Civilization. You also must allocate your mana for use, or research. You must research to learn new spells. You can do battle with the enemy in a quasi-isometric perspective or you can have the game simulate the battles. The game ends when your home tower is destroyed; you banish all the other wizards (by destroying their home tower) or someone casts the Spell of Mastery.",
+   "players": "1",
+   "publisher": "MicroProse Software",
+   "year": "1994"
+  },
   "Master Of Orion 2 Battle At Antares": {
    "developer": "SimTex",
    "genres": "Construction and Management Simulation; Strategy",
@@ -313,6 +780,13 @@
    "publisher": "Epic MegaGames",
    "year": "1994"
   },
+  "Populous 2 Trials Of The Olympian Gods": {
+   "developer": "Bullfrog Productions",
+   "genres": "Construction and Management Simulation; Strategy",
+   "overview": "As the offspring of almighty Zeus, you demand a seat among the gods. But before ascending to the top of Mt. Olympus, you must first defeat some of the most powerful deities in the Greek pantheon. Such a task would be impossible for a puny mortal, but you wield the raw power of the universe in your hands, for you are destined to become a god! Learn to shatter the sky with lightning and shower the earth with fire. Summon heroes to aid your people, and plagues to destroy the enemy. Call forth tornadoes, hurricanes, tidal waves, and columns of flame.",
+   "publisher": "Electronic Arts",
+   "year": "1991"
+  },
   "Prince Of Persia": {
    "developer": "Brøderbund Software",
    "genres": "Action; Platform",
@@ -328,6 +802,30 @@
    "players": "15",
    "publisher": "id Software",
    "year": "1996"
+  },
+  "Raptor Call Of The Shadows": {
+   "developer": "Cygnus Multimedia Productions",
+   "genres": "Shooter",
+   "overview": "It's the BEST IBM shooter yet! A fast paced slugfest, with a pulse-pounding sound track, and jaw-dropping VGA animation & cinematics. In the future as a mercenary flying the super-tech Raptor, you'll be sent on interplanetary missions to knock off top competitors of MegaCorp. Battle against hordes of relentless enemies. Spend the bounty you receive from their demise to expand your devastating arsenal, which can be upgraded with 14 hard core weapons! \"Raptor has some of the hottest graphics ever seen in a shareware game, and blows away most commercial games, too! The graphics will amaze you and the sound will astound you. It's a super star!\" -- Interactive Entertainment Raptor sets the new standard for PC shooters. This game will do for shooters what Wolfenstein did for 3D games. Incredibly smooth VGA graphics and animation are only half the story. The heart-pounding music in Raptor will leave you breathless, especially if you have a high-end sound card like the Roland or Wave Blaster. (Raptor supports the Midi music format, which provides very high quality music for PC games.) All other major sound cards are also supported! The addictive quality and replay value of this game is unreal. Discover secrets, find the bonuses, and battle the boss ships that appear at the end of EVERY WAVE! With each ship and ground target you destroy, you'll earn more cash to increase your ship's technology for the next wave. You'll be driven to kill and destroy--but then, it's in your blood.",
+   "players": "1",
+   "publisher": "Apogee Software",
+   "year": "1994"
+  },
+  "Sam And Max - Hit The Road": {
+   "developer": "LucasArts Entertainment",
+   "genres": "Adventure",
+   "overview": "Grab your nightstick, squeal like a siren and Hit the Road with Sam & Max, Freelance Police, as they attempt to crack their toughest case. Sam (a shamus canine) and Max (a hyperkinetic rabbity thing) are hot on the trail of a runaway carnival bigfoot across America's quirky underbelly in this deranged animated adventure! Help our frightening, furry flatfoots find the fugitive freak! Do it now!",
+   "players": "1",
+   "publisher": "LucasArts Entertainment",
+   "year": "1993"
+  },
+  "Screamer": {
+   "developer": "Graffiti",
+   "genres": "Action; Racing",
+   "overview": "Screamer is a traditional arcade racing game. The player can drive many different cars such as a Corvette, a Porsche 911, and others. The game has varied tracks, all of which are available in backwards mode. Players can take on the Bullet car for the ultimate championship race.",
+   "players": "1",
+   "publisher": "Interplay",
+   "year": "1995"
   },
   "Settlers 2 Gold Edition": {
    "developer": "Blue Byte Studio",
@@ -353,6 +851,30 @@
    "publisher": "Mindscape",
    "year": "1993"
   },
+  "Simon The Sorcerer": {
+   "developer": "Adventuresoft",
+   "genres": "Adventure",
+   "overview": "Simon is just an ordinary boy living in modern-day England. One day, his dog Chippy discovers a chest with a book inside, entitled Ye Olde Spellbooke. Without thinking too much, Simon throws the book on the floor; as a result, a portal opens, teleporting the boy and his dog into a fantasy world. Simon is promptly captured by goblins bent on cooking and eating him, but manages to escape. Soon he realizes that he must play the role of an apprentice sorcerer and rescue a benevolent wizard called Calypso from an evil one, aptly named Sordid. Simon the Sorcerer is a point-and-click adventure game very similar to contemporary LucasArts titles (in particular Monkey Island) in concept and gameplay. It features twelve verbs displayed on the screen at all times for interaction with the environment. Objects that can be interacted with are highlighted when the player hovers the mouse cursor over them. The puzzles are inventory-based: Simon will have to collect and carry a large amount of items in order to advance in the game. Almost every character comes with an extended dialogue tree to explore. Most of the conversation choices are used for a humorous effect and are not required to pursue. Like in LucasArts' adventures, it is impossible to get irrevocably stuck or die in Simon the Sorcerer. The game world consists of dozens of interconnected screens, most of which are accessible from the very beginning. Although there is usually only one way to solve the puzzles, the player can work on multiple tasks at once, and exploration occupies a large portion of the game. Whenever an important location is discovered, it is marked on the map for instant access, so that the player is not required to retrace his steps in order to revisit it. The game frequently parodies popular fairy tales and fantasy works and sometimes breaks the fourth wall as Simon directly talks to the player, acknowledging he is a character in a computer game.",
+   "players": "1",
+   "publisher": "Infocom",
+   "year": "1993"
+  },
+  "Star Control 2": {
+   "developer": "Legend Entertainment",
+   "genres": "Adventure; Shooter; Strategy",
+   "overview": "Since the events in Star Control 2 the Ur-Quan have been pacified and the captain who bravely destroyed the Sa-Matra has had a horrible vision of the future. Suddenly without warning, all Hyperspace travel in the universe has stopped. Top scientists have pinpointed the cause of this disturbance somewhere in unexplored space in an area known as the Kessari Quadrant. Hastily assembling a fleet of ships as and an untested Precusor star drive... a loose alliance of alien races known as The League of Sentient Races sends a task force to the Kessari Quadrant. You are its commander. Star Control 3 features a new 3D star map, new alien races to discover, new worlds to explore and colonize, new artifacts to research and a new isometric Hyper Melee battle system for inter-starship battles.",
+   "players": "2",
+   "publisher": "Accolade",
+   "year": "1996"
+  },
+  "Star Wars Dark Forces": {
+   "developer": "LucasArts Entertainment",
+   "genres": "Shooter",
+   "overview": "Kyle Katarn is a former Imperial officer turned mercenary, now hired by the Rebel Alliance. After having stolen the Death Star plans from a remote facility, he is tasked with investigating the sudden destruction of a hidden Rebel base. This leads him to face off against Imperial General Rom Mohc and the various iterations of his Dark Troopers - cybernetic soldiers with the armor and firepower to turn the tide of the war. Dark Forces is a close prequel to the original Star Wars movie trilogy. The game marks LucasArts' first attempt to enter the first-person shooter market. Instead of licensing the DOOM engine, like many competitors, LucasArts created its own internal Jedi engine. The Jedi engine contains advanced features over similar tech, including the ability to look up and down, jump, crouch, and limited support (in the build used for Dark Forces) for rooms (sectors) over rooms. The 3D models also make occasional appearances inside the game, as turrets or Kyle's ship dropping him off or picking him up from each mission. Most levels have a fairly complex, often maze-like structure, and include various switches that need to be activated to change the layout of the level. Jumping is integrated into the gameplay, as certain areas can only be accessed in that way. In addition to weapons, Kyle can use shields to protect himself from damage, a head lamp to illuminate dark areas, as well as specific items used to counter environmental hazards. The player character is given a certain amount of \"lives\" per level; he dies permanently once he runs out of all of them. Game progress can be saved only between missions. The game features fourteen substantial levels as Kyle works to disarm the Dark Trooper project. Many levels reference characters or areas from the Star Wars movie trilogy, such as a visit with Jabba the Hutt, a trip to Coruscant, and a battle through the interior of a Star Destroyer. As opposed to most first-person shooters of the time period, every level has objectives for Kyle to complete, ranging from grabbing a clue and getting out alive, to planting charges around a facility to demolish it. Cutscenes appear between key missions to update the plot. The Star Wars license gets plenty of use, as the game features imperial officers, stormtroopers, and a collection of aliens seen in the films as enemies. Blaster rifles and thermal detonators are used as weapons, along with other firearms inspired by the tech of the films. Dark Forces also uses the iMuse engine to dynamically change the music during action scenes, with much of the music based off or directly replicating, John Williams' original film score. The game is entirely a single-player campaign; no multiplayer is included or supported.",
+   "players": "1",
+   "publisher": "LucasArts Entertainment",
+   "year": "1995"
+  },
   "Star Wars TIE Fighter": {
    "developer": "Totally Games",
    "genres": "Action; Flight Simulator",
@@ -360,6 +882,14 @@
    "players": "1",
    "publisher": "LucasArts Entertainment",
    "year": "1995"
+  },
+  "Star Wars X Wing": {
+   "developer": "LucasArts",
+   "genres": "Flight Simulator; Shooter",
+   "overview": "X-Wing is a space combat simulation, the first in the Star Wars universe. From the cockpits of X-Wing, Y-Wing and A-Wing starfighters, players fight for the Rebel Alliance in their struggle against the evil Galactic Empire. The main part of the game consists of three separate campaigns, called Tours of Duty. The Tours can be played in any order, even though they build on each other story-wise: Tour I, 'A New Ally', tells of the Rebellion's search for political allies in their fight against the Empire, while the Emperor launches Operation Strike Fear, a major offensive against the Rebels. Tour II, 'The Great Search' chronicles the Rebels' search for the plans to the Empire's new superweapon, the Death Star. Tour III, 'The Gathering Storm', tells of their efforts to find and destroy the battle station. Animated cutscenes are featured after certain missions to continue the story.",
+   "players": "1",
+   "publisher": "LucasArts",
+   "year": "1993"
   },
   "Stunts 1": {
    "developer": "Distinctive Software",
@@ -376,6 +906,14 @@
    "players": "1",
    "publisher": "Electronic Arts",
    "year": "1994"
+  },
+  "Terminal Velocity": {
+   "developer": "Terminal Reality",
+   "genres": "Shooter",
+   "overview": "Space is a dangerous place. For that reason, the Alliance of Space-Faring Alien Races (ASFAR) was formed to prevent interstellar war from breaking out. The ASFAR provides robotic Perimeter Defense Computers (PDCs) to watch over the star systems of each member race and prevent any single race from mobilizing weaponry. For 70 years, this has been successful, until suddenly, in the year 2704 A.D., PDCs direct armadas from all other systems to attack Earth. While bloody, the planet ultimately survives and rebuilds its military forces. The TV-202 is constructed, an advanced fighter craft that is equally agile in space and atmosphere. The TV-202 will be sent to various ASFAR planets in order to destroy their military compounds and prevent them from rebuilding attack fleets. Terminal Velocity is a first-person flight simulator sometimes compared to Descent due to its free-roaming nature. Players take control of the TV-202, a fighter notable for its ability to fly in 720 degrees of direction, ignoring gravity and providing constant thrust. While flying to different planets, the TV-202 is able to speed up and slow down, but will never come to a complete halt. The majority of the game takes place in the air (and sometimes space), flying above landscapes which include trees, mountains, rivers, snow and other terrain. Additionally, tunnels can be found, often hidden, dug into the sides of landscape. Upon entering these tunnels, the TV-202 loses its ability to turn around (going ahead constantly) and must navigate avoiding enemies, moving walls, rotating obstacles and other hazards. Power-ups are found by destroying enemy forces or destroying enemy bunkers which are scattered around each level. The TV-202 has an energy shield which is depleted by enemy fire and running into terrain, when the shield is gone, the player is destroyed. Shield Power-ups and Energy Core power-ups can be found to restore shield energy. For weaponry, the player begins with a single Plasma Assault Cannon (PAC) weapon that fires straight ahead. Other weapon power-ups can be found which include a PAC power-up, an Ion-burst gun (ION), Rapid Targeting Laser (RTL), Manual Aimed Missile (MAM), Seek and Destroy Missile (SAD), Shock wave Torpedoes (SWT) and Discrete Annihilation Missiles (DAM). With the exception of the Annihilation Missiles, all these weapons also fire directly in front of the player. There is an afterburner fuel power-up which will allow the TV-202 to increase its thrust substantially, traveling much faster than normal. Each world features its own unique enemies and hazards. The different levels of the game provide unique objectives which can include flying to checkpoints, destroying specific targets (including bosses) and entering tunnels. Upon completing the necessary objectives, the player is directed to exit the level via a Departure Unit (DUN) located somewhere on the map.",
+   "players": "4",
+   "publisher": "FormGen",
+   "year": "1995"
   },
   "The Secret of Monkey Island": {
    "developer": "Lucasfilm Games",
@@ -400,6 +938,14 @@
    "players": "4",
    "publisher": "Electronic Arts",
    "year": "1997"
+  },
+  "Theme Park": {
+   "developer": "Bullfrog Productions",
+   "genres": "Construction and Management Simulation; Strategy; Vehicle Simulation",
+   "overview": "Dominating the exciting world of Theme Park ownership is your goal in this strategy game from Bullfrog. The first task is to set up your rides within the available land, structuring convenient paths and queues and ideally leaving some space for bigger rides once they become available, and include some lakes and trees to increase the park's allure. Rides range from Teacups and Haunted Houses to the biggest most elaborate roller-coaster you can design, and water rides that loop around other rides. Shops must also be included, so that the visitors can buy food, drinks and souvenirs - the cunning player will combine salt, sugar and caffeine settings to maximize consumer interest. Staff must be hired to keep everything running smoothly, and they will only work for what they consider a fair rate of pay. You are competing against other Theme Parks, so don't let them get an advantage over you - monitor your success in attracting customers and financial viability closely using the supplied statistics pages. More important, ensure that research is adequately funded to produce new rides. It can be played in three modes - Sandbox level lets you concentrate on the park design elements, while Sim and Full add more strategic features.",
+   "players": "1",
+   "publisher": "Electronic Arts",
+   "year": "1994"
   },
   "Transport Tycoon Deluxe": {
    "developer": "MicroProse Software",
@@ -441,6 +987,22 @@
    "publisher": "Blizzard Entertainment",
    "year": "1995"
   },
+  "Warcraft Orcs And Humans": {
+   "developer": "Blizzard Entertainment",
+   "genres": "Strategy",
+   "overview": "The Kingdom of Azeroth was relatively peaceful and ruled by King Llane. That was until a powerful mage named Medivh commanded forces that opened up a portal in the Swamp of Sorrow, leading to another world. This ushered in the Age of Chaos, as Orcs were summoned to this world and attempted to establish an empire. As the Orcish hordes swarmed from the portal, they met with the Humans of Azeroth and battles ensured. Peaceful co-existence is not an option. Only one race will attain dominance over the land. Warcraft: Orcs & Humans is the first real-time fantasy strategy game from Blizzard Entertainment. By playing either the Humans or the Orcs in this saga, two separate story lines evolve with 12 scenarios per side telling the tale of the battle for Azeroth. Players must mine gold and chop wood in order to construct buildings and create new units. From swords to sorcery, all the elements of classic fantasy are here to explore: rich forests, dark dungeons and bubbling swamps await the stalwart troops amassed to fight for dominance. Command many unique armies and creatures including Knights, Archers, Clerics, Warlocks, Daemons, Elementals, and Necromancers who are able to raise the dead. The multiplayer aspects of the game allow 2 players to challenge one another on over 20 custom maps and determine who is the supreme warlord. Head to head play is supported over modem, serial link, and IPX networks, and works cross-platform between the IBM-PC and Macintosh versions.",
+   "players": "2",
+   "publisher": "Blizzard Entertainment",
+   "year": "1994"
+  },
+  "Wing Commander 2 Vengeance Of The Kilrathi": {
+   "developer": "Origin Systems",
+   "genres": "Action; Flight Simulator; Shooter",
+   "overview": "Your carrier, the Tiger's Claw, is destroyed by Kilrathi stealth fighters. You are blamed for the loss of the ship. After being demoted you are transferred to a space station far off the front lines where you are supposed to spend the rest of your career. However, ten years later, you are able to save the Confederation flagship, the Concordia, from a Kilrathi attack. On the ship, you meet many old friends. Back in the cockpit, it's up to you to stop the Kilrathi and prove your innocence in the destruction of the Tiger's Claw. The basic gameplay of Wing Commander II is very similar to that of its predecessor. There are all-new ships for both the Kilrathi and the Confederation, however - only the Rapier returns from the previous game, in an upgraded version. While many of the weapons (including both missiles and energy guns) are also reused, new technology (used by both sides) requires new tactics: Since capital ships now employ \"phase shielding\", making them immune to normal weapons fire, only special torpedoes can damage them. Only heavy fighters and bombers are able to make torpedo runs. Before a torpedo can be fired, the shields of the target must be analyzed to find a way to get through, which results in a long locking phase during which the bomber must not move. The bombers are equipped with one or more gun turrets to protect them from enemy fighters during the lock-on. Another new technology are chaff pods, which can be deployed to lure enemy missiles off the target. The Wing Commander series' trademark cinematic storytelling is greatly expanded in Wing Commander II, with many animated cutscenes continuing the story between missions.",
+   "players": "1",
+   "publisher": "Electronic Arts",
+   "year": "1990"
+  },
   "Wolfenstein 3D": {
    "developer": "id Software",
    "genres": "Horror; Shooter",
@@ -448,9 +1010,49 @@
    "players": "1",
    "publisher": "Bethesda Softworks",
    "year": "1992"
+  },
+  "X Com 2 Terror From The Deep": {
+   "developer": "MicroProse",
+   "genres": "Construction and Management Simulation; Role-Playing; Strategy",
+   "overview": "X-COM: Terror from the Deep is the follow-up to the resource management and tactical combat game X-COM: Enemy Unknown. It has been 40 years since X-COM last defeated the aliens. Now, in the year of 2040, aliens begin to appear on the Earth again. This time the threat to humanity is coming from the depths of oceans. The game is almost identical to the original X-COM game. The user interface, weapons, and aliens are all the same. The only difference is the adaptation of the aliens and weapons (e.g. new hand-to-hand weapons) to the ocean environment. The game features both undersea and on-land missions, and is significantly harder than its predecessor.",
+   "players": "1",
+   "publisher": "MicroProse Software",
+   "year": "1995"
+  },
+  "Xargon": {
+   "developer": "Epic Megagames",
+   "genres": "Action; Adventure; Platform",
+   "overview": "An archaeologist named Malvineous Havershim was studying strange ruins in Madagascar, remnants of buildings constructed during the age of a long-forgotten civilization of the mysterious Blue Builders. One day Malvineous spotted glyphs on one of the structures. As he attempted to translate them, Malvineous was hit by a wave of gas and fainted. In his dream, a talking eagle named Silvertongue tried to warn him of upcoming dangers. The archaeologist awoke in a strange and hostile world, unable to understand anything. With Silvertongue's guidance, Malvineous will have to overcome all dangers and eventually confront Xargon, the tyrannical ruler of that world. Xargon is a 2D side-scrolling action platformer. Malvineous is initially equipped with a basic laser gun, which can be upgraded by collecting power-ups or buying upgrades in a store. These include extra laser bullets, rapid-fire mode, limited-ammo fireballs, and others. The gun can be controlled by pressing up or down arrow keys, making it slightly advance upwards or downwards. The store can be accessed at any time, provided the player has collected a sufficient amount of emeralds, which act as currency. Health units, invincibility power-ups, and weapon upgrades can be purchased. This game entry refers to the registered version of the game with its three episodes: Xargon: The Mystery of the Blue Builders - Beyond Reality Xargon: The Mystery of the Blue Builders - The Secret Chamber Xargon: The Mystery of the Blue Builders - Xargon's Fury The first episode was available as shareware with the option to register for the other two, but in the US all three were also released separately and commercially by B&N Companies, Inc. In 2008 the entire game was made available as freeware.",
+   "players": "1",
+   "publisher": "Epic MegaGames",
+   "year": "1993"
   }
  },
  "megadrive": {
+  "Altered Beast": {
+   "developer": "Team Shinobi",
+   "genres": "Beat 'em Up; Platform",
+   "overview": "Enter a time when men were warriors and Gods ruled the world. A time of good against evil, a place of danger. Summoned by Zeus to rescue Athena, you will infiltrate the Underworld with the power to transform into mythical creatures with supernatural strength. Level 1: Become a savage werewolf and use teeth and nails to shred your enemies to pieces. Capture three of the elusive Spirit Balls and you'll be transformed into a ferocius, fireball throwing Werewolf. Level 2 and 3: Take flight as a Weredragon and use fiery force to fry the followers of Neff. Creep across slippery crevasses inside a deep cavern as the crafty Werebear. Level 4 and 5: Stalk the gates of the Underworld fortress as a maneating Weretiger, a predator with no pity. Inside the inner-sanctum call on Golden Werewolf's might to demolish Neff, the demon - forever.",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1988"
+  },
+  "Beyond Oasis": {
+   "developer": "Ancient",
+   "genres": "Action; Role-Playing",
+   "overview": "Prince Ali has found the magical Golden Armlet, which was used many years ago to defeat an evil wizard who wielded its counterpart, the Silver Armlet. The Prince has now to stop the evil sorcerer and save the island of Oasis. To do so, he will need his wits, skills ,and the powers of the four Wild Spirits. Beyond Oasis (also known as The Story of Thor) is a fast-paced action game with RPG elements. The Prince's default weapon is the knife, which has unlimited uses. During the course of the game, the hero will also find other weapons, such as bows, swords, and bombs. All these weapons have limited uses and will eventually break. The Wild Spirits are elementals the player can call to help to destroy enemies, heal the hero, or solve puzzles. These are the fire spirit, the water spirit, the plant spirit, and the shadow spirit.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1994"
+  },
+  "Castle of Illusion Starring Mickey Mouse": {
+   "developer": "Sega Enterprises",
+   "genres": "Platform",
+   "overview": "The search is on! Mickey Tackles magnificent lands where fantasy and danger become real. A waterspout whirls Mickey around. A frantic Toyland suddenly flips upside down. To stay on his feet, Mickey runs, leaps, and bounces, slinging apples and marbles at his enemies. Mickey is on the trail of a wicked Witch named Mizrabel, who has kidnaped Minnie. Mickey must find seven gems hidden in the fantastic chambers and underground mazes of Mizrabel's Castle of Illusion and use them to save Minnie. In this scary adventure, Mickey must brave chomping Bonefish, vaporous Ghosts, and taunting Bats. He must battle knights and leaping dragons! Wobble with Mickey on floating leaves, but look out for spiders! Venture into a looney library where even the books attack! Then, get ready to challenge your most dangerous foe, evil Witch Mizrabel herself!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1990"
+  },
   "Castlevania - Bloodlines": {
    "developer": "Konami",
    "genres": "Action; Platform",
@@ -467,6 +1069,54 @@
    "publisher": "Sega of America",
    "year": "1995"
   },
+  "Contra - Hard Corps": {
+   "developer": "Konami",
+   "genres": "Platform; Shooter",
+   "overview": "Set five years after Contra III: The Alien Wars, Contra: Hard Corps follows a special task force formed to combat lingering alien threats and rogue military factions. The elite \"Hard Corps\" unit—consisting of commandos Ray Poward and Sheena Etranzi, the cyborg Brad Fang, and the combat robot Browny—is deployed to defend a city under attack by terrorists. The chaos is revealed to be orchestrated by Colonel Bahamut, a former government scientist who has stolen a powerful alien cell capable of creating devastating bio-organic weapons. Contra: Hard Corps is a run and gun game with most of the game walking on foot and certain stage riding a Motoroid, a hoverbike that can transform into an ostrich-like robot. Unlike previous Contra games, which feature overhead segments in addition to the regular side-view stages, all the stages in Hard Corps retain the standard side-view perspective for most of the game. Another difference is the player can now choose between one of four unique player characters. A new feature to the game is that the story is advanced through story cutscenes.",
+   "players": "2",
+   "publisher": "Konami",
+   "year": "1994"
+  },
+  "Crusader of Centy": {
+   "developer": "Nextech",
+   "genres": "Action; Adventure",
+   "overview": "Long ago, before man walked the Earth, there existed foul creatures that survived in the shadows and darkness that permeated the Earth's surface. Eventually, light shot down from the heavens and the creatures who had lived in the darkness for thousands of years were unable to survive. Some managed to find refuge from the light in deep dark caverns extending towards the center of the Earth. There they multiplied, evolved and waited for the day they could return to the Earth's surface and rule once again... Your name is Corona and it is your fourteenth birthday, by the law of the King you must go out and fight the invading creatures! But using brawn will not be enough. As you search the land for truth, your destiny as a hero begins to unfold. Animal allies will give you new powers and strength. Outwit sorcerers, travel through time and gain valuable knowledge to change the delicate balance of Earth's fate...",
+   "players": "1",
+   "publisher": "Atlus",
+   "year": "1994"
+  },
+  "Desert Strike - Return to the Gulf": {
+   "developer": "Electronic Arts",
+   "genres": "Shooter",
+   "overview": "The Scuds are back! With a fiery blast from your Hellfire missiles you must annihilate a ruthless tyrant's military arsenal. Smoke his private yacht and tear into his air force as you challenge the Madman's forces in a series of surgical strikes. Rip through 27 fiery missions. Force is highly recommended.",
+   "players": "1",
+   "publisher": "Electronic Arts",
+   "year": "1992"
+  },
+  "Disney's Aladdin": {
+   "developer": "Virgin Games",
+   "genres": "Action; Platform",
+   "overview": "SEGA presents a Disney/Virgin Games co-production of Disney’s Aladdin. Hang onto your carpet for ACTION and FUN! Aladdin slashes his shining scimitar to fight through Agrabah, escape the Sultan’s dungeon, survive the fiery Cave of Wonders, snatch the Genie’s Lamp and save Princess Jasmine from the evil Jafar! - All-new technology creates animation so smooth, it’s like watching a real animated film! - Aladdin battles thieves and desert warriors, and barely dodges danger on his high-speed carpet! Survive Jafar’s troops for a dash through special bonus rounds! - Hilarious! Palace Guards drop their drawers and camels spit dirt wads. Aladdin ping-pongs like a pinball INSIDE the Genie’s Lamp! - Academy Award winning music straight from the movie, with favorites A Whole New World, Friend Like Me and more!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1993"
+  },
+  "Dynamite Headdy": {
+   "developer": "Treasure",
+   "genres": "Platform",
+   "overview": "Hot-headed Headdy gets into some real head-banging to thwart the Dark Demon's devious deeds. This wacky headcase is up to his neck in surprises! Dynamite Headdy is a platformer which you control a little character whose main attack comes from his disembodied head. Rather than the traditional power-ups, Dynamite Headdy enables you to swap your head for different kinds – such as heads that heal you or heads that stick on to walls. You use your head in order to climb up on platforms as well, as you can grab hold of things with it.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1994"
+  },
+  "ECCO - The Tides of Time": {
+   "developer": "Novotrade Software",
+   "genres": "Action; Adventure",
+   "overview": "Ecco is older, stronger and engulfed by dangers! The evil Vortex has shattered the mystical Asterite. Ecco and Trellia, a beautiful dolphin of the future, cross 100 million years of time to save the dolphins and all life on Earth! Ecco morphs! Charge a metasphere to become a shark with all its fighting power! Change into a seagull and fly! Safely swim past dangers as a jellyfish! Over 40 levels of spectacular aquatic adventure, with password save. Five levels of challenging 3-D travel, through the vast waters of the open ocean!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1994"
+  },
   "ECCO The Dolphin": {
    "developer": "Novotrade Software",
    "genres": "Action",
@@ -474,6 +1124,62 @@
    "players": "1",
    "publisher": "Sega of America",
    "year": "1992"
+  },
+  "Earthworm Jim": {
+   "developer": "Shiny Entertainment",
+   "genres": "Platform; Shooter",
+   "overview": "A crow is chasing a worm named Jim while in outer space Psy-Crow is chasing a renegade ship. The ship's captain has stolen an ultra-high-tech-indestructible-super-space-cyber-suit and Queen Slug-for-a-Butt has ordered Psy-Crow to get it, since it can make her more beautiful than Princess-What's-Her-Name. Psy-Crow blasts the captain and the suit falls to Planet Earth. Back on earth Jim wonders if he is finally safe when an ultra-high-tech-indestructible-super-space-cyber-suit lands on him. Luckily Jim rests in the neck ring of the suit. Then the space particles begin interacting with Jim, causing a light-speed evolution. Jim soon realizes he is in control of the suit. Jim overhears the Queen's plans for the suit and decides to meet this Princess...",
+   "players": "1",
+   "publisher": "Playmates Interactive Entertainment",
+   "year": "1994"
+  },
+  "Earthworm Jim 2": {
+   "developer": "Shiny Entertainment",
+   "genres": "Platform; Shooter",
+   "overview": "Two times the fun! Two times the excitement! Two times two is four. Too much to list, but keep reading: From Evil the Cat's 'Circus of the Scars' to the planet of Meat, join Jim on a madcap chase across the galaxy. Saving cows, thwarting lawyers and outsmarting Psy-Crow are all in a day's work for Jim. Are you up to the challenge? Can you handle the awesome new weapons? Excellent! Then stop reading this. Take it up to the front counter and try it at home! Trust no one, play it yourself... or EAT DIRT!",
+   "players": "1",
+   "publisher": "Playmates Interactive Entertainment",
+   "year": "1995"
+  },
+  "Elemental Master": {
+   "developer": "TechnoSoft",
+   "genres": "Shooter",
+   "overview": "Gyra has usurped the throne, and his minions are pillaging and plundering throughout the countryside. The kingdom is doomed unless someone can stop this madness and restore order to the land. You are the ELEMENTAL MASTER, and you're the only person with the power to put an end to Gyra's reign of terror. Harnessing the power of the elements fire, water, wind, and the earth you use them as your very own weapons to fight all that is evil in the world. You'll be up against Gyra's most ruthless henchmen as you battle through eight levels of intense action. But you've got the power of magic on your side, and if you can master the five spells at your disposal, you'll be a nearly unstoppable force. Of course, when you're single-handedly taking on an entire army, the odds are stacked against you. But with the power of the elements, you're the only one who can stop Gyra and his army.",
+   "players": "1",
+   "publisher": "Technosoft",
+   "year": "1990"
+  },
+  "Flashback - The Quest for Identity": {
+   "developer": "Delphine Software International",
+   "genres": "Action; Platform; Puzzle",
+   "overview": "The year is 2142. The player takes control of Conrad B. Hart, a man who has lost his memory. After barely escaping from hostile aliens, Conrad's bike crashes on an unknown planet. Conrad finds himself in the jungle, and from that moment on his quest for survival and his lost identity begins. Flashback: The Quest for Identity incorporates elements of platforming, shooting, and problem-solving. The game can be described as a \"cinematic platformer\" (commonly referred to as Prince of Persia-style), following a design philosophy that was also manifested in Delphine Software's previous work, Another World. Compared to that game, Flashback focuses more on platforming and exploration of large levels.",
+   "players": "1",
+   "publisher": "U.S. Gold",
+   "year": "1993"
+  },
+  "Gaiares": {
+   "developer": "Telenet Japan",
+   "genres": "Shooter",
+   "overview": "Mother Earth has been turned into an environmental wasteland by careless humans. Now, the human race has one last chance to save the Earth... With your help. The United Star Cluster of Leezaluth, the governing empire of the Galaxy, has sent a warning to the Earth: \"To any surviving Humans - An intergalactic terrorist group known as Gulfer is planning to invade your planet and use your polluted waste to build weapons. You Humans must stop Gulfer, or we will be forced to supernova your Sun and destroy the Earth to stop them. But if you can stop Gulfer, we will give you a new planet like Earth to live on.\" Unfortunately, Earth can no longer afford to maintain a standing army or military. But there is still one brave hero willing to fight for the survival of Earth. He is Dan Dare, a young ace-pilot. Alexis, the messenger from Leezaluth, was awed by Dan's fighting spirit and decided to stay with him. She modified Dan's spacecraft and is now the navigator of the TOZ weapon system on Dan's ship. The last epic struggle for the survival of the Human Race and Mother Earth has just begun... All our fates rest in your hands.",
+   "players": "1",
+   "publisher": "Renovation Products",
+   "year": "1990"
+  },
+  "Gain Ground": {
+   "developer": "Sanritsu Denki",
+   "genres": "Action",
+   "overview": "Gain Ground became a sensation overnight as the newest human vs. Android competition. One day, though, the Mother Computer that controlled the androids went crazy and trapped spectators in the Coliseum. Join the group of skilled fighters who are trying to defeat the system, and save those innocent people from a fate worse than death!",
+   "players": "2",
+   "publisher": "Renovation Products",
+   "year": "1991"
+  },
+  "Ghouls 'N Ghosts": {
+   "developer": "Capcom",
+   "genres": "Action; Platform",
+   "overview": "Arthur must venture back to the Lucifer's palace and destroy the demon in order to rescue the Princess' soul and bring her back to life! And it won't matter whether he fights in his shining armor or in his underwear alone...the bravest Knight in the land isn't going to be stopped by some monsters! Although the game starts with graveyard and marsh territory familiar from the first game, later levels are set in a tower, a mass of skeletons, and a castle.",
+   "players": "1",
+   "publisher": "Capcom",
+   "year": "1989"
   },
   "Golden Axe": {
    "developer": "Team Shinobi",
@@ -491,6 +1197,30 @@
    "publisher": "Sega of America",
    "year": "1993"
   },
+  "Herzog Zwei": {
+   "developer": "TechnoSoft",
+   "genres": "Strategy",
+   "overview": "\"Eins! Zwei! Drei!\" In the murky dawn the tyrant's troops scuffle towards foxholes and tanks. Taking battle position, they quickly check their equipment and load cannons. Then they hunker down, awaiting the cry: \"Attacke!\" \"Hup! Two! Three! Four!\" On your order, rebel soldiers race to their war machines! Jets blast into the dawn, afterburners roaring. Convoys rumble toward the advance bases. Their single purpose: attack! War! You and your opponent face off for control of the world! You're equally matched, man for man, weapon for weapon. You sweat as you order out heavy metal, mobilize troops, and plot the attack! You collide in dogfights, ground frays, and naval clashes! At last, you advance to their home base. Now! Crush the enemy - and become Supreme Commander of the free world!",
+   "players": "2",
+   "publisher": "Technosoft",
+   "year": "1989"
+  },
+  "Kid Chameleon": {
+   "developer": "Sega Technical Institute",
+   "genres": "Platform",
+   "overview": "Wild Side is the newest game in town. All the kids are wild to play it. It's a machine that surrounds you with flame-belching, body-snatching monsters. Step inside and it's just you against the madness. It's fast, dangerous and almost impossible to beat. One other thing— its a kid-eater! Until Kid Chameleon takes charge. He bursts open blocks, finds helmets and — Blam! — he transforms into a brick-smashing Berzerker. Crunch! He's a buzzing Micromax, hacking Maniaxe, or jet-powered Skycutter. By bashing blocks, he builds up superpowers for the monster-mash ahead! Crabuloids, Skull Chompers, Killer Slime! Kid Chameleon wipes 'em out with hair-raising leaps. He scrambles up walls, skates across ceilings and squeezes through escape holes. With more than 1,850 screens, 103 levels, and loads of secret paths, there's always a way out. And they all lead to the lair of the Elsewhere Evilmeister, Heady Metal!",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1992"
+  },
+  "Light Crusader": {
+   "developer": "Treasure",
+   "genres": "Action; Role-Playing",
+   "overview": "In Light Crusader, you play the role of Sir David, a knight in the service of King Frederick. You are sent to the town Green Row to help your king's brother, King Weeden, to discover what has caused the mysterious disappearance of his town people. You must enter and explore huge dungeons in order to find out about an ancient story that has happened many years ago, and to face evil forces who threaten the land. Light Crusader is an isometric action/puzzle adventure with RPG elements, along the lines of Landstalker. You can talk to townspeople, buy weapons and items, etc. You spend most of the game in dungeons, which are populated by enemies (whom you fight in real-time combat), and which are full of various types of traps and puzzles. You'll often have to jump to access higher levels or platforms, push switches and other objects to help you advance, and solve various physical puzzles.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1995"
+  },
   "Lightening Force - Quest for the Darkstar": {
    "developer": "TechnoSoft",
    "genres": "Shooter",
@@ -498,6 +1228,14 @@
    "players": "1",
    "publisher": "Technosoft",
    "year": "1992"
+  },
+  "Lion King, The": {
+   "developer": "Westwood Studios",
+   "genres": "Action; Platform",
+   "overview": "You think you want to be King? Get real. You're starting life as Simba, the cub. To survive and grow into a powerful adult lion, you must perfect your savage pounce, reckless roar and master fighting with all four paws. If you survive the challenge, you'll grow into a strong, ferocious adult lion. So prepare to scrap with hyenas. Blast through an elephant graveyard. Battle an in-your-face stampede of trampling wildebeests. And you'd better quit hanging with slackers like Timon and Pumbaa, unless you want to be scarfing bugs the rest of your life! Are you sure you want to be King? Then it's time to cut loose in the deadliest one-on-brawl ever. Defeat your evil Uncle Scar. Recapture the Pridelands. And reclaim your rightful place in the Circle of Life.",
+   "players": "1",
+   "publisher": "Virgin Interactive Entertainment",
+   "year": "1994"
   },
   "Mega Turrican": {
    "developer": "Factor 5",
@@ -507,6 +1245,30 @@
    "publisher": "Data East",
    "year": "1994"
   },
+  "Micro Machines": {
+   "developer": "Codemasters",
+   "genres": "Racing",
+   "overview": "If you're bored of racing Formula 1 cars, rally cars or MotoGP bikes in their natural habitats, the Micro Machines series could be for you. It involves racing miniatures representing particular vehicle types across a particular terrain found around the house. The Sports Cars race on the desktop, 4x4s in the sandpit, Formula 1 cars on a snooker table, and so on.",
+   "players": "2",
+   "publisher": "Codemasters",
+   "year": "1993"
+  },
+  "Mortal Kombat II": {
+   "developer": "Probe Entertainment",
+   "genres": "Fighting",
+   "overview": "Following his failure to defeat to Liu Kang in the first Mortal Kombat game, the evil sorcerer Shang Tsung begs his master, Shao Kahn, to spare his life. He tells Shao Kahn that the invitation for Mortal Kombat cannot be turned down, and if they hold it in Outworld, the Earthrealm warriors must attend. Kahn agrees to this plan, and even restores Tsung's youth. He then extends the invitation to Raiden, who gathers his warriors and takes them into Outworld. The new tournament is much more dangerous, as Shao Kahn has the home field advantage, and an Outworld victory will allow him to subdue Earthrealm.",
+   "players": "2",
+   "publisher": "Acclaim Entertainment",
+   "year": "1994"
+  },
+  "NBA Jam": {
+   "developer": "Iguana Entertainment",
+   "genres": "Sports",
+   "overview": "NBA Jam is a two-on-two basketball game You can play any NBA team, and you can play as players like Barkley, Starks, Pippen, and Grant. Each human player controls a single player, so choose your squad wisely to take team-mate skill into account. The game is action-oriented, and players can perform unrealistic slam-dunks. Full performance statistics are automatically recorded. The play clock and 3-point line apply, but other rules are largely overlooked.",
+   "players": "4",
+   "publisher": "Arena Entertainment",
+   "year": "1994"
+  },
   "Phantasy Star - The End of the Millenium": {
    "developer": "Sega AM7",
    "genres": "Role-Playing",
@@ -514,6 +1276,22 @@
    "players": "1",
    "publisher": "Sega of America",
    "year": "1993"
+  },
+  "Ranger-X": {
+   "developer": "Nex Entertainment",
+   "genres": "Shooter",
+   "overview": "You are Ranger X... A mysterious lone warrior who has risen from the ashes to return peace and justice to a failed society. Eight post-apocalyptic levels of high-intensity action! Monstrous mechanical bosses await your every move. Use jump-jets to engage in airborne combat with weapons of incredible power or link up with your cyber cycle for high speed ground attacks. Each step inches you closer to your goal and the fight of your life.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1993"
+  },
+  "Revenge of Shinobi, The": {
+   "developer": "Sega Enterprises",
+   "genres": "Action; Platform",
+   "overview": "You are Musashi, master ninja. You are one of the mystic warriors, who see and know all things. You are deadly! Now you must destroy the vicious army of Neo Zeed. If you fail, then Naoko, their beautiful prisoner, dies! Attack with a ninja sword and crossed daggers! Somersault over fences while hurling deadly knives! Ward off bullets, Death Stars, and junked cars by leaping, twisting, and kicking! The Neo Zeed are masters of disguise. But you are a master of Shinobi, the art of stealth. You'll stalk the Neo Zeed through 24 treacherous scenes, while they stalk you! Battle ninjas, musclemen, deadly lasers, and the diabolical Boss! Outfight Kung Fu gangs and armies of machine gunners. The Neo Zeed is almost unstoppable, but you have a secret weapon - ninja magic!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1989"
   },
   "Ristar": {
    "developer": "Sega Enterprises",
@@ -531,6 +1309,38 @@
    "publisher": "Electronic Arts",
    "year": "1992"
   },
+  "Rocket Knight Adventures": {
+   "developer": "Konami",
+   "genres": "Action; Platform",
+   "overview": "He's courageous! He's clever! He's one good lookin' opossum. It's Sparkster the Rocket Knight, the heroic jet pack jockey with warp speed, quick wits and pumped up personality. After all, who else do you know can get a grip with his tail? Rocket through 7 epic stages of animalistic adventure, home of the hugest, strangest enemy pig creatures imaginable. (In fact, your mission is crammed with more ham than a Hollywood premier.) Destroy the Emperor who's on a porcine power trip that will take him to the Key to the Pig Star. In every stage you'll be moving, flying and riding in a new direction to escape opossum punishment. You're the thrust-meister controlling Sparkster's jet pack and his assault sword. Confront mechanized menaces like the Giant Pigbot, the Drill Of A Lifetime, and the snappy Crab Rangoon. Things take a turn for the worst in the room of rotating gravity where Axle Gear, the Black Knights awaits you. And you've never seen anything like the unreal mirrored lava pools where things will reflect badly on you. The tricks, the traps and challenges never end. But the world as you know it will if you don't grind those pigs for sausage.",
+   "players": "1",
+   "publisher": "Konami",
+   "year": "1993"
+  },
+  "Rolling Thunder 2": {
+   "developer": "Namco",
+   "genres": "Platform; Shooter",
+   "overview": "BRUTAL BUSINESS: INFILTRATE AND DESTROY Jackhammering machine-gun fire forces you to dive for cover through exploding grenades and spent shell casings. Wiping off powder burns, choking on smoky air; It's now or never. Take aim, and empty your magazine, spinning to drop that last terrorist creep behind you. Fingers numb from recoil you slam your last clip into your pistol... time to move on. As super agent Leila or Albatross, only you command the street smarts and weapons expertise to thwart Geldra's plan for world domination. In ROLLING THUNDER 2, you'll infiltrate an evil empire that spans the globe from Miami's palm trees to Giza's towering pyramids.",
+   "players": "2",
+   "publisher": "Namco",
+   "year": "1991"
+  },
+  "Shining Force": {
+   "developer": "Climax Entertainment",
+   "genres": "Role-Playing; Strategy",
+   "overview": "In a wondrous land perhaps not so far from our world, a strange and terrible series of events took place. The powers of darkness, led by Dark Dragon, fought for control of the world of Rune. Legendary warriors of light fought them with the ancient and modern weapons of the time, and drove Dark Dragon into another dimension. But Dark Dragon vowed that in a thousand years he would be able to break through the inter-dimensional barrier, back into this world. A thousand years of peace and tranquility passed. The people of the world were happy to live their lives in contentment, able to spend time rediscovering the magical and technological wonders destroyed by Dark Dragon and using them to benefit all people. But the kingdom of Runefaust has begun a massive attack of the kingdoms of Rune - intending to help Dark Dragon return to this world. A small band of warriors has been sent out on a dangerous journey to fight against the dark forces of Runefaust. Shining Force is a tactical role-playing game. As the player character makes his way through the lands of Rune, he is joined by other warriors who wish to stop the forces of Runefaust. Each warrior has their own strengths and weaknesses. As the player progresses through the game the characters gain new weapons and spells.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1992"
+  },
+  "Shining Force II": {
+   "developer": "Sonic Co.",
+   "genres": "Role-Playing; Strategy",
+   "overview": "In the eerie Cave of the Past, a mischievous thief tampers with the mystical Stones of Light and Dark. The Stones once imprisoned the Evil of All Ages. Now the deadly Zeon is unleashed. His rage will hurl the galaxy into eternal darkness - unless the Shining Force can stop him! The legendary epic resumes with an entirely new story, awesome cinematic battle sequences and incredible monsters! Build an awesome 12-member strike force from over 20 characters and develop them into fiercer, stronger, more magical warriors!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1993"
+  },
   "Shinobi III - Return of the Ninja Master": {
    "developer": "Megasoft",
    "genres": "Action; Platform",
@@ -538,6 +1348,14 @@
    "players": "1",
    "publisher": "Sega of America",
    "year": "1993"
+  },
+  "Sonic 3D Blast": {
+   "developer": "Traveller's Tales (UK)",
+   "genres": "Action; Platform",
+   "overview": "Doctor Robotnik discovered that some strange birds, called Flickies, live on an island in an alternate dimension. He learned that they can travel anywhere using large rings, so he decided to exploit them by turning them into robots to help him search for the Chaos Emeralds. One day, Sonic visited Flickies' Island and saw what Robotnik had done to them. He decided to free the Flickies and stop Robotnik from finding the Emeralds.",
+   "players": "1",
+   "publisher": "Sega Enterprises",
+   "year": "1996"
   },
   "Sonic The Hedgehog": {
    "developer": "Sonic Team",
@@ -571,6 +1389,22 @@
    "publisher": "Sega of America",
    "year": "1994"
   },
+  "Splatterhouse 2": {
+   "developer": "Now Production",
+   "genres": "Beat 'em Up",
+   "overview": "It Begins Again! Your girlfriend Jennifer is trapped in a living nightmare and it's up to you to save her. The only options is to wear the terror mask to transform into a buffed out mayhem machine ready to smash and bash a path to freedom. Utilize every weapon from your gnarled fist to a roaring chainsaw to conquer legions of oozing zombies and ghastly ghouls. With skill you may last long enough to confront horrible bosses. An iron will and a strong stomach are mandatory.",
+   "players": "1",
+   "publisher": "Namco",
+   "year": "1992"
+  },
+  "Streets of Rage": {
+   "developer": "Sega Enterprises",
+   "genres": "Beat 'em Up",
+   "overview": "Axel, Adam and Blaze - ex-cops, the solution to punk pollution. The city's a war zone, and they're going out two at a time to give the gangs a kick in the guts. This is the ultimate in street combat. These city fighters are martial arts maniacs with a battery of 40 individually controllable attacks - including jabs, head butts, and overhead kicks. They're up against a mob of Kung-Fu creeps and axe-hurling fiends. On the streets it's only two of them against hordes of attacking scum. Slam into pipe-wielding weirdos and bash 'em with their own metal. Throw an uppercut or an elbow smash - these goons keep comin'!",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1991"
+  },
   "Streets of Rage 2": {
    "developer": "Ancient",
    "genres": "Beat 'em Up",
@@ -579,12 +1413,100 @@
    "publisher": "Sega of America",
    "year": "1993"
   },
+  "Streets of Rage 3": {
+   "developer": "Sega AM7",
+   "genres": "Beat 'em Up",
+   "overview": "Snatch the Police Chief and replace him with a robot? Bomb city streets to splinters? Mr. X and the Syndicate surface once again to hatch the ultimate evil plot! Blaze Fielding launches a furious counterattack with Axel, Skate and cyborg newcomer Dr. Zan! Totally new moves including jump kicks, power slams and spin punches and secret attacks! Out-RAGE-ous 2-player combo attacks and head-to-head battles! Four bone-busting endings - the better you get, the more you see! Thrashing digitized sound FX and incredible street tunes!",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1994"
+  },
+  "Strider": {
+   "developer": "Sega Enterprises",
+   "genres": "Action; Platform",
+   "overview": "Take on all the explosive action of the arcade hit! You're Strider, a crunching hulk of muscle with a grappling hook and laser sword. You're in a future land of backward time, and its evil Master is taunting you with defeat. Can you survive 8 megs of incredible danger? Hang-glide into the citadel, then clang your hook into metal to stiff-arm up to safety. Stay alive by slashing armies, winged robots, and prehistoric monsters into shuddering heaps! Battle alluring Amazons who sling vicious boomerangs and drum out a war chant to turn your mind manic. Slide, duck, and cartwheel past lasers, spikes and bombs. Screech to a halt in the face of giant metal monkeys and centipedes. Feel your biceps burst as you grapple with snarling musclemen. Cling to battleship bulkheads. Leap from Tyrannosaurus Rex. It's Strider! The Master awaits!",
+   "players": "1",
+   "publisher": "Sega Enterprises",
+   "year": "1990"
+  },
+  "Sunset Riders": {
+   "developer": "Konami",
+   "genres": "Platform; Shooter",
+   "overview": "The Wild West...full of the criminal element. Sir Richard Rose, the most despicable face in the criminal lot, has enough power to control the mining facilities, cattle ranches, and trading communities and turn everything to his favor. With that much power, he could literally buy himself the Wild West and control everything! The people need help, desperately. And just as things were looking grim, who should ride into town but 4 men who have made a pact: to put down Sir Richard Rose and make the Wild West a free and peaceful place to live. Steve, Bob, Billy, and Cormano are the Sunset Riders, and they're about to live out the wildest shootout the Wild West has ever seen...",
+   "players": "2",
+   "publisher": "Konami",
+   "year": "1992"
+  },
+  "Thunder Force III": {
+   "developer": "TechnoSoft",
+   "genres": "Shooter",
+   "overview": "This masterpiece of shooting games takes you to a world of extraordinary proportions. It's the sequel to the explosive conflict that erupted in Thunder Force II. The unique backdrops scroll in three dimensions and offer you numerous surprises beyond imagination. Battle the enemy with a wide array of highly sophisticated weaponry. The menacing boss vehicles at the end of every stage have abilities unlike anything you've ever experienced.",
+   "players": "1",
+   "publisher": "Technosoft",
+   "year": "1990"
+  },
   "Toejam & Earl in Panic on Funkotron": {
    "developer": "ToeJam & Earl Productions",
    "genres": "Action; Platform",
    "overview": "ToeJam & Earl, the dynamic duo of funk, have returned home after much interplanetary partying, but all is not well. Pesky Earthlings hitched a ride on their Rapmaster Rocketship and are now causing havoc all over the once peaceful planet of Funkotron... and TJ&E are to blame!!! 17 levels of funkified action, including fungi jumping, arctic sliding and bubble bouncing. Check the scene with the Ultra-cool Funkscan... Hey, what's lurking in the bushes? Everyone into the pool!!! Explore underwater passages to find secret lairs and areas.",
    "players": "2",
    "publisher": "Sega of America",
+   "year": "1993"
+  },
+  "Truxton": {
+   "developer": "ToaPlan",
+   "genres": "Shooter",
+   "overview": "Power on! All systems go! Takeoff! Meet the alien attack head-on in your Super Fighter! Before the Gidans overrun your planet, destroy them in an explosive scramble in space! You are the one pilot alive with the guts to do it! The Gidans have blown up your planet's cargo barge and are on their way to Borogo with a swarm of flying fortresses — asteroids loaded with tanks, guns, and explosives for an all-points takeover. Attack them face-to-face in your Super Fighter, the most powerful assault ship In the universe. Blast them to kingdom come with Power Shots. Fire the incredible Truxton Beam to disintegrate their speeding onslaught. And when there's no escape through their force fields, surprise them with the devastating Rainbow Circe Shot! Take on the Gidans in 5 separate battles of space carnage! You CAN save the planet!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1989"
+  },
+  "Vectorman": {
+   "developer": "BlueSky Software",
+   "genres": "Action; Platform",
+   "overview": "In 2049, the human population of Earth embarks on a migratory voyage to try to colonize other planets. They leave mechanical \"orbots\" to clean up the mess they made on Earth through littering and pollution. Raster, a high-level orbot who watches Earth through a planetwide computer network, is accidentally attached to a working nuclear missile by a lesser orbot and goes insane, becoming an evil dictator named Warhead. He declares himself ruler of Earth, and begins preparing to execute any humans who dare return to their planet. Enter Vectorman, a humble robot in charge of cleaning up toxic sludge by simply discharging it into the sun. As he lands on Earth after his last trip, he finds chaos and confusion. Because all the other Orbots are controlled by Warhead (Vectorman having not been affected because he was away), Vectorman takes it upon himself to destroy the errant orbot and restore peace to Earth.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1995"
+  },
+  "Vectorman 2": {
+   "developer": "BlueSky Software",
+   "genres": "Action; Platform",
+   "overview": "After saving Earth from Warhead in the previous game, Vectorman's sludge barge is targeted and destroyed by a missile. Vectorman escapes, parachuting down to the planet to battle with the Earth's multitudinous enemy; mutant insects. Now it is up to Vectorman to fight through the mutant bugs and find the most fearsome source infestation; the evil Black Widow Queen.",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1996"
+  },
+  "Virtua Racing": {
+   "developer": "Sega AM2",
+   "genres": "Racing",
+   "overview": "Virtua Racing is a home port of Sega's first ever 3D, polygon-based racing game for the arcade. The game consists of racing Formula-1-looking cars around a beginner, intermediate, or expert track, competing against a second player or computer drivers. Despite having Formula-1 cars, the game controls are very \"arcadey\" and players can see the leap they made from here to Daytona. The Megadrive/Genesis version of Virtua Racing is of note as it is the only game for the system which features the SVP chip (Sega Virtua Processor). The chip is a 3D processor built into each cartridge (the console itself had no 3D capability) and is very similar to the SNES's SuperFX chips, used in games such as Starfox and Stunt Race FX.",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1994"
+  },
+  "Wonder Boy in Monster World": {
+   "developer": "Westone",
+   "genres": "Action; Platform; Role-Playing",
+   "overview": "Townsfolk cower in fear as legions of deadly monsters invade the planet. Only Wonder Boy can fight smart enough - and tough enough - to wipe out the terrible beasts. Sleuth out secret clues to thwart the undead. Match wits against an evil force of otherworldly dimensions. And prove the awesome strength and courage of the amazing Wonder Boy!",
+   "players": "1",
+   "publisher": "Sega of America",
+   "year": "1991"
+  },
+  "World of Illusion Starring Mickey Mouse & Donald Duck": {
+   "developer": "Sega Enterprises",
+   "genres": "Platform",
+   "overview": "Alakazam! Here's classic Disney fun with your favorites, Mickey Mouse and Donald Duck! Transported into a world of wonder, Mickey and Donald must perform amazing feats of magic to defeat a crafty Sorcerer and find their way back home! Poof! Mickey and Donald defeat evil foes with their enchanted cape as they voyage across the glorious skies on a magic carpet, journey through the gigantic forest and explore the ocean floor safe within a giant bubble. And look - the gang's all here! Minnie Mouse, Daisy Duck, Goofy, Pluto, Clarabelle Cow, Huey, Duey and Louie all pop in to join the fun.",
+   "players": "2",
+   "publisher": "Sega of America",
+   "year": "1992"
+  },
+  "Zombies Ate My Neighbors": {
+   "developer": "LucasArts",
+   "genres": "Horror; Shooter",
+   "overview": "In Zombies Ate My Neighbors, the player takes the role of a male or female protagonist (Zeke or Julia), fighting vampires, mummies, zombies, and other horrifying creatures. The goal is to destroy these monsters, survive the 50+ levels (not including secret ones), and rescue the neighbors that have survived the onslaught. There is a defined number of neighbors who can be saved on every level. When they are all rescued, an \"Exit\" door opens, and the player advances to the next level. The levels range from mall and grocery store to beaches and football fields. Using different weapons such as bazooka or water gun, Zeke and Julia have to kill regular enemies and bosses (huge babies, dragons, ants, and others) at the end of the levels. Despite the horror theme, the game's setting contains humorous elements as well. A two-player cooperative mode is available.",
+   "players": "2",
+   "publisher": "Konami",
    "year": "1993"
   }
  },
