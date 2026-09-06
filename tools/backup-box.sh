@@ -65,8 +65,12 @@ if has storage "${want[@]}"; then
     "$BOX:/storage/" "$DEST/storage/"
 
   echo "==> network configuration"
-  rsync "${RSYNC_OPTS[@]}" --relative \
-    "$BOX:/storage/.cache/connman" "$DEST/storage/" 2>/dev/null \
+  # No --relative here: it preserves the whole source path and lands the files
+  # in storage/storage/.cache/. And no 2>/dev/null - hiding the error is how
+  # this silently backed up nothing at all the first time.
+  mkdir -p "$DEST/storage/.cache/connman"
+  rsync "${RSYNC_OPTS[@]}" \
+    "$BOX:/storage/.cache/connman/" "$DEST/storage/.cache/connman/" \
     || echo "    (no connman state - box may be on a stock system)"
 fi
 
