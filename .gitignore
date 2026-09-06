@@ -3,3 +3,4 @@ backup.log
 *.pyc
 __pycache__/
 .repo-cache/
+state-after.txt
