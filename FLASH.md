@@ -87,12 +87,21 @@ flash with the stick on the desk and put it back only if something goes wrong.
    `check_is_compatible()` in the init script compares project/arch against
    `Amlogic-no.aarch64`, which is what we built.
 
-   The artefact on disk is
-   `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar`, sha256
-   `8f3226e3ec06931f32981e79e9d618cdcf5230d111c71013df7e8d8ce794a515`. It was
-   built **before** the Phase 4 patches and deliberately stays that way: Phase 1
-   is the unmodified image, so a first-flash problem is a toolchain or device
-   problem and nothing else. The FBO work gets its own image later.
+   **There are two images. Flash them in order.**
+
+   | | |
+   |---|---|
+   | **Phase 1** | `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar` |
+   | | sha256 `8f3226e3ec06931f32981e79e9d618cdcf5230d111c71013df7e8d8ce794a515` |
+   | | Unmodified CoreELEC. Kodi game ABI 6.0.0 → **8.0.0** |
+   | **Phase 4** | `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906041600.tar` |
+   | | sha256 `03db25bce7a08845abd87e9ad8cbf651ca01fc9132eef1babc81c7a0cadd6684` |
+   | | Adds the RetroPlayer FBO patches (1016-1020) |
+
+   Flash the first one, work through step 5 and Phase 2, and confirm all seven
+   systems still launch. Only then flash the second. That way a problem on the
+   first flash is a toolchain or device problem and nothing else, and a problem
+   on the second is our patches — which is a much shorter list to search.
 
 5. **Verify:**
    ```sh
