@@ -87,6 +87,13 @@ flash with the stick on the desk and put it back only if something goes wrong.
    `check_is_compatible()` in the init script compares project/arch against
    `Amlogic-no.aarch64`, which is what we built.
 
+   The artefact on disk is
+   `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar`, sha256
+   `8f3226e3ec06931f32981e79e9d618cdcf5230d111c71013df7e8d8ce794a515`. It was
+   built **before** the Phase 4 patches and deliberately stays that way: Phase 1
+   is the unmodified image, so a first-flash problem is a toolchain or device
+   problem and nothing else. The FBO work gets its own image later.
+
 5. **Verify:**
    ```sh
    ./tools/snapshot-state.sh after
