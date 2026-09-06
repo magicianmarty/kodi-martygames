@@ -77,4 +77,8 @@ DOS_EXE_BLOCKLIST = (
     # manuals, intros, cheats and helpers that outweigh the real game on size
     'guide', 'info', 'intro', 'cheat', 'cht', 'trainer', 'mouse', 'order', 'manual',
     'demo', 'insthd', 'terrtron', 'fix', 'nosound',
+    # Archivers and crack tools shipped alongside install disks. Without these
+    # an installer-only release imports as a game whose executable is LHA.EXE,
+    # which is how Ultima Underworld and Simon the Sorcerer 2 first arrived.
+    'lha', 'lharc', 'arj', 'crack', 'autoplay',
 )

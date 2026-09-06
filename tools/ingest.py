@@ -104,6 +104,59 @@ def collect(src):
         yield os.path.join(src, entry)
 
 
+LZH_PAYLOAD = ('.lzh', '.lha')
+
+
+def unpack_dos_payload(folder):
+    """Expand an installer's data archives in place, if that is what this is.
+
+    Plenty of DOS releases are shipped as the install disks rather than an
+    installed game: a pile of .lzh volumes plus INSTALL.EXE to unpack them.
+    The archives are ordinary LHA and 7z reads them, so the installer is not
+    actually needed - and without this the folder imports as a game whose only
+    executable is LHA.EXE.
+
+    Returns True if anything was expanded.
+    """
+    payloads = [os.path.join(folder, e) for e in sorted(os.listdir(folder))
+                if e.lower().endswith(LZH_PAYLOAD)]
+    if not payloads:
+        return False
+
+    done = 0
+    for archive in payloads:
+        for cmd in (['7z', 'x', '-y', '-o' + folder, archive],
+                    ['bsdtar', '-xf', archive, '-C', folder]):
+            if not have(cmd[0]):
+                continue
+            try:
+                run(cmd)
+                done += 1
+                break
+            except subprocess.CalledProcessError:
+                continue
+
+    if not done:
+        return False
+
+    for archive in payloads:
+        os.remove(archive)
+    print('  .. expanded %d installer archive(s) in %s'
+          % (done, os.path.basename(folder)))
+    return True
+
+
+def looks_like_installer_only(folder):
+    """True if nothing here will start a game.
+
+    Some releases use a proprietary installer - PC-Install's .001/.002 volumes,
+    for instance - that only its own INSTALL.EXE can read. Importing one gives
+    a library entry that cannot launch, so it is better to say so and skip it.
+    """
+    from resources.lib.scanner import _pick_dos_executable
+    return _pick_dos_executable(folder) is None
+
+
 def archive_stem(path):
     """An archive's name without its extension, and without publisher noise.
 
@@ -239,6 +292,21 @@ def stage(sources, system_override, staging):
             shutil.copytree(path, dest, dirs_exist_ok=True)
         else:
             shutil.copy2(path, dest)
+        if BY_KEY[system].folder_games and os.path.isdir(dest):
+            # Unconditionally, not only when nothing else looks launchable: an
+            # install-disk folder is full of junk executables - UWSOUND.EXE,
+            # UPDATE.EXE - that the picker will happily return, so testing
+            # "is anything pickable" never fires. A folder of .lzh volumes is
+            # install media whatever else is sitting beside them.
+            unpack_dos_payload(dest)
+            if looks_like_installer_only(dest):
+                print('  !! installer only, nothing here will launch - skipping: %s'
+                      % os.path.basename(dest))
+                shutil.rmtree(dest, ignore_errors=True)
+                if work:
+                    shutil.rmtree(work, ignore_errors=True)
+                continue
+
         staged.append((system, dest))
         if work:
             shutil.rmtree(work, ignore_errors=True)

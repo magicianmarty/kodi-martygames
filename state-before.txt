@@ -1,5 +1,5 @@
 # state snapshot: before
-# taken 2026-09-06T23:12:08+12:00
+# taken 2026-09-06T23:33:59+12:00
 
 == os ==
 VERSION="22.0-Piers_devel_20260906093729"
@@ -33,17 +33,17 @@ game.libretro.vice_x64                     version="1.0"
 amiga         59
 c64            2
 doom           2
-dos           90
+dos           91
 megadrive     62
 n64            1
 nes            1
 psx           24
-TOTAL        241
+TOTAL        242
 
 == artwork and metadata coverage ==
-boxart:   229
-snaps:    217
-metadata: 228
+boxart:   230
+snaps:    218
+metadata: 229
 
 == emulator settings that matter ==
 <settings version="2">
