@@ -257,9 +257,27 @@ allocate a zero-sized texture. Fixed in patch 1019.
    already-merged `EndEvent()` callback, which fires on the game loop thread.
    What is unproven is whether that survives a mid-game resolution change.
 
-Effort: **the remaining items are small, and item 7 is the one that can still
-bite.** None of it can be validated until the box runs our image, so it is
-gated on Phase 1 rather than on more reading.
+All of the above is now written (patches 1016-1020) and Kodi builds clean with
+zero warnings from the new files. **None of it has executed.**
+
+**What can be proven without the box** is the property that actually matters
+for a daily driver: no software core can reach any of it. The chain is a single
+path, checked by grep rather than by argument —
+
+    CRenderBufferPoolFBO::m_active
+      <- set only by EnableHardwareRendering()
+      <- called only by CRPRenderManager::Create()
+      <- called only by CRetroPlayerRendering::OpenStream()
+      <- constructed only for StreamType::HW_BUFFER (RPStreamManager.cpp:47)
+
+and `HW_BUFFER` is only ever requested by a client that called `SET_HW_RENDER`.
+A software core gets `VIDEO`/`SW_BUFFER` and `CRetroPlayerVideo`, never touches
+the FBO pool, and the pool keeps answering `IsCompatible()` false — so it is
+skipped by `GetRendererForSettings()`, which is the only way it could have
+hijacked anything. The eleven working systems cannot regress from this.
+
+What remains unproven is whether hardware rendering *works*, which needs the
+box. Gated on Phase 1, not on more reading.
 
 **Strong upstream candidate** — a `@todo` Kodi has carried for years, and the
 four fixes to the ported code stand on their own regardless of whether the
