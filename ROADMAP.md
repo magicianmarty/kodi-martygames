@@ -166,11 +166,25 @@ A patch to Kodi's game input teardown. Likely shapes: hold a lock across
 `CPortInput` hold a weak reference to `m_gameInput` so a freed
 `CGameClientJoystick` cannot be dereferenced by `CAddonInputHandling::Load()`.
 
-Needs a debug build and a reliable repro (we have one: exit any game).
+**Do this after the flash, not before.** Checked 2026-09-06: the box's Kodi and
+the one we built are **1,399 commits apart** on `CoreELEC/xbmc` — the box runs
+the pin from 22.0-Piers_beta1 (2026-06-22), ours is 2026-09-04. That range
+carries a lot of work in exactly this area, including
+`Fix circular reference between CPeripheral and CAgentController` (the agent
+controller is what holds game input alive) and a peripheral memory-leak fix,
+plus several unrelated crash fixes. None of them names this crash, so this is
+not a prediction — but re-testing costs one game launch and a debug build costs
+days, so the order matters.
 
-Effort: a few days including build cycles. Risk: medium — it is a threading fix.
-Value: very high; it is the single most annoying defect on the box, and it also
-trips CoreELEC safe mode after roughly three crashes.
+Only if it survives the flash: build a debug Kodi and get a real stack. We have
+a reliable repro (exit any game). Do **not** start from the previous theory —
+it was disproven, and `CGameClientInput::CloseJoystick()` erasing from
+`m_joysticks` cannot free a `CGameClientJoystick` that anything else still
+holds, because both sides hold `shared_ptr`.
+
+Effort: a game launch, then a few days only if needed. Risk: medium — it is a
+threading fix. Value: very high; it is the single most annoying defect on the
+box, and it also trips CoreELEC safe mode after roughly three crashes.
 
 **Strong upstream candidate.** Worth a Kodi PR regardless of whether we ship it
 ourselves first.
@@ -310,12 +324,20 @@ already reads that directory for last-played ordering.
 Then, all driven by metadata we already hold for 203 games (year, genre,
 players, developer, publisher, overview) and currently show only in the hero:
 
-- Genre shelves — "Racing", "Platformers", "Puzzle"
-- **"2 players"** — the couch co-op shelf, one property away
-- "Never played" — inverse of Recently Played, same savestate trick
-- Decade shelves — "1990s"
-- Snap-on-focus — swap box art for the in-game snap after a focus delay
-- RetroAchievements — the wrapper has cheevos compiled in and unconfigured
+- Genre shelves — **done.** Platformers (64), Shooters (63), Strategy (28),
+  Racing (14). Counts were checked before placing each row, which is why Puzzle
+  (5) and Pinball (3) are absent — too thin to read as a shelf
+- **"2 players"** — **done**
+- "Never played" — **done**
+- Decade shelves — **done**, but "The 1980s" (15), not "1990s": 183 of the 215
+  games are from the 90s, so that row would be the library with extra steps.
+  Plus "Party Games" (4+ players, 24)
+- Snap-on-focus — **done.** The focused poster cross-fades to the in-game snap after 1.1s, gated on `ListItem.Property(marty_info)` so the Plex rows keep their box art
+- RetroAchievements — **upstream shipped this.** No longer a wrapper hack: the
+  Kodi we built has `xbmc/games/addons/cheevos/`, a `DialogGameAchievements`
+  OSD, and real settings (`gamesachievements.username` / `.password` /
+  `.token` / `.loggedin`). It landed after the box's build, so it is a
+  post-flash login, not development. Needs Marty's RetroAchievements account
 
 ### Phase 8 — Ingest pipeline
 Replace the current manual dance (copy ROMs → `fetch_artwork.py` →
