@@ -2,6 +2,47 @@
 # Run a command on the box. Lives here rather than in /tmp, which this machine
 # wipes mid-session - that has eaten this script twice.
 #   ./tools/box 'uname -a'
+#
+# The address is discovered, not hardcoded. The box is on DHCP and its lease
+# changed across the recovery power-cycles (.113 -> .115), which stranded a
+# poll loop on the old address for half an hour. The MAC does not change.
+set -euo pipefail
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+MAC="${MARTYGAMES_BOX_MAC:-90:0e:b3:fd:c0:9a}"
+CACHE="$HERE/.box-ip"
+
+resolve() {
+  # 1. an explicit override always wins
+  if [ -n "${MARTYGAMES_BOX_IP:-}" ]; then echo "${MARTYGAMES_BOX_IP}"; return; fi
+
+  # 2. the last address that worked, if it still answers
+  if [ -r "$CACHE" ]; then
+    ip=$(cat "$CACHE")
+    if ping -c1 -W1 "$ip" >/dev/null 2>&1; then echo "$ip"; return; fi
+  fi
+
+  # 3. the ARP table, keyed on the MAC
+  ip=$(ip neigh 2>/dev/null | awk -v m="$MAC" 'tolower($0) ~ tolower(m) {print $1; exit}')
+  if [ -n "$ip" ]; then echo "$ip"; return; fi
+
+  # 4. wake the subnet and look again
+  command -v nmap >/dev/null 2>&1 && nmap -sn -T4 "${MARTYGAMES_SUBNET:-192.168.50.0/24}" >/dev/null 2>&1 || true
+  ip=$(ip neigh 2>/dev/null | awk -v m="$MAC" 'tolower($0) ~ tolower(m) {print $1; exit}')
+  if [ -n "$ip" ]; then echo "$ip"; return; fi
+
+  echo "box not found on the network (MAC $MAC)" >&2
+  exit 1
+}
+
+if [ -n "${MARTYGAMES_BOX:-}" ]; then
+  TARGET="${MARTYGAMES_BOX}"
+else
+  IP="$(resolve)"
+  echo "$IP" > "$CACHE" 2>/dev/null || true
+  TARGET="root@${IP}"
+fi
+
 export SSHPASS="${MARTYGAMES_BOX_PASS:-coreelec}"
-exec sshpass -e ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -o ConnectTimeout=10 \
-  "${MARTYGAMES_BOX:-root@192.168.50.113}" "$@"
+exec sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+  -o LogLevel=ERROR -o ConnectTimeout=10 "$TARGET" "$@"
