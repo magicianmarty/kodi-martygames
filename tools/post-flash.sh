@@ -40,7 +40,22 @@ case "$WRAPPER" in
       bad "ABI-6 wrapper still installed - re-run with --apply"
     fi
     ;;
-  *8.0.0*) ok "wrapper is on ABI 8" ;;
+  *8.0.0*)
+    ok "wrapper declares ABI 8"
+    # addon.xml alone is not enough. Kodi's updater replaces the whole add-on,
+    # but a Kodi already running holds the *old* library path in its add-on
+    # database - it logged "Could not locate game.libretro.so.22.5.0" while the
+    # directory contained 22.7.0, and every game refused to launch.
+    LIB=$($BOX 'grep -oE "library_linux=\"[^\"]+\"" /storage/.kodi/addons/game.libretro/addon.xml | cut -d\" -f2')
+    if [ -n "$LIB" ] && $BOX "test -f /storage/.kodi/addons/game.libretro/$LIB"; then
+      ok "library $LIB is present"
+    else
+      bad "addon.xml names $LIB but that file is not there"
+    fi
+    if $BOX 'grep -q "Could not locate game.libretro" /storage/.kodi/temp/kodi.log 2>/dev/null'; then
+      bad "Kodi is still looking for the old library - restart it: systemctl restart kodi"
+    fi
+    ;;
   "")      bad "no game.libretro installed - install it from the repo" ;;
   *)       bad "unexpected wrapper ABI: $WRAPPER" ;;
 esac
