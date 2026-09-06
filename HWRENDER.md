@@ -162,3 +162,91 @@ In order, and all of it before touching the box again:
 
 That reduces the remaining work to one behaviour - "hand back the same FBO every
 time" - instead of the five-way ordering puzzle we have been unpicking.
+
+
+## Root cause of the black screen, found 2026-09-06
+
+Everything on Kodi's side now reports correct - `Hardware framebuffer 1 ready at
+640x480`, `Creating renderer for FBO`, no GL errors, the core emulating at 88%
+CPU - and the screen stays black. The reason is in **glsm**, the GL state
+manager `mupen64plus-nx` renders through (`libretro-common/glsm/glsm.c`):
+
+```c
+default_framebuffer                  = glsm_get_current_framebuffer();
+
+gl_state.framebuf[0].location        = default_framebuffer;
+gl_state.framebuf[1].location        = default_framebuffer;
+gl_state.framebuf[0].desired_location = default_framebuffer;
+gl_state.framebuf[1].desired_location = default_framebuffer;
+
+glBindFramebuffer(GL_FRAMEBUFFER, default_framebuffer);
+```
+
+**It asks once and caches the answer for the whole session.** The core runs that
+setup from inside its `context_reset`:
+
+```c
+glsm_ctl(GLSM_CTL_STATE_CONTEXT_RESET, NULL);
+if (!context_setup_first_init)
+{
+   glsm_ctl(GLSM_CTL_STATE_SETUP, NULL);   /* the query happens in here */
+   context_setup_first_init = true;
+}
+```
+
+And Kodi fires `context_reset` from *inside* the stream opening:
+
+```cpp
+if (stream->OpenStream(*hwProperties))
+{
+  m_stream = stream;
+  m_callback.HardwareContextReset();   // CGameClientStreamHwFramebuffer::OpenStream
+}
+```
+
+which runs before the wrapper's own `m_stream.Open()` has returned. So the
+wrapper still thinks the stream is shut:
+
+```cpp
+uintptr_t CVideoStream::GetHwFramebuffer()
+{
+  if (!m_stream.IsOpen() || m_streamType != GAME_STREAM_HW_FRAMEBUFFER)
+    return 0;      // <- here, every time, during context_reset
+  ...
+}
+```
+
+glsm caches **0**, binds framebuffer 0 for the session, and the core renders to
+the default framebuffer - which on the pool's surfaceless context is nowhere at
+all. No error is produced anywhere, which is why this survived five rounds of
+fixing things that were also genuinely wrong.
+
+### Why this cannot be fixed from Kodi alone
+
+Deferring `HardwareContextReset()` does not work: nothing else would trigger it.
+The client only touches GL through glsm, glsm only initialises during
+`context_reset`, and it only queries the framebuffer during that initialisation.
+Fire the reset later and the client never sets up at all.
+
+The fix belongs in the wrapper, and it is small - `GetHwFramebuffer()` should
+open the stream on demand exactly as `GetSwFramebuffer()` already does:
+
+```cpp
+bool CVideoStream::GetSwFramebuffer(...)
+{
+  if (!m_stream.IsOpen())
+  {
+    game_stream_properties properties{};
+    ...
+    m_stream.Open(properties);     // opens on demand
+  }
+```
+
+The hardware path checks `IsOpen()` and gives up instead. Fixing it means
+building `game.libretro` ourselves rather than taking the CoreELEC repo build -
+the package already exists at
+`packages/mediacenter/kodi-binary-addons/game.libretro`, so it is a patch and a
+package bump, not new infrastructure.
+
+**Worth an upstream PR to kodi-game.** It is a two-line change and it is the
+difference between hardware rendering working and silently rendering nowhere.
