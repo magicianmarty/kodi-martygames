@@ -91,3 +91,29 @@ Diagnosing these: `display_fps_v2=extra` draws the core's own HUD, and the
 string is `FPS: <flip_cnt>/<psx_vsync_count>` — **left is the game's own render
 rate, right is emulation speed**. `30/60` on Driver is that game being 30fps by
 design, not a fault. `DRC: n` in the same HUD proves the dynarec is live.
+
+## Game video filter: leave it empty
+
+`guisettings.xml` → `<defaultgamesettings><videofilter>` was set to
+`game.shader.presets/resources/glsl/xbrz/4xbrz-linear.glslp`. 4x xBRZ is a
+per-pixel upscaling filter and the Mali G52 in this box cannot run it at 60 Hz,
+so RetroPlayer paces the emulator down to whatever the GPU manages. Measured on
+Sonic (Genesis Plus GX), GameLoop CPU over 5 s:
+
+| | GameLoop |
+|---|---|
+| 4xbrz-linear.glslp | **8 %** |
+| no filter | **21 %** |
+
+2.6x more emulation getting done with it off, and it applied to *every* system,
+which is why Mega Drive of all things was crawling.
+
+It only started biting after the ABI-8 flash. The hand-built ABI-6
+`game.libretro` almost certainly ignored shader presets, so the setting sat
+there inert; the stock 22.7.0.2 wrapper implements them, so the same setting
+suddenly cost real frames. Worth remembering before blaming a build: **a setting
+that was harmless under the old wrapper is not necessarily harmless now.**
+
+If you want a filter, try a cheap one and measure the same way - the
+`GameLoop` thread's CPU over five seconds is a good proxy for frames actually
+emulated.
