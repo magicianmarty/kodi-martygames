@@ -117,3 +117,23 @@ that was harmless under the old wrapper is not necessarily harmless now.**
 If you want a filter, try a cheap one and measure the same way - the
 `GameLoop` thread's CPU over five seconds is a good proxy for frames actually
 emulated.
+
+## Joystick driver must be udev, not linux
+
+`addon_data/peripheral.joystick/settings.xml` → `driver_linux` was `1`. That
+selects the **joydev** interface, which needs `/dev/input/js*`, and this kernel
+has no joydev at all - `/usr/lib/modules/5.15.196` contains zero `.ko` files
+because CoreELEC builds monolithic, and `CONFIG_INPUT_JOYDEV` is not in it. So
+peripheral.joystick enumerated nothing and the Xbox pad did not work in games,
+even though the kernel had it on `event6` and Bluetooth showed it connected.
+
+Setting it to `0` (the add-on's own default) uses **udev**/evdev:
+
+    Enabling joystick interface "udev"
+    Initialized joystick 0: "Xbox Wireless Controller", axes: 8, buttons: 16
+
+That is also the interface the existing buttonmaps were written for - they live
+in `buttonmaps/xml/udev/`, which was the clue.
+
+Symptom to recognise: the controller pairs and the kernel lists it, but Kodi
+never registers a joystick and nothing responds in a game.
