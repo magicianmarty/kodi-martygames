@@ -225,9 +225,32 @@ Add `packages/emulation/libretro-ppsspp` and `libretro-flycast` following the
 existing 80-package pattern, plus the matching `game.libretro.*` addon
 definitions so they appear as game clients.
 
-Depends on Phase 4. Effort: days per core, mostly build plumbing and per-core
-option wiring. Risk: low-ish once Phase 4 works — but PPSSPP in particular has a
-large surface of renderer options to get right.
+**Verified 2026-09-06 against the live repo index.** `addons.coreelec.org/
+Amlogic-no/22.0.10/aarch64` carries **75 game cores and neither of these two**,
+so the fork really is the only route to PSP and Dreamcast. Both addon pins are
+real and their tarballs hash as pinned (`0.0.1.30-Omega`, `7.0.0.66-Omega`).
+
+**Both depend on Phase 4, including flycast — despite what its addon.xml says.**
+`game.libretro.flycast` declares `<requires_opengl>false</requires_opengl>`,
+which reads like a software core. It is not. `core/libretro/libretro.cpp` at our
+pinned commit negotiates Vulkan, then GLES3, then GLES2, and ends:
+
+```c
+if (!foundRenderApi)
+   return false;      // retro_load_game fails outright
+```
+
+There is no software rasteriser in the libretro build and no `HAVE_OPENGL=0`
+switch in its Makefile. The declaration is simply wrong upstream, and it is
+worse than a missing feature: `requires_opengl=true` is what makes Kodi *hide*
+a core it cannot drive, which is why `mupen64plus-nx` sits inert rather than
+failing. With the flag false, Kodi will offer flycast as a game client for every
+`.chd`/`.gdi` and then fail at load. Do not ship it before Phase 4.
+**Worth an upstream issue against kodi-game.**
+
+Effort: days per core, mostly build plumbing and per-core option wiring. Risk:
+low-ish once Phase 4 works — but PPSSPP in particular has a large surface of
+renderer options to get right.
 
 ### Phase 6 — Saturn reality check
 Independent of everything above; can be done today. Install `beetle-saturn`,
@@ -236,6 +259,13 @@ HUD (`FPS: flip_cnt/vsync_count` — see `box-config/README.md`). If it is too
 slow, try `yabause` and accept the compatibility hit.
 
 Effort: an evening, once ROMs and BIOS exist. Needs no fork.
+
+**Confirmed available now.** Both `game.libretro.beetle-saturn 1.29.0.56.1` and
+`game.libretro.yabause 0.9.15.68.1` are in the repo for this exact device, and
+both declare `requires_opengl=false` — genuinely so, unlike flycast; Mednafen
+Saturn is a pure software rasteriser. Only two of the 75 cores in the repo
+require GL at all (`mupen64plus-nx` and `vecx`). So Saturn is gated on content,
+not on us.
 
 ### Phase 7 — Shelves
 Independent of the fork; can proceed in parallel.
