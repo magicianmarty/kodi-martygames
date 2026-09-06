@@ -474,8 +474,8 @@ Updated 2026-09-06.
 | 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
 | 1 — Build environment | **Done.** Containerised (`scripts-marty/`); `checkdeps` passes clean |
 | 1 — First image build | **DONE.** `[370/370]`, 0 failures. `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar`, 439 MB, sha256 verified. Built Kodi is **Game ABI 8.0.0** (box runs 6.0.0) |
-| 1 — Flash | **Needs Marty.** Bricking risk; do not flash unattended |
-| 2 — Retire the wrapper | **Ready, needs the flash.** The new Kodi sets `ADDON_INSTANCE_VERSION_GAME_MIN=8.0.0`, so it will *refuse* the ABI-6 wrapper - installing stock `game.libretro` is required immediately after flashing, not optional tidy-up |
+| 1 — Flash | **DONE 2026-09-06.** Stock image installed via `/storage/.update`. Kodi 22.0-BETA1 → **BETA2**, `BUILD_ID=260ba0fb95`. Library, cores, PS1 settings and skin all unchanged - `post-flash.sh` passes every check |
+| 2 — Retire the wrapper | **DONE, by itself.** With ABI 8 live the repo's `game.libretro 22.7.0.2` became installable and Kodi's updater pulled it, replacing the hand-built ABI-6 build. `kodi.binary.instance.game v8.0.0` confirmed on the box. The most fragile component in the stack is gone |
 | 3 — Exit crash | **Re-test after the flash first.** The box's Kodi is 1,399 commits behind ours, and that range includes peripheral/agent-controller lifetime work. A debug build costs days; re-testing costs one game launch |
 | 4 — FBO buffer, pool, renderer | **Ported and building.** Patches 1016-1019 in the fork; Kodi rebuilt clean and the new log strings are present in the stripped `kodi.bin`, so it is linked rather than dead-stripped. Deliberately inert - `EnableHardwareRendering()` still refuses and the pool answers `IsCompatible()` false |
 | 4 — Hardware rendering wiring | Not started. `Create()`, `RenderFrame()`, `OpenStream()`, `CloseStream()`, `GetHwProcedureAddress()`. Cannot be validated until the box runs our image |

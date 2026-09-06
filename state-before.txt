@@ -1,5 +1,5 @@
 # state snapshot: before
-# taken 2026-09-06T14:04:26+12:00
+# taken 2026-09-06T17:53:36+12:00
 
 == os ==
 VERSION="22.0-Piers_beta1"
@@ -61,4 +61,4 @@ Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml.bak
 Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml.bak2
 
 == skin ==
-home rows: 11
+home rows: 17
