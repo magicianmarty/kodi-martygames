@@ -1,0 +1,64 @@
+# state snapshot: before
+# taken 2026-09-06T12:58:14+12:00
+
+== os ==
+VERSION="22.0-Piers_beta1"
+VERSION_ID="22.0"
+BUILD_ID="1eebf0e15a722755db4611904d4062039a2c3a18"
+DISTRO_ARCH="Amlogic-no.aarch64"
+DISTRO_BUILD="official"
+DISTRO_PROJECT="Amlogic-ce"
+DISTRO_DEVICE="Amlogic-no"
+
+== kodi + game ABI ==
+Starting Kodi (22.0-BETA1 (21.90.801)
+kodi.binary.instance.game" minversion="6.0.0"
+
+== game clients installed ==
+game.libretro                              version="1.0"
+game.libretro.dosbox-pure                  version="1.0"
+game.libretro.genplus                      version="1.0"
+game.libretro.mame2003_plus                version="1.0"
+game.libretro.mupen64plus-nx               version="1.0"
+game.libretro.nestopia                     version="1.0"
+game.libretro.pcsx-rearmed                 version="1.0"
+game.libretro.picodrive                    version="1.0"
+game.libretro.prboom                       version="1.0"
+game.libretro.scummvm                      version="1.0"
+game.libretro.tyrquake                     version="1.0"
+game.libretro.uae                          version="1.0"
+game.libretro.vice_x64                     version="1.0"
+
+== library: games per system ==
+amiga         59
+c64            2
+doom           2
+dos           77
+megadrive     62
+nes            1
+psx           12
+TOTAL        215
+
+== artwork and metadata coverage ==
+boxart:   205
+snaps:    193
+metadata: 203
+
+== emulator settings that matter ==
+<settings version="2">
+    <setting id="pcsx_rearmed_show_bios_bootlogo">enabled</setting>
+    <setting id="pcsx_rearmed_gpu_thread_rendering">enabled</setting>
+    <setting id="pcsx_rearmed_gpu_slow_llists">disabled</setting>
+    <setting id="pcsx_rearmed_neon_interlace_enable_v2">disabled</setting>
+</settings>
+
+== keymaps and buttonmaps ==
+game-buttons.xml
+game-osd.xml
+mouse-wheel.xml
+Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml
+Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml.bak
+Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml.bak2
+
+== skin ==
+home rows: 11
