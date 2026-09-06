@@ -112,6 +112,20 @@ flash with the stick on the desk and put it back only if something goes wrong.
    goes **6.0.0 → 8.0.0**. Expect *no change* to the game counts (215 across 7
    systems), artwork (205/193), metadata (203), keymaps, or emulator settings.
 
+## After it boots: one command
+
+```sh
+./tools/post-flash.sh            # check only
+./tools/post-flash.sh --apply    # plus the wrapper swap
+```
+
+It reports what booted, whether the wrapper is on the right ABI, that all
+twelve cores are still there, that the game counts match `state-before.txt`,
+that the PS1 settings survived, that the skin still has its rows, and what
+RetroPlayer logged. Dry-run against the *current* box it correctly reports one
+failure - the ABI-6 wrapper - and passes everything else, so a clean run after
+the flash means something.
+
 ## Phase 2, immediately after
 
 ABI 8 means the hand-built wrapper is obsolete — the new Kodi sets
