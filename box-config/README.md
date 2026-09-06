@@ -137,3 +137,16 @@ in `buttonmaps/xml/udev/`, which was the clue.
 
 Symptom to recognise: the controller pairs and the kernel lists it, but Kodi
 never registers a joystick and nothing responds in a game.
+
+## Guide button: OSD, not the shader picker
+
+`userdata/keymaps/game-buttons.xml` had `<guide>ActivateWindow(10823)</guide>`,
+sending the controller's middle button straight to
+`WINDOW_DIALOG_GAME_VIDEO_FILTER`. That was added to give the shader picker a
+route, and it took away the only one-button way out of a game - the in-game OSD
+is where Back and Exit live.
+
+Now `<guide>OSD</guide>`, with the shader picker moved to **Back + Guide**.
+
+Worth remembering generally: binding a hotkey to a niche dialog costs whatever
+that button did before, and on a controller there are not many spare.
