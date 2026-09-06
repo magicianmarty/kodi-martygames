@@ -435,7 +435,9 @@ Updated 2026-09-06.
 |---|---|
 | 8 — Ingest pipeline | **Done.** `tools/ingest.py`, verified end to end |
 | 7 — Continue shelf | **Done.** Live on the box, showing real savestate captures |
-| 7 — Metadata shelves | **Route done** (`?action=shelf`); rows not yet placed on Home |
+| 7 — Metadata shelves | **Done.** Six rows placed: Platformers, Shooters, Strategy, Racing, Party Games, The 1980s. Counts checked against the metadata first, so Puzzle (5) and Pinball (3) were left out and "1990s" (183 of 215) rejected as the library with extra steps |
+| 7 — Snap-on-focus | **Done.** The focused poster cross-fades to the in-game snap after 1.1s, gated so the Plex rows keep their box art |
+| 7 — RetroAchievements | **Upstream shipped it.** Our Kodi has `xbmc/games/addons/cheevos/`, an achievements OSD and real settings. Post-flash login, needs Marty's account |
 | 0 — Backup | **Done.** Full mirror: `/flash` + `/storage` + ROMs, ~17 GB. SYSTEM md5 matches the box; file counts match. Re-runnable via `tools/backup-box.sh` |
 | 0 — Restore procedure | **Documented.** `kodi-martygames-backups/RESTORE.md` |
 | 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
@@ -445,10 +447,11 @@ Updated 2026-09-06.
 | 1 — First image build | **DONE.** `[370/370]`, 0 failures. `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar`, 439 MB, sha256 verified. Built Kodi is **Game ABI 8.0.0** (box runs 6.0.0) |
 | 1 — Flash | **Needs Marty.** Bricking risk; do not flash unattended |
 | 2 — Retire the wrapper | **Ready, needs the flash.** The new Kodi sets `ADDON_INSTANCE_VERSION_GAME_MIN=8.0.0`, so it will *refuse* the ABI-6 wrapper - installing stock `game.libretro` is required immediately after flashing, not optional tidy-up |
-| 3 — Exit crash | **Blocked on a debug build**, and the original theory is disproven (§1) |
+| 3 — Exit crash | **Re-test after the flash first.** The box's Kodi is 1,399 commits behind ours, and that range includes peripheral/agent-controller lifetime work. A debug build costs days; re-testing costs one game launch |
 | 4 — FBO buffer, pool, renderer | **Ported and building.** Patches 1016-1019 in the fork; Kodi rebuilt clean and the new log strings are present in the stripped `kodi.bin`, so it is linked rather than dead-stripped. Deliberately inert - `EnableHardwareRendering()` still refuses and the pool answers `IsCompatible()` false |
 | 4 — Hardware rendering wiring | Not started. `Create()`, `RenderFrame()`, `OpenStream()`, `CloseStream()`, `GetHwProcedureAddress()`. Cannot be validated until the box runs our image |
-| 5 — PSP/Dreamcast packages | **Written, never built.** Both addon pins verified real and hash as pinned; the repo carries neither core, so the fork is the only route. Blocked on Phase 4 - flycast needs a GL context whatever its addon.xml claims |
+| 5 — PSP/Dreamcast cores | **Both build.** `flycast_libretro.so` 29 MB and `ppsspp_libretro.so` 33 MB, aarch64, exporting 54 and 46 `retro_*` entry points, linked against the box's `libMali.so`. Eleven packaging faults fixed between them, listed in the fork's commits |
+| 5 — PSP/Dreamcast addons | **Both packaged.** `game.libretro.flycast-7.0.0.66.1.zip` and `game.libretro.ppsspp-0.0.1.30.1.zip` under `target/addons/Amlogic-no/22.0.12/aarch64/`. Safe to install before Phase 4: both now declare `requires_opengl=true`, so Kodi hides them until hardware rendering works |
 | 6 — Saturn | **Needs ROMs and a BIOS.** No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
 
 The pattern in what is left: everything outstanding needs either physical access
