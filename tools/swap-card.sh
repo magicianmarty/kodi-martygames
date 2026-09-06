@@ -95,39 +95,41 @@ fi
 say "partitioning and formatting $DEV as ext4"
 $BOX "
   set -e
+  systemctl stop storage-sdcard.mount 2>/dev/null || true
+  for u in \$(systemctl list-units --type=mount --all --no-legend 2>/dev/null | awk '/var-media/ {print \$1}'); do
+    systemctl stop \"\$u\" 2>/dev/null || true
+  done
   umount ${PART} 2>/dev/null || true
-  umount /var/media/mmcblk1p1* 2>/dev/null || true
+  umount /var/media/* 2>/dev/null || true
+  test -z \"\$(mount | grep ${PART})\" || { echo 'still mounted:'; mount | grep ${PART}; exit 1; }
   echo -e 'o\nn\np\n1\n\n\nw' | fdisk $DEV >/dev/null 2>&1 || true
   sleep 2
   mkfs.ext4 -F -L $LABEL -m 0 ${PART}
   blkid ${PART}
 "
 
-say "mounting by label, so a future card swap cannot break the path again"
+say "pointing /storage/sdcard at the label-based mount"
+# CoreELEC's own udev automounter mounts a labelled partition at
+# /var/media/<LABEL> and generates a var-media-<LABEL>.mount unit for it. A
+# hand-written mount unit for the same device just loses the race and sits
+# inactive.
+#
+# That automounter is also the whole reason a card swap broke the library: with
+# no label it falls back to /var/media/mmcblk1p1-mmc-<serial>, and the serial
+# changes with the card. Giving the filesystem a fixed label makes its mount
+# point fixed too, so the symlink survives any future swap.
 $BOX "
   set -e
-  systemctl stop storage-sdcard.mount 2>/dev/null || true
-  rm -f $MOUNT
-  mkdir -p $MOUNT /storage/.config/system.d
-  cat > /storage/.config/system.d/storage-sdcard.mount <<UNIT
-[Unit]
-Description=ROM card
-# Kodi scans the library at startup, so the card has to be mounted first
-Before=kodi.service
-
-[Mount]
-What=/dev/disk/by-label/$LABEL
-Where=$MOUNT
-Type=ext4
-# nofail: a missing card must not hold up the boot
-Options=rw,noatime,nofail
-
-[Install]
-WantedBy=local-fs.target
-UNIT
+  rm -f /storage/.config/system.d/storage-sdcard.mount
+  rm -f /storage/.config/system.d/local-fs.target.wants/storage-sdcard.mount
   systemctl daemon-reload
-  systemctl enable --now storage-sdcard.mount
-  findmnt -no SOURCE,TARGET,FSTYPE $MOUNT
+  udevadm trigger --action=add --name-match=${PART##*/} 2>/dev/null || true
+  for i in \$(seq 20); do [ -d /var/media/$LABEL ] && break; sleep 1; done
+  test -d /var/media/$LABEL
+  if [ -L $MOUNT ] || [ ! -e $MOUNT ]; then rm -f $MOUNT; else rmdir $MOUNT; fi
+  ln -s /var/media/$LABEL $MOUNT
+  mount | grep ' on /var/media/$LABEL '
+  ls -ld $MOUNT
 "
 
 say "restoring $BYTES_B bytes"
