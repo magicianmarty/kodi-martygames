@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Run a command on the box. Lives here rather than in /tmp, which this machine
+# wipes mid-session - that has eaten this script twice.
+#   ./tools/box 'uname -a'
+export SSHPASS="${MARTYGAMES_BOX_PASS:-coreelec}"
+exec sshpass -e ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -o ConnectTimeout=10 \
+  "${MARTYGAMES_BOX:-root@192.168.50.113}" "$@"
