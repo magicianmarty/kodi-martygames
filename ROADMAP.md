@@ -359,11 +359,11 @@ Updated 2026-09-06.
 | 1 — Fork skeleton | **Done.** `~/dev/CoreELEC` on branch `marty-22`, with `FORK.md` |
 | 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
 | 1 — Build environment | **Done.** Containerised (`scripts-marty/`); `checkdeps` passes clean |
-| 1 — First image build | **Running.** 370 packages; hours |
+| 1 — First image build | **DONE.** `[370/370]`, 0 failures. `CoreELEC-Amlogic-no.aarch64-22.0-Piers_devel_20260906014435.tar`, 439 MB, sha256 verified. Built Kodi is **Game ABI 8.0.0** (box runs 6.0.0) |
 | 1 — Flash | **Needs Marty.** Bricking risk; do not flash unattended |
-| 2 — Retire the wrapper | Blocked on Phase 1 |
+| 2 — Retire the wrapper | **Ready, needs the flash.** The new Kodi sets `ADDON_INSTANCE_VERSION_GAME_MIN=8.0.0`, so it will *refuse* the ABI-6 wrapper - installing stock `game.libretro` is required immediately after flashing, not optional tidy-up |
 | 3 — Exit crash | **Blocked on a debug build**, and the original theory is disproven (§1) |
-| 4 — Hardware rendering | Not started. Weeks; the honest gate is Phase 1 |
+| 4 — Hardware rendering | Not started. Confirmed still stubbed in the Kodi we just built (3 `@todo`s in `RetroPlayerRendering.cpp`), so the Phase 4 scope above holds |
 | 5 — PSP/Dreamcast packages | **Written, never built.** Metadata verified, make flags unproven |
 | 6 — Saturn | **Needs ROMs and a BIOS.** No code required |
 
@@ -371,8 +371,18 @@ The pattern in what is left: everything outstanding needs either physical access
 to the box, or a working build pipeline to iterate against. Neither is something
 to fake progress on.
 
-Two corrections worth carrying forward, both found by checking rather than
-assuming:
+Six environmental build failures were found and fixed, all committed to the
+fork so neither a rebuild nor CI rediscovers them. The pattern worth carrying:
+**this network cannot reach several GNU-adjacent hosts** (`ftpmirror.gnu.org`,
+`savannah.nongnu.org`, `download.savannah.gnu.org`), and CoreELEC surfaces that
+as a silent stall or a bare "Cannot get sources", never as anything resembling
+DNS. Two of the six were traps that a plausible fix would have made worse: a
+cgit endpoint serving an HTML error page under HTTP 200 with a *stable*
+checksum, and a savannah directory listing returning 200 while every actual
+file returned 502.
+
+Two further corrections worth carrying forward, both found by checking rather
+than assuming:
 
 - The build target is `PROJECT=Amlogic-ce DEVICE=Amlogic-no`, which the box
   reports in `/etc/os-release`. An earlier draft of `FORK.md` said
