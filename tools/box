@@ -35,6 +35,9 @@ resolve() {
   exit 1
 }
 
+# --print-ip lets other scripts reuse this resolution instead of hardcoding
+if [ "${1:-}" = "--print-ip" ]; then resolve | tee "$CACHE" 2>/dev/null || resolve; exit 0; fi
+
 if [ -n "${MARTYGAMES_BOX:-}" ]; then
   TARGET="${MARTYGAMES_BOX}"
 else

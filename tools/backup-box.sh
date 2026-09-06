@@ -16,7 +16,9 @@
 #   ./tools/backup-box.sh flash storage # just those
 set -euo pipefail
 
-BOX="${MARTYGAMES_BOX:-root@192.168.50.113}"
+# Address discovered the same way tools/box does it - the box is on DHCP and
+# its lease has already moved once mid-session.
+BOX="${MARTYGAMES_BOX:-root@$("$(dirname "$0")/box" --print-ip)}"
 DEST="${MARTYGAMES_BACKUP_DIR:-$HOME/dev/kodi-martygames-backups}"
 export SSHPASS="${MARTYGAMES_BOX_PASS:-coreelec}"
 
