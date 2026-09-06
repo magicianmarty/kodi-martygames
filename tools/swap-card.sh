@@ -112,14 +112,15 @@ $BOX "
   cat > /storage/.config/system.d/storage-sdcard.mount <<UNIT
 [Unit]
 Description=ROM card
-Requires=blockdev@dev-disk-by\\\\x2dlabel-$LABEL.target
-After=blockdev@dev-disk-by\\\\x2dlabel-$LABEL.target
+# Kodi scans the library at startup, so the card has to be mounted first
+Before=kodi.service
 
 [Mount]
 What=/dev/disk/by-label/$LABEL
 Where=$MOUNT
 Type=ext4
-Options=rw,noatime
+# nofail: a missing card must not hold up the boot
+Options=rw,noatime,nofail
 
 [Install]
 WantedBy=local-fs.target
