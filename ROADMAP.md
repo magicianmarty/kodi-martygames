@@ -339,11 +339,16 @@ players, developer, publisher, overview) and currently show only in the hero:
   games are from the 90s, so that row would be the library with extra steps.
   Plus "Party Games" (4+ players, 24)
 - Snap-on-focus — **done.** The focused poster cross-fades to the in-game snap after 1.1s, gated on `ListItem.Property(marty_info)` so the Plex rows keep their box art
-- RetroAchievements — **upstream shipped this.** No longer a wrapper hack: the
-  Kodi we built has `xbmc/games/addons/cheevos/`, a `DialogGameAchievements`
-  OSD, and real settings (`gamesachievements.username` / `.password` /
-  `.token` / `.loggedin`). It landed after the box's build, so it is a
-  post-flash login, not development. Needs Marty's RetroAchievements account
+- RetroAchievements — **already plumbed, today, no flash needed.** Checked on
+  the box 2026-09-06: `settings.xml` carries the `gamesachievements` category at
+  `<level>0</level>`, `guisettings.xml` already holds `username`, `password`,
+  `token` and `loggedin` unset, and the hand-built wrapper *statically* contains
+  rcheevos — `rc_hash_*` defined rather than imported, plus
+  `CCheevos::SetRetroAchievementsCredentials` and live
+  `retroachievements.org/dorequest.php` endpoints. All that is missing is
+  Marty's login, typed into Settings → Games → Achievements. (Kodi 22 adds a
+  first-class `DialogGameAchievements` OSD on top of this, which is a flash-time
+  upgrade, not a prerequisite.)
 
 ### Phase 8 — Ingest pipeline
 Replace the current manual dance (copy ROMs → `fetch_artwork.py` →
@@ -443,7 +448,7 @@ Updated 2026-09-06.
 | 7 — Continue shelf | **Done.** Live on the box, showing real savestate captures |
 | 7 — Metadata shelves | **Done.** Six rows placed: Platformers, Shooters, Strategy, Racing, Party Games, The 1980s. Counts checked against the metadata first, so Puzzle (5) and Pinball (3) were left out and "1990s" (183 of 215) rejected as the library with extra steps |
 | 7 — Snap-on-focus | **Done.** The focused poster cross-fades to the in-game snap after 1.1s, gated so the Plex rows keep their box art |
-| 7 — RetroAchievements | **Upstream shipped it.** Our Kodi has `xbmc/games/addons/cheevos/`, an achievements OSD and real settings. Post-flash login, needs Marty's account |
+| 7 — RetroAchievements | **Ready now, needs Marty's login.** No flash required: the wrapper statically contains rcheevos with live RA endpoints, and the box's settings category is present and unset. Settings → Games → Achievements |
 | 0 — Backup | **Done.** Full mirror: `/flash` + `/storage` + ROMs, ~17 GB. SYSTEM md5 matches the box; file counts match. Re-runnable via `tools/backup-box.sh` |
 | 0 — Restore procedure | **Documented.** `kodi-martygames-backups/RESTORE.md` |
 | 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
@@ -458,7 +463,7 @@ Updated 2026-09-06.
 | 4 — Hardware rendering wiring | Not started. `Create()`, `RenderFrame()`, `OpenStream()`, `CloseStream()`, `GetHwProcedureAddress()`. Cannot be validated until the box runs our image |
 | 5 — PSP/Dreamcast cores | **Both build.** `flycast_libretro.so` 29 MB and `ppsspp_libretro.so` 33 MB, aarch64, exporting 54 and 46 `retro_*` entry points, linked against the box's `libMali.so`. Eleven packaging faults fixed between them, listed in the fork's commits |
 | 5 — PSP/Dreamcast addons | **Both packaged.** `game.libretro.flycast-7.0.0.66.1.zip` and `game.libretro.ppsspp-0.0.1.30.1.zip` under `target/addons/Amlogic-no/22.0.12/aarch64/`. **Do not install until Phase 4 is proven on the box** - Kodi ignores `requires_opengl`, and flycast claims `.chd`, which PS1 also uses |
-| 6 — Saturn | **Needs ROMs and a BIOS.** No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
+| 6 — Saturn | **Needs ROMs and a BIOS from Marty.** Verified against the backup: the card holds amiga, arcade, c64, doom, dos, megadrive, nes, psx, quake and scummvm - no Saturn discs, and **no BIOS files of any kind**. No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
 
 The pattern in what is left: everything outstanding needs either physical access
 to the box, or a working build pipeline to iterate against. Neither is something
