@@ -286,12 +286,18 @@ if (!foundRenderApi)
 ```
 
 There is no software rasteriser in the libretro build and no `HAVE_OPENGL=0`
-switch in its Makefile. The declaration is simply wrong upstream, and it is
-worse than a missing feature: `requires_opengl=true` is what makes Kodi *hide*
-a core it cannot drive, which is why `mupen64plus-nx` sits inert rather than
-failing. With the flag false, Kodi will offer flycast as a game client for every
-`.chd`/`.gdi` and then fail at load. Do not ship it before Phase 4.
-**Worth an upstream issue against kodi-game.**
+switch in its Makefile. The declaration is simply wrong upstream, and worth an
+issue against kodi-game.
+
+**But do not rely on the flag to protect anything.** Kodi 22 never reads it —
+there is not one reference to `requires_opengl` anywhere in `xbmc`. An earlier
+draft of this document claimed it is what makes Kodi hide a core it cannot
+drive; that was wrong. `mupen64plus-nx` sits inert on the box because there are
+no N64 ROMs in the library, not because Kodi filters it. So a `game.libretro.*`
+addon that cannot render is offered for its extensions regardless, and
+flycast's list includes `.chd`, which pcsx-rearmed also claims. **Do not install
+the Dreamcast addon on the box until Phase 4 runs**, or PS1 `.chd` files gain a
+second client that fails at load.
 
 Effort: days per core, mostly build plumbing and per-core option wiring. Risk:
 low-ish once Phase 4 works — but PPSSPP in particular has a large surface of
@@ -451,7 +457,7 @@ Updated 2026-09-06.
 | 4 — FBO buffer, pool, renderer | **Ported and building.** Patches 1016-1019 in the fork; Kodi rebuilt clean and the new log strings are present in the stripped `kodi.bin`, so it is linked rather than dead-stripped. Deliberately inert - `EnableHardwareRendering()` still refuses and the pool answers `IsCompatible()` false |
 | 4 — Hardware rendering wiring | Not started. `Create()`, `RenderFrame()`, `OpenStream()`, `CloseStream()`, `GetHwProcedureAddress()`. Cannot be validated until the box runs our image |
 | 5 — PSP/Dreamcast cores | **Both build.** `flycast_libretro.so` 29 MB and `ppsspp_libretro.so` 33 MB, aarch64, exporting 54 and 46 `retro_*` entry points, linked against the box's `libMali.so`. Eleven packaging faults fixed between them, listed in the fork's commits |
-| 5 — PSP/Dreamcast addons | **Both packaged.** `game.libretro.flycast-7.0.0.66.1.zip` and `game.libretro.ppsspp-0.0.1.30.1.zip` under `target/addons/Amlogic-no/22.0.12/aarch64/`. Safe to install before Phase 4: both now declare `requires_opengl=true`, so Kodi hides them until hardware rendering works |
+| 5 — PSP/Dreamcast addons | **Both packaged.** `game.libretro.flycast-7.0.0.66.1.zip` and `game.libretro.ppsspp-0.0.1.30.1.zip` under `target/addons/Amlogic-no/22.0.12/aarch64/`. **Do not install until Phase 4 is proven on the box** - Kodi ignores `requires_opengl`, and flycast claims `.chd`, which PS1 also uses |
 | 6 — Saturn | **Needs ROMs and a BIOS.** No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
 
 The pattern in what is left: everything outstanding needs either physical access
