@@ -176,30 +176,49 @@ trips CoreELEC safe mode after roughly three crashes.
 ourselves first.
 
 ### Phase 4 — Hardware rendering → N64
-The hard one, and the reason this roadmap exists.
+The hard one, and the reason this roadmap exists. Scoped against 22.0b2 source
+on 2026-09-06, so this is a task list rather than a hope.
 
-Implement, on top of the existing scaffolding:
-1. `CGameClientStreams::EnableHardwareRendering()` — stop returning false
-2. `CRetroPlayerRendering::OpenStream()` — take real dimensions from
-   `HwFramebufferProperties` instead of the hardcoded 640×480
-3. An FBO + backing texture the core renders into, its GL name returned through
-   `GetCurrentFramebuffer`
-4. `GetHwProcedureAddress` — resolve GLES symbols for the core
-5. Context reset/destroy lifecycle **on the rendering thread** — the existing
-   `@todo` explicitly flags this as the constraint
-6. `CRetroPlayerRendering::CloseStream()`, currently empty
+**Already done upstream — do not rewrite these:**
 
-Then flip `libretro-mupen64plus-nx` on and test with real N64 content.
+| Piece | State |
+|---|---|
+| `CGameClientStreamHwFramebuffer` | Complete: open, close, `GetBuffer`, context-reset callback |
+| `CRPRenderManager::GetCurrentFramebuffer()` | **Complete.** Pulls a buffer from a visible pool and returns its GL framebuffer |
+| `CRPStreamManager::GetHwProcedureAddress()` | Complete; delegates to `CRPProcessInfo` |
+| Our wrapper | Complete: `EnableHardwareRendering()`, `GetHwFramebuffer()`, `RenderHwFrame()`, `get_proc_address` forwarding |
 
-Effort: **weeks, not days.** This is the phase that can fail. The thread
-affinity requirement is the part most likely to bite — Kodi's render thread
-owns the GL context, and the game loop runs elsewhere.
+**What is actually missing:**
 
-Mitigation: Phases 1–3 are independently valuable, so an unsuccessful Phase 4
-costs time but loses nothing already delivered.
+1. **A GL-backed render buffer.** `CRenderBufferOpenGLES` derives from
+   `CRenderBufferSysMem` — it is a CPU buffer whose contents get uploaded to a
+   texture. That is the wrong shape: a core needs an FBO it can render *into*.
+   Needs a new buffer type owning an FBO + colour texture, and a pool for it.
+   `IRenderBuffer::GetCurrentFramebuffer()` is pure virtual precisely so this
+   can exist; the sysmem path just returns nothing useful.
+2. **`CRPRenderManager::Create(width, height)`** — `//! @todo return false;`.
+   Creates and configures the pool above.
+3. **`CRetroPlayerRendering::OpenStream()`** — hardcodes 640×480 and
+   `AV_PIX_FMT_NONE`, never calls `Create()`. Take the real dimensions from
+   `HwFramebufferProperties`.
+4. **`CRetroPlayerRendering::CloseStream()`** — empty.
+5. **`CGameClientStreams::EnableHardwareRendering()`** — returns false after
+   logging. Store the properties and return true.
+6. **`CRPProcessInfo::GetHwProcedureAddress()`** — a virtual returning
+   `nullptr`. Needs an Amlogic/GBM override resolving GLES symbols through
+   `eglGetProcAddress`.
+7. **Thread affinity.** `Create()` must run on the rendering thread — the
+   existing `@todo` says so explicitly. The game loop runs elsewhere, and this
+   is the part most likely to bite.
 
-**Also a strong upstream candidate** — this is a `@todo` the Kodi team have
-carried for years.
+Then enable `libretro-mupen64plus-nx` and test with real N64 content.
+
+Effort: **weeks, and item 1 is a new class rather than filling in a stub.** This
+is the phase that can fail. Phases 1–3 are independently valuable, so an
+unsuccessful Phase 4 costs time but loses nothing already delivered.
+
+**Strong upstream candidate** — a `@todo` Kodi has carried for years, and items
+2–6 are small once item 1 exists.
 
 ### Phase 5 — Package the missing cores → PSP, Dreamcast
 Add `packages/emulation/libretro-ppsspp` and `libretro-flycast` following the
