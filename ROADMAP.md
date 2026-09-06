@@ -188,37 +188,68 @@ on 2026-09-06, so this is a task list rather than a hope.
 | `CRPStreamManager::GetHwProcedureAddress()` | Complete; delegates to `CRPProcessInfo` |
 | Our wrapper | Complete: `EnableHardwareRendering()`, `GetHwFramebuffer()`, `RenderHwFrame()`, `get_proc_address` forwarding |
 
-**What is actually missing:**
+**What is actually missing** — rescoped 2026-09-06 after finding that Kodi
+ships its own notes on this in-tree at
+`xbmc/cores/RetroPlayer/OpenGL_Roadmap.md`. They point at
+`garbear/xbmc` branch `retro-gl-v3` (lrusak's original work, rebased), which
+turns out to sit on **current Kodi 22, not 2022** — the commit dates are author
+dates. So the expensive part, the new buffer class, was already written.
 
-1. **A GL-backed render buffer.** `CRenderBufferOpenGLES` derives from
-   `CRenderBufferSysMem` — it is a CPU buffer whose contents get uploaded to a
-   texture. That is the wrong shape: a core needs an FBO it can render *into*.
-   Needs a new buffer type owning an FBO + colour texture, and a pool for it.
-   `IRenderBuffer::GetCurrentFramebuffer()` is pure virtual precisely so this
-   can exist; the sysmem path just returns nothing useful.
-2. **`CRPRenderManager::Create(width, height)`** — `//! @todo return false;`.
-   Creates and configures the pool above.
+Of its ten commits, four are wanted, and the other six are instructive:
+
+| Commit | Verdict |
+|---|---|
+| `CRenderBufferFBO` + pool + `CRPRendererFBO` | **Ported.** Now patches 1016-1017 |
+| `IGameLoopCallback::EndEvent` / `DestroyContext` | **Already merged upstream** in Kodi 22 — applying it duplicated a function |
+| `RPRendererOpenGLES: use CRenderBufferFBO` | **Rejected.** Swaps the sysmem pool for the FBO pool, which would break all eleven working systems. Registered as its own factory instead |
+| wayland `CRendererFactoryFBO` registration | **Replaced** by the GBM equivalent, patch 1018 |
+| `[temp] disable DMA renderer` | **Rejected.** Scaffolding, and CoreELEC needs the DMA renderer for video |
+| `[TEMP] use vaos`, `remove global VAO`, `CGLRenderHelper` | Deferred. GL-state hygiene for add-ons; not needed for a first frame |
+
+The ported code needed four fixes before it was worth keeping — an
+uninitialised texture name freed in the destructor, a texture left incomplete
+by a mipmap filter with no mipmaps (which samples *black*, the failure mode we
+have already chased once), no depth or stencil attachment at all, and a buffer
+pool that claimed compatibility with every render setting. That last one
+matters most: `CRPRenderManager::GetRendererForSettings()` walks the pools and
+takes the first compatible one, so the upstream branch's FBO pool captured
+software clients too — which is precisely why that branch also had to disable
+the DMA renderer. Ours answers `false` until activated, so it is inert.
+
+Separately, `CGameClientStreamHwFramebuffer::GetBuffer()` took the client's
+width and height and then requested a `0x0` buffer, which is a request to
+allocate a zero-sized texture. Fixed in patch 1019.
+
+**So what is left is the wiring, not the machinery:**
+
+1. **`CRPRenderManager::Create(width, height)`** — `//! @todo return false;`.
+   Configure the FBO pool and call `Activate(depth, stencil)` on it.
+2. **`CRPRenderManager::RenderFrame()`** — empty. Hand the finished buffer to
+   the renderer.
 3. **`CRetroPlayerRendering::OpenStream()`** — hardcodes 640×480 and
-   `AV_PIX_FMT_NONE`, never calls `Create()`. Take the real dimensions from
-   `HwFramebufferProperties`.
+   `AV_PIX_FMT_NONE`, never calls `Create()`. `HwFramebufferProperties` already
+   carries `depth`, `stencil`, `contextType` and the version.
 4. **`CRetroPlayerRendering::CloseStream()`** — empty.
-5. **`CGameClientStreams::EnableHardwareRendering()`** — returns false after
-   logging. Store the properties and return true.
+5. **`CGameClientStreams::EnableHardwareRendering()`** — already stores the
+   properties; it then logs "not implemented" and returns false. **Flip this
+   last.** Returning true before 1–4 work would tell a core it has a GL context
+   and then fail it — the same defect as flycast's `requires_opengl=false`.
 6. **`CRPProcessInfo::GetHwProcedureAddress()`** — a virtual returning
-   `nullptr`. Needs an Amlogic/GBM override resolving GLES symbols through
-   `eglGetProcAddress`.
-7. **Thread affinity.** `Create()` must run on the rendering thread — the
-   existing `@todo` says so explicitly. The game loop runs elsewhere, and this
-   is the part most likely to bite.
+   `nullptr`. Needs a GBM override resolving through `eglGetProcAddress`.
+7. **Thread affinity** — the design question is answered by the ported pool:
+   it creates an EGL context *sharing object names with the window system's*
+   and makes it current on the game loop thread, so the client renders there
+   and Kodi's render thread samples the resulting texture. Teardown rides the
+   already-merged `EndEvent()` callback, which fires on the game loop thread.
+   What is unproven is whether that survives a mid-game resolution change.
 
-Then enable `libretro-mupen64plus-nx` and test with real N64 content.
+Effort: **the remaining items are small, and item 7 is the one that can still
+bite.** None of it can be validated until the box runs our image, so it is
+gated on Phase 1 rather than on more reading.
 
-Effort: **weeks, and item 1 is a new class rather than filling in a stub.** This
-is the phase that can fail. Phases 1–3 are independently valuable, so an
-unsuccessful Phase 4 costs time but loses nothing already delivered.
-
-**Strong upstream candidate** — a `@todo` Kodi has carried for years, and items
-2–6 are small once item 1 exists.
+**Strong upstream candidate** — a `@todo` Kodi has carried for years, and the
+four fixes to the ported code stand on their own regardless of whether the
+wiring lands.
 
 ### Phase 5 — Package the missing cores → PSP, Dreamcast
 Add `packages/emulation/libretro-ppsspp` and `libretro-flycast` following the
