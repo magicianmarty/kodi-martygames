@@ -334,7 +334,8 @@ Updated 2026-09-06.
 | 8 — Ingest pipeline | **Done.** `tools/ingest.py`, verified end to end |
 | 7 — Continue shelf | **Done.** Live on the box, showing real savestate captures |
 | 7 — Metadata shelves | **Route done** (`?action=shelf`); rows not yet placed on Home |
-| 0 — Backup | **Done.** `~/dev/kodi-martygames-backups/`, 58 MB, verified readable |
+| 0 — Backup | **Done.** Full mirror: `/flash` + `/storage` + ROMs, ~17 GB. SYSTEM md5 matches the box; file counts match. Re-runnable via `tools/backup-box.sh` |
+| 0 — Restore procedure | **Documented.** `kodi-martygames-backups/RESTORE.md` |
 | 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
 | 1 — Fork skeleton | **Done.** `~/dev/CoreELEC` on branch `marty-22`, with `FORK.md` |
 | 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
