@@ -1,6 +1,12 @@
 {
   "dos": {
     "Ufo Enemy Unknown": "ufoexe/geoscape.exe",
-    "Stunts 1": "stunts.com"
+    "Stunts 1": "stunts.com",
+    "Command & Conquer Red Alert": "REDALERT/RA.EXE",
+    "The Elder Scrolls II Daggerfall": "FALL.EXE",
+    "Shadow Warrior": "sw.exe",
+    "Toonstruck": "MISC/TOONSTRK.BAT",
+    "Gabriel Knight Sins Of The Fathers CD": "GKCD.BAT",
+    "Space Quest IV Roger Wilco And The Time Rippers": "sq4.bat"
   }
 }

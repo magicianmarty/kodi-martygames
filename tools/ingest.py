@@ -104,6 +104,30 @@ def collect(src):
         yield os.path.join(src, entry)
 
 
+def archive_stem(path):
+    """An archive's name without its extension, and without publisher noise.
+
+    DOS collections name archives "Title (Year)(Publisher).7z" while the
+    library on the box is "Title (Year)". The year is worth keeping - it
+    disambiguates remakes and the metadata matcher uses it - but the publisher
+    is not, and leaving it on costs artwork matches.
+    """
+    base = os.path.basename(path)
+    for ext in ('.tar.gz', '.tgz'):
+        if base.lower().endswith(ext):
+            base = base[: -len(ext)]
+            break
+    else:
+        base = os.path.splitext(base)[0]
+    # Drop trailing parenthesised groups that are not a year
+    while True:
+        m = re.search(r'\s*\(([^()]*)\)\s*$', base)
+        if not m or re.fullmatch(r'(19|20)\d{2}', m.group(1).strip()):
+            break
+        base = base[: m.start()]
+    return re.sub(r'\s+', ' ', base).strip()
+
+
 def staged_name(path, system):
     """The filename to store under, keeping multi-disc sets together.
 
@@ -177,9 +201,29 @@ def stage(sources, system_override, staging):
             work = tempfile.mkdtemp(prefix='ingest-')
             unpack(src, work)
             inner = [os.path.join(work, e) for e in sorted(os.listdir(work))]
-            # A one-folder archive is the game; anything else is a bundle.
-            if len(inner) == 1 and os.path.isdir(inner[0]):
+            hint = system_override
+            folder_system = bool(hint) and BY_KEY[hint].folder_games
+            if len(inner) == 1 and os.path.isdir(inner[0]) and not folder_system:
+                # One folder: that folder is the game.
                 path = inner[0]
+            elif len(inner) == 1 and os.path.isdir(inner[0]):
+                # Same, but the inner folder is named for whatever the packer
+                # felt like - Daggerfall's is "DAGGER" - while the archive
+                # carries the title and year the library is keyed on.
+                path = os.path.join(work, archive_stem(src))
+                if path != inner[0]:
+                    shutil.move(inner[0], path)
+            elif folder_system:
+                # A folder-based system, and the archive spilled its contents
+                # flat - which is how most DOS collections are packed. The
+                # archive is one game and its own name is the folder name.
+                # Treating the contents as a bundle instead imports DATA,
+                # GRAVIS and VESA as if they were games, which is what used to
+                # happen here.
+                path = os.path.join(work, archive_stem(src))
+                os.makedirs(path, exist_ok=True)
+                for item in inner:
+                    shutil.move(item, os.path.join(path, os.path.basename(item)))
             else:
                 for item in inner:
                     staged += stage([item], system_override, staging)

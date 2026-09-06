@@ -38,24 +38,49 @@ REPOS = {
 RAW = 'https://raw.githubusercontent.com/libretro-thumbnails/{repo}/master/{path}'
 TREE = 'https://api.github.com/repos/libretro-thumbnails/{repo}/git/trees/master?recursive=1'
 
-def fetch_index(repo, attempts=3):
-    # The DOS repo is large enough that the tree API intermittently 500s.
+SUBDIR_TREE = 'https://api.github.com/repos/libretro-thumbnails/{repo}/git/trees/master:{sub}'
+
+
+def _tree(url, attempts=3):
     last = None
     for n in range(attempts):
         try:
-            req = urllib.request.Request(TREE.format(repo=repo),
-                                         headers={'User-Agent': 'martygames'})
+            req = urllib.request.Request(url, headers={'User-Agent': 'martygames'})
             with urllib.request.urlopen(req, timeout=120) as r:
                 data = json.load(r)
             if 'tree' not in data:
                 raise RuntimeError(data.get('message', 'no tree'))
-            return [e['path'] for e in data['tree']
-                    if e['path'].startswith(('Named_Boxarts/', 'Named_Snaps/'))
-                    and e['path'].endswith('.png')]
+            return data
         except Exception as exc:                       # noqa: BLE001
             last = exc
             time.sleep(3 * (n + 1))
     raise last
+
+
+def fetch_index(repo):
+    """List the boxart and snap filenames in a thumbnails repo.
+
+    The recursive tree endpoint is the cheap way to do this, and for the DOS
+    repo GitHub answers it with a flat 500 - it is simply too big. Asking for
+    each subdirectory by path costs one extra request and works: 4,481 boxarts
+    and 7,731 snaps come back untruncated where the recursive form returns
+    nothing at all. That silently cost every DOS import its artwork.
+    """
+    try:
+        data = _tree(TREE.format(repo=repo), attempts=2)
+        if not data.get('truncated'):
+            return [e['path'] for e in data['tree']
+                    if e['path'].startswith(('Named_Boxarts/', 'Named_Snaps/'))
+                    and e['path'].endswith('.png')]
+    except Exception:                                  # noqa: BLE001
+        pass
+
+    paths = []
+    for sub in ('Named_Boxarts', 'Named_Snaps'):
+        data = _tree(SUBDIR_TREE.format(repo=repo, sub=sub))
+        paths += ['%s/%s' % (sub, e['path']) for e in data['tree']
+                  if e['path'].endswith('.png')]
+    return paths
 
 
 def main():
