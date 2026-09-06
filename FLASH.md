@@ -48,16 +48,19 @@ not write eMMC, but it does permanently replace the environment printed above.
 Power-cycled with the stick in: **stock CoreELEC booted from USB.** The internal
 install was untouched. The recovery path is proven, not assumed.
 
-**One caveat that only showed up by doing it: the recovery system has no
-network.** Wi-Fi credentials live in `/storage/.cache/connman` on the eMMC, and
-the stick carries its own blank `/storage`, so a box booted from the stick
-disappears completely — it does not answer at its usual address, or any address.
-Nothing is wrong; it simply cannot join the Wi-Fi.
+**One caveat that only showed up by doing it: while booted from the stick, the
+box could not be reached over SSH at all.** It was on screen and working, but
+nothing answered at its usual address or anywhere on the subnet.
 
-That matters for a real recovery: **while booted from the stick you cannot be
-helped remotely.** Either plug in ethernet, or set up Wi-Fi on the stock system
-from the sofa first. `tools/backup-box.sh` now keeps the connman state so a
-restore does not reproduce this.
+The box is *wired* — connman holds `ethernet_900eb3fdc09a_cable` and no Wi-Fi
+profile at all — so it was not a credentials problem, and an earlier draft of
+this file blamed Wi-Fi wrongly. The likely cause is that a fresh CoreELEC
+`/storage` starts with SSH disabled until the first-run wizard enables it, and
+the stick carries its own blank `/storage`.
+
+Either way the practical consequence stands: **during a real recovery, assume
+no remote help.** Plan to work from the sofa, at least until SSH is turned on
+in the stock system's settings.
 
 ### The consequence for the flash
 

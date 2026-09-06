@@ -52,11 +52,11 @@ if has storage "${want[@]}"; then
   # .cache and temp are regenerated on boot; the SD card is backed up separately
   # and would otherwise be pulled twice through the symlink.
   #
-  # .cache/connman is the exception, and it is not cosmetic: it holds the Wi-Fi
-  # credentials. Without it a restored box comes up with no network and has to
-  # be driven from the sofa. Found this the hard way - the box booted the
-  # recovery stick, which has no connman state, and simply vanished off the
-  # network. Note this puts the PSK in the backup.
+  # .cache/connman is the exception: it holds the network configuration. This
+  # box is wired and DHCP, so losing it costs little today - but it is what
+  # would carry a static address or Wi-Fi credentials if either is ever set,
+  # and it is a few kilobytes. Note that if Wi-Fi is ever configured, this puts
+  # the PSK in the backup.
   rsync "${RSYNC_OPTS[@]}" \
     --exclude '/sdcard' --exclude '/roms' \
     --exclude '/.cache/' --exclude '/.kodi/temp/' \
