@@ -1,18 +1,18 @@
 # state snapshot: before
-# taken 2026-09-06T17:53:36+12:00
+# taken 2026-09-06T23:12:08+12:00
 
 == os ==
-VERSION="22.0-Piers_beta1"
+VERSION="22.0-Piers_devel_20260906093729"
 VERSION_ID="22.0"
-BUILD_ID="1eebf0e15a722755db4611904d4062039a2c3a18"
+BUILD_ID="74d8e5f498eb2d440981a45a41329ea8f9c55b8e"
 DISTRO_ARCH="Amlogic-no.aarch64"
-DISTRO_BUILD="official"
+DISTRO_BUILD="community"
 DISTRO_PROJECT="Amlogic-ce"
 DISTRO_DEVICE="Amlogic-no"
 
 == kodi + game ABI ==
-Starting Kodi (22.0-BETA1 (21.90.801)
-kodi.binary.instance.game" minversion="6.0.0"
+Starting Kodi (22.0-BETA2 (21.90.802)
+kodi.binary.instance.game" minversion="8.0.0"
 
 == game clients installed ==
 game.libretro                              version="1.0"
@@ -33,16 +33,17 @@ game.libretro.vice_x64                     version="1.0"
 amiga         59
 c64            2
 doom           2
-dos           77
+dos           90
 megadrive     62
+n64            1
 nes            1
-psx           12
-TOTAL        215
+psx           24
+TOTAL        241
 
 == artwork and metadata coverage ==
-boxart:   205
-snaps:    193
-metadata: 203
+boxart:   229
+snaps:    217
+metadata: 228
 
 == emulator settings that matter ==
 <settings version="2">
@@ -54,6 +55,7 @@ metadata: 203
 
 == keymaps and buttonmaps ==
 game-buttons.xml
+game-buttons.xml.pre-osd
 game-osd.xml
 mouse-wheel.xml
 Xbox_Wireless_Controller_v045E_p0B20_16b_8a.xml
