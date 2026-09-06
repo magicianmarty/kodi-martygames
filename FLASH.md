@@ -3,37 +3,60 @@
 Phase 1 of `ROADMAP.md`. Written before the first flash, so the steps are
 decided while nothing is on fire.
 
-## Before anything
+## Read this first: the stick in the box changes what a reboot does
 
-**The recovery stick is already made and verified** — SanDisk Cruzer Blade,
-currently in the box's USB port, holding stock CoreELEC 22.0-Piers_beta1
-(`Generic`) with `dtb.img` set to `g12b_s922x_ugoos_am6b.dtb`, md5-identical to
-the box's own. `SYSTEM` matches its manifest.
+**The recovery stick is already made, verified, and currently plugged in** —
+SanDisk Cruzer Blade, `sda1` vfat `COREELEC` + `sda2` ext4 `STORAGE`, holding
+stock CoreELEC 22.0-Piers_beta1 (`Generic`) with `dtb.img` set to
+`g12b_s922x_ugoos_am6b.dtb` (md5 `b3af99fc…`, identical to `/flash/dtb.img`).
+`SYSTEM` and `kernel.img` both match their `.md5`.
 
-**How this box boots** — read from its u-boot environment, not guessed:
+That means **the next power-on boots the stick, not the internal install.**
+Read from the box's own u-boot environment, not guessed:
 
 ```
-bootcmd = ... run bootfromsd; run bootfromusb; run bootfromemmc
+bootcmd     = ... run bootfromsd; run bootfromusb; run bootfromemmc
+bootfromsd  = if mmcinfo; then run cfgloadsd; if fatload mmc 0 ... kernel.img; then ... fi; fi
+bootfromusb = usb start 0; run cfgloadusb; if fatload usb 0 ... kernel.img; then ... fi
+cfgloadusb  = if fatload usb 0:1 ${loadaddr} cfgload; then ...; autoscr ${loadaddr}; fi
 ```
 
 SD → USB → internal eMMC, automatically, every power-on. `bootfromnand=0`.
-Each stage only boots if it finds `kernel.img` on a FAT partition, so
-non-bootable media falls straight through — which is why the box boots
-internally today despite the 119 GB ROM card in the SD slot.
+Nothing to press: no toothpick, no reset pinhole, no boot-order setting.
 
-**Nothing to press.** No toothpick, no reset pinhole, no boot-order setting.
+- **SD falls through.** The 119 GB ROM card is `/dev/mmcblk1p1`, **exfat**.
+  U-boot's `fatload` cannot read exfat, so both `cfgload` and `kernel.img`
+  fail and the stage is skipped. This is why the box boots internally today.
+- **USB does not fall through.** `cfgloadusb` finds `cfgload` on `sda1` and
+  `autoscr` runs it; that script ends in `fatload kernel.img` + `bootm`, so
+  the stick boots. Its kernel gets `boot=LABEL=COREELEC disk=LABEL=STORAGE`,
+  which resolves to the stick's own two partitions.
 
-### The one thing to confirm first
-`bootfromusb` reads `usb 0` specifically:
+Nothing on the box is at risk from this. The internal filesystems are labelled
+`CE_FLASH` and `CE_STORAGE`, so a USB boot cannot even name them, let alone
+write to them. It is a live boot of a blank stock system — no games, no skin,
+no add-ons — and pulling the stick and rebooting brings the real one straight
+back.
 
-```
-bootfromusb = usb start 0; run cfgloadusb; if fatload usb 0 ${loadaddr} kernel.img; ...
-```
+**`aml_autoscript` on the stick does not run on a normal boot.** `bootcmd`
+never references it; only the Amlogic recovery/upgrade path does. Worth knowing
+what it *would* do if that path were ever triggered: `defenv` (reset the u-boot
+environment to defaults) then rewrite the boot variables and `saveenv`. It does
+not write eMMC, but it does permanently replace the environment printed above.
 
-If the stick does not enumerate as USB device 0 it will be skipped and the box
-will boot internally as normal — harmless, but it means recovery is not armed.
-**Power-cycle with the stick in and confirm stock CoreELEC comes up.** If it
-does not, move the stick to the other port and retry before flashing anything.
+### The consequence for the flash
+
+The update tar is read from `/storage/.update` **of whatever device booted**.
+Copy it to internal storage, reboot with the stick still in, and the box boots
+the stick, looks at the *stick's* empty `/storage`, finds no update, and comes
+up stock. Nothing breaks, but nothing installs either — and it looks exactly
+like a failed flash.
+
+> **The stick must be out of the box for the update to apply.**
+
+Do the confirmation power-cycle first and you get the recovery rehearsal for
+free: stick in → stock CoreELEC; stick out → your setup returns. After that,
+flash with the stick on the desk and put it back only if something goes wrong.
 
 ## Installing
 
@@ -47,7 +70,9 @@ does not, move the stick to the other port and retry before flashing anything.
    ./tools/snapshot-state.sh before
    ```
 
-3. **Copy the image and reboot.** CoreELEC's supported update path — it unpacks
+3. **Pull the recovery stick out of the box.** See above. Not optional.
+
+4. **Copy the image and reboot.** CoreELEC's supported update path — it unpacks
    on boot and replaces `/flash`, leaving `/storage` alone:
    ```sh
    ./tools/box 'mkdir -p /storage/.update'
@@ -57,7 +82,12 @@ does not, move the stick to the other port and retry before flashing anything.
    First boot takes several minutes — it is unpacking a new system. Do not pull
    power.
 
-4. **Verify:**
+   The tar's payload is only `target/SYSTEM`, `target/KERNEL` and their md5s —
+   **no dtb**, so `/flash/dtb.img` (the AM6B+ device tree) survives untouched.
+   `check_is_compatible()` in the init script compares project/arch against
+   `Amlogic-no.aarch64`, which is what we built.
+
+5. **Verify:**
    ```sh
    ./tools/snapshot-state.sh after
    diff -u state-before.txt state-after.txt
@@ -68,7 +98,9 @@ does not, move the stick to the other port and retry before flashing anything.
 
 ## Phase 2, immediately after
 
-ABI 8 means the hand-built wrapper is obsolete:
+ABI 8 means the hand-built wrapper is obsolete — the new Kodi sets
+`ADDON_INSTANCE_VERSION_GAME_MIN=8.0.0` and will refuse to load it, so this is
+not optional cleanup, it is what makes games launch again:
 
 ```sh
 ./tools/box 'rm -rf /storage/.kodi/addons/game.libretro'
@@ -82,8 +114,8 @@ set.
 
 ## If it does not come back
 
-1. Power off, confirm the recovery stick is in, power on. It boots stock
-   CoreELEC from USB.
+1. Power off, put the recovery stick in, power on. It boots stock CoreELEC
+   from USB, as traced above.
 2. From there `/flash` and `/storage` are both mountable — follow
    `kodi-martygames-backups/RESTORE.md`.
 3. The internal install is untouched by booting from USB; you can also simply
