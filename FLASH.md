@@ -44,6 +44,21 @@ what it *would* do if that path were ever triggered: `defenv` (reset the u-boot
 environment to defaults) then rewrite the boot variables and `saveenv`. It does
 not write eMMC, but it does permanently replace the environment printed above.
 
+### Confirmed working, 2026-09-06
+Power-cycled with the stick in: **stock CoreELEC booted from USB.** The internal
+install was untouched. The recovery path is proven, not assumed.
+
+**One caveat that only showed up by doing it: the recovery system has no
+network.** Wi-Fi credentials live in `/storage/.cache/connman` on the eMMC, and
+the stick carries its own blank `/storage`, so a box booted from the stick
+disappears completely — it does not answer at its usual address, or any address.
+Nothing is wrong; it simply cannot join the Wi-Fi.
+
+That matters for a real recovery: **while booted from the stick you cannot be
+helped remotely.** Either plug in ethernet, or set up Wi-Fi on the stock system
+from the sofa first. `tools/backup-box.sh` now keeps the connman state so a
+restore does not reproduce this.
+
 ### The consequence for the flash
 
 The update tar is read from `/storage/.update` **of whatever device booted**.

@@ -469,7 +469,7 @@ Updated 2026-09-06.
 | 7 — RetroAchievements | **Ready now, needs Marty's login.** No flash required: the wrapper statically contains rcheevos with live RA endpoints, and the box's settings category is present and unset. Settings → Games → Achievements |
 | 0 — Backup | **Done.** Full mirror: `/flash` + `/storage` + ROMs, ~17 GB. SYSTEM md5 matches the box; file counts match. Re-runnable via `tools/backup-box.sh` |
 | 0 — Restore procedure | **Documented.** `kodi-martygames-backups/RESTORE.md` |
-| 0 — Recovery test | **Needs Marty.** Requires physically booting from SD |
+| 0 — Recovery test | **PASSED 2026-09-06.** Power-cycled with the stick in; stock CoreELEC booted from USB and the internal install was untouched. Caveat found by doing it: the recovery system has no Wi-Fi, because connman state lives on the eMMC, so a box booted from the stick cannot be reached remotely at all |
 | 1 — Fork skeleton | **Done.** `~/dev/CoreELEC` on branch `marty-22`, with `FORK.md` |
 | 1 — Tracking CI | **Done.** `.github/workflows/track-upstream.yml` |
 | 1 — Build environment | **Done.** Containerised (`scripts-marty/`); `checkdeps` passes clean |
