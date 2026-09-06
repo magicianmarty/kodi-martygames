@@ -41,6 +41,10 @@ SYSTEMS = [
            ('.nes', '.fds', '.unf'), 'Nintendo NES'),
     System('snes', 'SNES', 'game.libretro.snes9x',
            ('.sfc', '.smc', '.zip'), 'Nintendo SNES'),
+    # Needs hardware rendering: mupen64plus-nx is the only installed client that
+    # calls SET_HW_RENDER, so it does nothing until the FBO renderer works.
+    System('n64', 'Nintendo 64', 'game.libretro.mupen64plus-nx',
+           ('.z64', '.n64', '.v64'), 'Nintendo 64'),
     System('c64', 'Commodore 64', 'game.libretro.vice_x64',
            ('.d64', '.nib', '.t64', '.prg', '.crt', '.g64', '.tap'), 'Commodore 64'),
     System('dos', 'DOS', 'game.libretro.dosbox-pure',
