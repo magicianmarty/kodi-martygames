@@ -424,13 +424,25 @@ Updated 2026-09-06.
 | 1 — Flash | **Needs Marty.** Bricking risk; do not flash unattended |
 | 2 — Retire the wrapper | **Ready, needs the flash.** The new Kodi sets `ADDON_INSTANCE_VERSION_GAME_MIN=8.0.0`, so it will *refuse* the ABI-6 wrapper - installing stock `game.libretro` is required immediately after flashing, not optional tidy-up |
 | 3 — Exit crash | **Blocked on a debug build**, and the original theory is disproven (§1) |
-| 4 — Hardware rendering | Not started. Confirmed still stubbed in the Kodi we just built (3 `@todo`s in `RetroPlayerRendering.cpp`), so the Phase 4 scope above holds |
-| 5 — PSP/Dreamcast packages | **Written, never built.** Metadata verified, make flags unproven |
-| 6 — Saturn | **Needs ROMs and a BIOS.** No code required |
+| 4 — FBO buffer, pool, renderer | **Ported and building.** Patches 1016-1019 in the fork; Kodi rebuilt clean and the new log strings are present in the stripped `kodi.bin`, so it is linked rather than dead-stripped. Deliberately inert - `EnableHardwareRendering()` still refuses and the pool answers `IsCompatible()` false |
+| 4 — Hardware rendering wiring | Not started. `Create()`, `RenderFrame()`, `OpenStream()`, `CloseStream()`, `GetHwProcedureAddress()`. Cannot be validated until the box runs our image |
+| 5 — PSP/Dreamcast packages | **Written, never built.** Both addon pins verified real and hash as pinned; the repo carries neither core, so the fork is the only route. Blocked on Phase 4 - flycast needs a GL context whatever its addon.xml claims |
+| 6 — Saturn | **Needs ROMs and a BIOS.** No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
 
 The pattern in what is left: everything outstanding needs either physical access
 to the box, or a working build pipeline to iterate against. Neither is something
 to fake progress on.
+
+**A build returning 0 is not evidence a patch was tested.** `packages/
+mediacenter/kodi` is shadowed for this target by the override at
+`projects/Amlogic-ce/packages/mediacenter/kodi`, so nothing in the former's
+`patches/` is ever applied - not ours, and not upstream's own 1001-1015. The
+first Kodi build of the FBO work succeeded having applied only the two project
+patches, and produced an unmodified Kodi. Count `APPLY PATCH` lines in the build
+log. `scripts/build` also short-circuits on `.stamps/<pkg>`, so a changed patch
+needs `scripts/clean <pkg>` first - `scripts-marty/build-package.sh` does both.
+The same wrong assumption had been baked into `track-upstream.yml`, which was
+watching the shadowed package for Kodi pin changes.
 
 Six environmental build failures were found and fixed, all committed to the
 fork so neither a rebuild nor CI rediscovers them. The pattern worth carrying:
