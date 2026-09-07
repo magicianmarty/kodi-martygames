@@ -15,7 +15,10 @@ SRC="${MARTYGAMES_PLEXMOD:-$HERE/../../plex-for-kodi}"
 IP="$("$HERE/box" --print-ip)"
 export SSHPASS="${MARTYGAMES_BOX_PASS:-coreelec}"
 
-sshpass -e rsync -a --delete \
+# --delete-excluded as well as --delete: without it the excluded __pycache__
+# dirs survive on the box, rsync cannot remove the directory holding them, and
+# stale .pyc can still be imported for a .py that no longer exists.
+sshpass -e rsync -a --delete --delete-excluded \
   --exclude '.git' --exclude '__pycache__' --exclude '*.pyc' \
   -e "ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR" \
   "$SRC/" "root@$IP:/storage/.kodi/addons/script.plexmod/"
