@@ -12,7 +12,7 @@ import xbmcgui
 import xbmcplugin
 import xbmcvfs
 
-from resources.lib import scanner
+from resources.lib import gamesettings, scanner
 from resources.lib.systems import BY_KEY, SYSTEMS
 
 HANDLE = int(sys.argv[1])
@@ -123,6 +123,11 @@ def make_item(game):
     except AttributeError:
         pass  # older Kodi without InfoTagGame; the property above still works
     li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
+    if system:
+        li.addContextMenuItems([(
+            'Emulator settings',
+            'RunPlugin(%s)' % url(action='settings', key=game['system'],
+                                  title=game['title']))])
     # A home-screen tile opens the detail page rather than launching, so the
     # Play row there is what starts the game - that is the only path carrying
     # the gameclient property, which is what skips the emulator picker.
@@ -355,8 +360,46 @@ def show_game(key, title):
     if os.path.exists(snap):
         xbmcplugin.setProperty(HANDLE, 'game_fanart', snap)
     xbmcplugin.addDirectoryItem(HANDLE, game['path'], li, False)
+    add_settings_row(system, game)
+    # The detail page is a plugin listing, which Kodi blocks on, so a core
+    # configured here is configured before the Play row can be clicked. The
+    # obvious alternative - RunPlugin() before PlayMedia() - is a race:
+    # RunPlugin ends at CScriptInvocationManager::ExecuteAsync and never waits.
+    gamesettings.apply(system, game['title'])
     xbmcplugin.endOfDirectory(HANDLE)
     set_view(DETAIL_VIEW)
+
+
+def add_settings_row(system, game):
+    """A row that opens our own settings dialog for this game.
+
+    Kodi's built-in emulator settings dialog lists the values a setting can
+    take without marking the one in force, so there is no way to see how a game
+    is currently configured. Ours puts the value in the label.
+    """
+    overrides = gamesettings.stored_for(system.key, game['title'])
+    label = 'Settings'
+    if overrides:
+        label = 'Settings  [COLOR yellow](%d changed)[/COLOR]' % len(overrides)
+    li = xbmcgui.ListItem(label=label)
+    li.setArt({'icon': 'DefaultAddonProgram.png'})
+    # A folder, so the click reaches us; the handler then fails the listing,
+    # which leaves the user on this page instead of descending into an empty
+    # one.
+    xbmcplugin.addDirectoryItem(
+        HANDLE, url(action='settings', key=system.key, title=game['title']),
+        li, True)
+
+
+def game_settings(key, title):
+    system = BY_KEY.get(key)
+    if system:
+        gamesettings.menu(system, title)
+    # Never succeed: this is a dialog wearing a folder's clothes, and failing
+    # the listing is what keeps Kodi on the page the user came from. Reached
+    # through the context menu instead, there is no listing and no handle.
+    if HANDLE >= 0:
+        xbmcplugin.endOfDirectory(HANDLE, succeeded=False)
 
 
 def play(path, core):
@@ -382,6 +425,11 @@ def main():
     args = dict(parse_qsl(sys.argv[2][1:]))
     action = args.get('action')
 
+    # Browsing away from a game withdraws its settings, so they only ever
+    # apply to the game whose page set them.
+    if action not in ('info', 'settings'):
+        gamesettings.clear_player_overrides()
+
     if action == 'system':
         system = BY_KEY.get(args.get('key', ''))
         if not system:
@@ -400,6 +448,8 @@ def main():
         list_continue()
     elif action == 'shelf':
         list_shelf(args)
+    elif action == 'settings':
+        game_settings(args.get('key', ''), args.get('title', ''))
     elif action == 'play':
         play(args['path'], args['core'])
     else:
