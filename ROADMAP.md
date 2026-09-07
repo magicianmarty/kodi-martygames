@@ -395,6 +395,85 @@ Effort: a couple of days. Risk: low. Highest day-to-day value of anything here.
 
 ---
 
+### Phase 9 — Install the releases that ship as install disks
+
+`ingest.py` skips a release whose folder has nothing launchable in it, which is
+correct but leaves the game unimported. Those are the ones shipped as their
+original install media rather than as an installed game.
+
+Measured across the whole collection by listing all 3,407 DOS archives, not
+sampled: **3,249 (95.4%) are already installed and import as they are.** The
+rest are 87 installer-only, 23 with proprietary volumes, 13 with an LZH payload
+`ingest.py` already expands, and 35 data or scenario disks that are not games
+at all. So this is a 3% problem, not the majority — worth automating because
+the 3% contains Ultima VIII, Descent, Lands of Lore, Dark Sun and Wolfenstein
+3D, not because there is a lot of it.
+
+`tools/dos-install.py` takes the cheapest route that works:
+
+```
+dos-install.py "Ultima Viii Pagan (1994)(Origin Systems Inc).7z"
+ingest.py .cache/dos-installed --system dos
+```
+
+1. **A native extractor, where the media is a standard archive in disguise.**
+   `DEARJ.EXE` beside `ULTIMA8.001` means ARJ multi-volume; `arj x -v` reads
+   all eight volumes in a second. Also LHA, RAR and ARC. Instant and exact.
+2. **The release's own installer, under DOSBox-X**, for the genuinely
+   proprietary formats — PC-Install, Epic's `INSTALL.BIN`, TTComp — where
+   nothing but that installer can read the data.
+
+Both are checked the same way, because "there is an .EXE in the output" is not
+evidence of a finished install: see `looks_complete()`.
+
+**Driving the installer is the hard part, and scripted keystrokes do not do
+it.** DOSBox-X's `AUTOTYPE` fires on a timer with no idea what is on screen.
+One Must Fall opens a welcome dialog, then a menu whose first item is "About
+this CD"; a sequence of Enters walks into the documentation viewer and Enter is
+not what closes it. So `tools/dosbox/drive-install.py` reads the screen instead
+— grab the framebuffer, OCR it, choose a key, inject it with `xdotool` as a
+real X event — and aims:
+
+- **Buttons are found by colour, then read one at a time.** A button drawn
+  dark-on-light inside a light-on-dark dialog is dropped by tesseract, and the
+  highlighted one has a third contrast again and is dropped even from an
+  inverted pass — so the single most important line on the screen, the one the
+  cursor is on, is exactly the one full-screen OCR cannot see.
+- **The panel is cropped before OCR.** One Must Fall animates a wallpaper
+  either side of its dialog and tesseract reads across the full width, so every
+  button comes back spliced into it.
+- **Readings are cached per button position**, because the highlighted button
+  is unreadable *and* is the one whose text decides between Enter and Down. It
+  was legible in the frame before the cursor arrived.
+- **Loop detection counts visits per screen, not repeats in a row.** An
+  installer cycling menu → submenu → menu never shows the same frame twice
+  running, so "has the screen stopped changing" never fires.
+- **ESC is last on the ladder and heavily conditioned.** The screen asking
+  "Drive to install to: C:" also says "press ESC to abort"; a loose rule there
+  walks out of the installer one step from finishing, which is exactly what it
+  did until the rule was tightened.
+
+Failures keep a screenshot every five seconds plus a decision log, which is the
+only practical way to see which prompt an installer stopped on — and is how
+each of the above was found.
+
+**Then `tools/dos-smoke.py` starts each installed game and photographs it.**
+"An installer ran and left a launchable .EXE" is not the same as "the game
+works": a half-finished install leaves the executable in place and fails at its
+own first file read, and on disk the two are identical. Each game runs under
+DOSBox-X for twenty-five seconds; one that never left the DOS prompt, printed a
+DOS error, or drew nothing is reported failed with its frames kept. It is a
+smoke test, not emulation parity — the box runs libretro `dosbox_pure`, not
+DOSBox-X — but it catches broken installs, which is what it is for.
+
+```
+dos-install.py <archives>          # install media  -> installed folders
+dos-smoke.py .cache/dos-installed  # started once each, verified on screen
+ingest.py .cache/dos-installed --system dos
+```
+
+---
+
 ## 4. Tracking CoreELEC
 
 The fork only survives if picking up upstream is cheap.
@@ -458,7 +537,7 @@ Phase 6 (Saturn) can slot in anywhere; it needs ROMs and a BIOS, not code.
 
 ## 7. Delivery status
 
-Updated 2026-09-06.
+Updated 2026-09-07.
 
 | Phase | State |
 |---|---|
@@ -478,10 +557,14 @@ Updated 2026-09-06.
 | 2 — Retire the wrapper | **DONE, by itself.** With ABI 8 live the repo's `game.libretro 22.7.0.2` became installable and Kodi's updater pulled it, replacing the hand-built ABI-6 build. `kodi.binary.instance.game v8.0.0` confirmed on the box. The most fragile component in the stack is gone |
 | 3 — Exit crash | **SOLVED by the flash, 2026-09-06.** Tested twice on the new build - Sonic (Megadrive/genplus) and Driver (PS1/pcsx-rearmed) both exited cleanly with Kodi holding the same PID throughout, and no new crash log. It was fixed somewhere in the 1,399 commits between the box's Kodi and ours. Cost: two game launches, against the days a debug build would have taken |
 | 4 — FBO renderer | **Live on the box, and the client reaches it.** `Registering renderer factory for FBO` in the log, and `CRPProcessInfoAmlogic` now resolves GL symbols through `eglGetProcAddress`. Verified not to regress anything: PS1 still runs on the sysmem path and exits cleanly with the FBO pool registered |
-| 4 — Hardware rendering | **Kodi side complete; blocked in the wrapper.** All of ours is right - `Hardware framebuffer 1 ready at 640x480`, `Creating renderer for FBO`, no GL errors, core at 88% CPU - and still black. Root cause found: **glsm queries `get_current_framebuffer()` once, during `context_reset`, and caches it forever**, but Kodi fires `context_reset` from inside `OpenStream()`, before the wrapper marks its stream open, so `CVideoStream::GetHwFramebuffer()` returns 0 and glsm binds framebuffer 0 for the session. Cannot be fixed from Kodi - deferring the reset means the client never initialises at all. The wrapper's `GetHwFramebuffer()` needs to open the stream on demand, exactly as `GetSwFramebuffer()` already does. Two lines, in `game.libretro`, which we currently take prebuilt. See `HWRENDER.md` |
+| 4 — Hardware rendering | **DONE.** N64 renders through GLideN64 on the Mali. The wrapper fix was the one identified here - `GetHwFramebuffer()` published a buffer it had not filled yet, so the reset's own query saw zero and glsm cached that forever - plus five Kodi patches (1031-1035) to make the context current on the right thread and at the right moment. A long detour was spent debugging GLideN64 before noticing **N64 had never worked on this box at all**; the control test (angrylion also black) exposed it, and the ROM turned out to be a bad dump. Establish a working baseline before blaming the diff |
 | 5 — PSP/Dreamcast cores | **Both build.** `flycast_libretro.so` 29 MB and `ppsspp_libretro.so` 33 MB, aarch64, exporting 54 and 46 `retro_*` entry points, linked against the box's `libMali.so`. Eleven packaging faults fixed between them, listed in the fork's commits |
-| 5 — PSP/Dreamcast addons | **Both packaged.** `game.libretro.flycast-7.0.0.66.1.zip` and `game.libretro.ppsspp-0.0.1.30.1.zip` under `target/addons/Amlogic-no/22.0.12/aarch64/`. **Do not install until Phase 4 is proven on the box** - Kodi ignores `requires_opengl`, and flycast claims `.chd`, which PS1 also uses |
-| 6 — Saturn | **Needs ROMs and a BIOS from Marty.** The card holds amiga, arcade, c64, doom, dos, megadrive, nes, psx, quake and scummvm - no Saturn discs. (A PS1 BIOS *does* exist, in `addon_data/game.libretro.pcsx-rearmed/resources/system/`; an earlier note here wrongly said there were no BIOS files at all, having searched only the card.) No code required; `beetle-saturn` and `yabause` are both in the repo for this device and genuinely software-rendered |
+| 5 — PSP/Dreamcast addons | **DONE, both running.** PPSSPP full-screen after fixing a segfault (`-static-libgcc`; the unwinder references live in PPSSPP's prebuilt FFmpeg archives, where no compiler flag reaches them). Flycast needed a real BIOS - on REIOS it never drew a frame. `retrobios-main/bios/` on this machine had both sets; an earlier claim here that no Dreamcast BIOS existed came from searching too narrowly |
+| 6 — Saturn | **Blocked on content, not code.** `beetle-saturn` is packaged and the BIOS is in hand, but `SaturnShmups.rar` is a partial torrent - 3.5 GB apparent against 2.3 GB on disk, with no holes at 0%, 50% or 99.9%, so it cannot be salvaged by extraction. Needs a re-download |
+| 10 — Smoothness | **DONE, in the image, awaiting a flash.** Audio flushes went from 2 per 90s to 0 per 120s by draining rather than flushing (1036); dynamic rate control holds the buffer at 150 ms (1037) |
+| 10 — Run-ahead | **Built (1038), not yet measured on hardware.** Per game, via a home-window property |
+| 10 — Per-game settings | **DONE and deployed.** Resolution, renderer, shader, aspect and run-ahead, per game, in a menu that shows the value in force. Verified over JSON-RPC on the box; the RetroPlayer half needs the new image |
+| 10 — Content push | **PS1 1,374 of 1,439 at time of writing.** PSP (209 titles, 99 GB) and Dreamcast (9 titles, 6 GB) staged and ready to follow |
 
 The pattern in what is left: everything outstanding needs either physical access
 to the box, or a working build pipeline to iterate against. Neither is something
