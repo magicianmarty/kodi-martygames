@@ -34,7 +34,7 @@ CTX = os.path.join(HERE, 'chd')
 DEFAULT_OUT = os.path.join(ROOT, '.cache', 'ps1-chd')
 
 # Done first, in this order. Everything not listed follows alphabetically.
-FIRST = [
+PSX_FIRST = [
     'Final Fantasy VII', 'Final Fantasy VIII', 'Final Fantasy IX',
     'Final Fantasy Tactics', 'Metal Gear Solid', 'Castlevania - Symphony',
     'Resident Evil 2', 'Resident Evil 3', 'Resident Evil - Directors',
@@ -72,9 +72,27 @@ def ensure_image():
         subprocess.run(['podman', 'build', '-t', 'chdtools:trixie', CTX], check=True)
 
 
-def priority(name):
+DREAMCAST_FIRST = [
+    'Shenmue', 'Sonic Adventure', 'Jet Grind Radio', 'Jet Set Radio',
+    'Crazy Taxi', 'Soul Calibur', 'Power Stone', 'Skies of Arcadia',
+    'Grandia II', 'Resident Evil', 'Code - Veronica', 'Marvel vs. Capcom',
+    'Street Fighter III', 'Virtua Tennis', 'Dead or Alive 2', 'Rez',
+    'Space Channel 5', 'Samba de Amigo', 'ChuChu Rocket', 'Phantasy Star',
+    'Metropolis Street Racer', 'Test Drive Le Mans', 'Daytona',
+    'Sega Rally', 'Hydro Thunder', 'San Francisco Rush', 'Quake III',
+    'Unreal Tournament', 'Half-Life', 'Toy Commander', 'Ecco the Dolphin',
+    'MDK2', 'Bangai-O', 'Ikaruga', 'Under Defeat', 'Border Down',
+    'Guilty Gear', 'Capcom vs. SNK', 'Garou', 'King of Fighters',
+    'NFL 2K', 'NBA 2K', 'Tony Hawk', 'Legacy of Kain', 'Headhunter',
+    'Shadow Man', 'Silver', 'Evolution', 'Time Stalkers', 'Illbleed',
+]
+
+FIRST_BY_SYSTEM = {'psx': PSX_FIRST, 'dreamcast': DREAMCAST_FIRST}
+
+
+def priority(name, first=()):
     base = os.path.splitext(os.path.basename(name))[0]
-    for i, want in enumerate(FIRST):
+    for i, want in enumerate(first):
         if want.lower() in base.lower():
             return (0, i, base.lower())
     return (1, 0, base.lower())
@@ -150,12 +168,24 @@ def main():
     ap.add_argument('--out', default=DEFAULT_OUT)
     ap.add_argument('--jobs', type=int, default=6)
     ap.add_argument('--limit', type=int)
+    ap.add_argument('--system', default='psx',
+                    help='picks the title order and the ingest hint')
+    ap.add_argument('--exclude', action='append', default=[], metavar='TEXT',
+                    help='skip archives whose name contains TEXT '
+                         '(case-insensitive); repeatable, e.g. --exclude "(Japan)"')
     args = ap.parse_args()
 
     ensure_image()
     src = os.path.expanduser(args.src)
-    archives = sorted((os.path.join(src, e) for e in os.listdir(src)
-                       if e.lower().endswith(('.7z', '.zip'))), key=priority)
+    skip = [t.lower() for t in args.exclude]
+    names = [e for e in os.listdir(src) if e.lower().endswith(('.7z', '.zip'))]
+    kept = [e for e in names if not any(t in e.lower() for t in skip)]
+    if skip:
+        print('excluding %d of %d archives (%s)'
+              % (len(names) - len(kept), len(names), ', '.join(args.exclude)))
+    first = FIRST_BY_SYSTEM.get(args.system, ())
+    archives = sorted((os.path.join(src, e) for e in kept),
+                      key=lambda n: priority(n, first))
     if args.limit:
         archives = archives[:args.limit]
     os.makedirs(args.out, exist_ok=True)
@@ -175,7 +205,7 @@ def main():
 
     print('\n%s' % ', '.join('%s %d' % (k, v) for k, v in sorted(tally.items())))
     print('playlists written: %d' % write_m3u(args.out))
-    print('next: ingest.py %s --system psx' % args.out)
+    print('next: ingest.py %s --system %s' % (args.out, args.system))
 
 
 if __name__ == '__main__':
