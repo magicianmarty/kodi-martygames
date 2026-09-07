@@ -92,6 +92,27 @@ $BOX 'if grep -q "Hardware rendering not implemented" /storage/.kodi/temp/kodi.l
         grep -E "RetroPlayer\[REND(ER|ERING)\]" /storage/.kodi/temp/kodi.log 2>/dev/null | tail -5 | sed "s/^/   /" || echo "   nothing logged yet - launch a game"
       fi'
 
+say "audio smoothing (1036, 1037)"
+$BOX 'log=/storage/.kodi/temp/kodi.log
+      flushes=$(grep -c "RetroPlayer\[AUDIO\]: Flushing" $log 2>/dev/null || echo 0)
+      echo "   flushes this session: $flushes  (was 2 per 90s before 1036)"
+      grep -E "RetroPlayer\[AUDIO\]: Buffer .* ms, rate" $log 2>/dev/null | tail -4 | sed "s/^/   /" \
+        || echo "   no rate-control lines yet - launch a game and give it 10s"'
+
+say "run-ahead (1038)"
+$BOX 'log=/storage/.kodi/temp/kodi.log
+      grep -E "RetroPlayer\[RUNAHEAD\]" $log 2>/dev/null | tail -5 | sed "s/^/   /" \
+        || echo "   nothing logged - run-ahead is off unless a game sets it"'
+
+say "per-game settings reach RetroPlayer (1039)"
+# The three properties only exist in a patched build; their absence means the
+# image is older than the patches, not that nothing has set them.
+$BOX 'if strings /usr/lib/kodi/kodi.bin 2>/dev/null | grep -q "retroplayer.videofilter"; then
+        echo "   ok    kodi.bin carries the launch-override properties"
+      else
+        echo "   FAIL  kodi.bin has no retroplayer.* properties - pre-1039 image"
+      fi'
+
 echo
 if [ "$FAILED" = 0 ]; then
   echo "all checks passed"

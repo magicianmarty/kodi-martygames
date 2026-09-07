@@ -87,6 +87,25 @@ def fetch_index(repo):
     return paths
 
 
+def _subtitle_match(norm, keys, by_name):
+    """Our name against a repo name that carries a subtitle we do not have.
+
+    "Tomb Raider Anniversary" is the whole title on the card and
+    "Tomb Raider - Anniversary" in the repo; "X Men Legends 2" is
+    "X-Men Legends II - Rise of Apocalypse". Fuzzy matching cannot bridge the
+    second, because the extra words dominate the ratio.
+
+    Only accepted when exactly one repo title extends ours, and only for names
+    long enough to be specific - otherwise "Warhammer" would claim whichever of
+    its half-dozen sequels happened to sort first.
+    """
+    if len(norm) < 12 or len(norm.split()) < 2:
+        return None
+    prefix = norm + ' '
+    hits = [k for k in keys if k.startswith(prefix)]
+    return by_name[hits[0]] if len(hits) == 1 else None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--roms', default='/tmp/romtree')
@@ -138,7 +157,7 @@ def main():
                     path = '%s/%s.png' % (folder, manual)
                 else:
                     norm = normalise(game['title'])
-                    hit = by_name.get(norm)
+                    hit = by_name.get(norm) or _subtitle_match(norm, keys, by_name)
                     if not hit:
                         close = difflib.get_close_matches(norm, keys, n=1,
                                                           cutoff=args.cutoff)
