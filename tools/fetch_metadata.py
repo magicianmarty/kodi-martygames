@@ -39,6 +39,10 @@ PLATFORMS = {
     'quake': ('MS-DOS',),
     'scummvm': ('MS-DOS',),
     'arcade': ('Arcade',),
+    'n64': ('Nintendo 64',),
+    'psp': ('Sony PSP',),
+    'dreamcast': ('Sega Dreamcast',),
+    'saturn': ('Sega Saturn',),
 }
 
 FIELDS = ('Name', 'Platform', 'Overview', 'Developer', 'Publisher', 'Genres',
