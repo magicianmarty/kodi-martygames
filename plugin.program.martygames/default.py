@@ -374,8 +374,16 @@ def show_game(key, title):
     system = BY_KEY.get(key)
     game = None
     if system:
-        game = next((g for g in scanner.scan_system(ROMS, system)
-                     if g['title'] == title), None)
+        # From the disk cache, not a fresh scan of the system. DOS is 297,000
+        # files - full game directories - and walking it costs 6.3s, which is
+        # spent between the click and the page appearing and reads as a click
+        # that did not land. Fall back to a real scan only when the cache does
+        # not know the game, which is a ROM added since it was written.
+        game = next((g for g in scanner.scan_all(ROMS)
+                     if g['system'] == key and g['title'] == title), None)
+        if game is None:
+            game = next((g for g in scanner.scan_system(ROMS, system)
+                         if g['title'] == title), None)
     if game is None:
         xbmcplugin.endOfDirectory(HANDLE, succeeded=False)
         return
@@ -427,14 +435,29 @@ def add_settings_row(system, game):
 
 
 def game_settings(key, title):
+    """Our settings dialog for one game.
+
+    Answer the listing *before* opening anything. This is a dialog wearing a
+    folder's clothes, and Kodi keeps its busy dialog up for as long as a
+    plugin directory is outstanding - so a modal opened first ends up second
+    on a stack of two active dialogs. Keyboard actions still reach the top
+    one, which is why it looked fine, but a controller drives the busy dialog
+    instead and the list will not move. Failing the listing also leaves the
+    user on the page they came from rather than descending into an empty one.
+
+    Reached through the context menu instead, there is no listing and no
+    handle, and none of this applies.
+    """
+    if HANDLE >= 0:
+        xbmcplugin.endOfDirectory(HANDLE, succeeded=False)
+        for _ in range(40):
+            if not xbmc.getCondVisibility('Window.IsActive(busydialog)'):
+                break
+            xbmc.sleep(50)
+
     system = BY_KEY.get(key)
     if system:
         gamesettings.menu(system, title)
-    # Never succeed: this is a dialog wearing a folder's clothes, and failing
-    # the listing is what keeps Kodi on the page the user came from. Reached
-    # through the context menu instead, there is no listing and no handle.
-    if HANDLE >= 0:
-        xbmcplugin.endOfDirectory(HANDLE, succeeded=False)
 
 
 def play(path, core):
