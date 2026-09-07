@@ -17,6 +17,7 @@ from resources.lib.systems import BY_KEY, SYSTEMS
 
 HANDLE = int(sys.argv[1])
 BASE = sys.argv[0]
+CURRENT_URL = BASE + sys.argv[2]
 ADDON = xbmcaddon.Addon()
 ROMS = ADDON.getSetting('rom_path') or '/storage/sdcard/roms'
 SAVES = xbmcvfs.translatePath('special://home/saves')
@@ -45,7 +46,33 @@ DETAIL_VIEW = 590
 
 
 def set_view(view_id):
-    xbmc.executebuiltin('Container.SetViewMode(%d)' % view_id)
+    """Switch the container to a view, once it is really this listing.
+
+    Container.SetViewMode acts on whichever container is current. At
+    endOfDirectory time Kodi has not swapped to this listing yet - the full
+    library takes seven or eight seconds to populate - so firing once lands on
+    the outgoing container or on nothing, and the window keeps whatever
+    <views> names first. That was the intermittent row of title pills where
+    the wall belonged.
+
+    Waiting is therefore not optional, but a loop that fires blindly is worse
+    than the bug: navigate away while it runs and it retunes somebody else's
+    window. So it only acts while the container really is this listing, and
+    gives up the moment that stops being true.
+    """
+    arrived = False
+    for _ in range(120):
+        if xbmc.getCondVisibility('Control.IsVisible(%d)' % view_id):
+            return
+        if xbmc.getInfoLabel('Container.FolderPath') == CURRENT_URL:
+            arrived = True
+            xbmc.executebuiltin('Container.SetViewMode(%d)' % view_id)
+        elif arrived:
+            return
+        xbmc.sleep(100)
+    log('view %d never took, container is %s'
+        % (view_id, xbmc.getInfoLabel('Container.FolderPath')))
+
 
 # Kodi sorts labels with "ignore articles when sorting" on by default, so its
 # order and ours have to agree or the A-Z offsets below point at the wrong row.
