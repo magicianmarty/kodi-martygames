@@ -1,0 +1,10 @@
+FROM docker.io/library/debian:trixie
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        dosbox-x xvfb xauth x11-utils xdotool imagemagick tesseract-ocr \
+        python3 python3-pil \
+        arj lhasa unzip cabextract p7zip-full unar libarchive-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV SDL_AUDIODRIVER=dummy HOME=/work
+WORKDIR /work
