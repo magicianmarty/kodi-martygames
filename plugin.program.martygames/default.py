@@ -24,6 +24,8 @@ RECENT_LIMIT = 20
 # Kodi puts one parent entry at the top of every plugin listing.
 PARENT_ITEMS = 1
 ARTWORK = os.path.normpath(os.path.join(ROMS, '..', 'artwork'))
+NO_COVER = os.path.join(xbmcvfs.translatePath(ADDON.getAddonInfo('path')),
+                        'resources', 'media', 'no-cover.png')
 
 # Built by tools/fetch_metadata.py and cached beside the artwork, so a reinstall
 # of this add-on does not throw it away.
@@ -138,6 +140,12 @@ def make_item(game):
     boxart = os.path.join(ARTWORK, game['system'], game['title'] + '.png')
     if os.path.exists(boxart):
         art.update(poster=boxart, thumb=boxart)
+    else:
+        # Kodi's FillInDefaultIcon has no games branch, so a .chd or .bin
+        # matches VIDEO::IsVideo() and a game with no cover is drawn with the
+        # film-reel placeholder. It only fills the icon in when one is not
+        # already set, so setting ours here is the whole fix.
+        art.update(poster=NO_COVER, thumb=NO_COVER, icon=NO_COVER)
     # An in-game screenshot as fanart: the home rows each draw one full-bleed
     # image behind the hero text, and games were the only row without one.
     snap = os.path.join(ARTWORK, 'snaps', game['system'], game['title'] + '.png')

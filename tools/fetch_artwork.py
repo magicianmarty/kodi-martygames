@@ -12,6 +12,7 @@ import argparse
 import difflib
 import json
 import os
+import posixpath
 import sys
 import time
 import urllib.parse
@@ -85,6 +86,32 @@ def fetch_index(repo):
         paths += ['%s/%s' % (sub, e['path']) for e in data['tree']
                   if e['path'].endswith('.png')]
     return paths
+
+
+PNG_MAGIC = b'\x89PNG\r\n\x1a\n'
+
+
+def _download(repo, path, hops=3):
+    """Fetch one thumbnail, following the repo's symlinks.
+
+    libretro-thumbnails stores regional duplicates as git symlinks, and the raw
+    endpoint serves a symlink as its target filename in plain text. Written
+    straight to disk that produces a 26-byte "PNG" - which Kodi cannot draw, so
+    the game shows a placeholder and nothing anywhere reports an error. 78 of
+    2,831 covers were this.
+    """
+    for _ in range(hops):
+        url = RAW.format(repo=repo, path=urllib.parse.quote(path))
+        req = urllib.request.Request(url, headers={'User-Agent': 'martygames'})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            blob = r.read()
+        if blob.startswith(PNG_MAGIC):
+            return blob
+        target = blob.decode('utf-8', 'replace').strip()
+        if not target.lower().endswith('.png') or '\n' in target:
+            raise RuntimeError('not a PNG and not a symlink (%d bytes)' % len(blob))
+        path = posixpath.join(posixpath.dirname(path), target)
+    raise RuntimeError('symlink chain too deep')
 
 
 def _subtitle_match(norm, keys, by_name):
@@ -168,13 +195,8 @@ def main():
                         print("      no match: %s" % game['title'])
                     missed += 1
                     continue
-                url = RAW.format(repo=REPOS[key],
-                                 path=urllib.parse.quote(path))
                 try:
-                    req = urllib.request.Request(
-                        url, headers={'User-Agent': 'martygames'})
-                    with urllib.request.urlopen(req, timeout=60) as r:
-                        blob = r.read()
+                    blob = _download(REPOS[key], path)
                     with open(dest, 'wb') as fh:
                         fh.write(blob)
                     matched += 1
