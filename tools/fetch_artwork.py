@@ -38,6 +38,7 @@ REPOS = {
     'n64': 'Nintendo_-_Nintendo_64',
     'c64': 'Commodore_-_64',
     'dos': 'DOS',
+    'scummvm': 'ScummVM',
     'arcade': 'MAME',
 }
 RAW = 'https://raw.githubusercontent.com/libretro-thumbnails/{repo}/master/{path}'
