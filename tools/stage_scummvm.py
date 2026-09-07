@@ -40,12 +40,26 @@ def detect(path):
             ids.append(m.group(1))
     if not ids:
         return None
-    # More than one is a real ambiguity, not something to pick blindly from.
-    if len(ids) > 1:
-        print("   %s: %d candidates %s - skipped" %
-              (os.path.basename(path), len(ids), ids[:3]))
-        return None
-    return ids[0]
+
+    # Several rows usually means several *editions* of one game - King's Quest
+    # lists a DOS and a CoCo3 row, both "agi:kq1". Only distinct ids are an
+    # ambiguity; counting rows skipped 20-odd Sierra titles that were never
+    # ambiguous at all.
+    unique = sorted(set(ids))
+    if len(unique) == 1:
+        return unique[0]
+
+    # Genuinely different ids. A folder holding two games detects both - the
+    # two King's Quest bonus discs each see "chest" and "shield" - so prefer
+    # the id the folder is actually named after before falling back to the
+    # plain variant over a qualified one ("bladerunner" over
+    # "bladerunner-final").
+    folder = re.sub(r'[^a-z0-9]', '', os.path.basename(path).lower())
+    named = [i for i in unique if i.split(':')[-1] in folder]
+    pick = named[0] if len(named) == 1 else min(unique, key=lambda i: (len(i), i))
+    print("   %s: %d ids %s - taking %s" %
+          (os.path.basename(path), len(unique), unique[:3], pick))
+    return pick
 
 
 def title_of(dirname):
