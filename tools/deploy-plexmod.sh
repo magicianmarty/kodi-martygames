@@ -9,18 +9,36 @@
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-SRC="${MARTYGAMES_PLEXMOD:-$HERE/../../plex-for-kodi}"
+# Default to the worktree holding feat/plex-hubs, not the main checkout: that
+# one is usually parked on whatever branch was last worked on.
+SRC="${MARTYGAMES_PLEXMOD:-$HERE/../../wt-p4k-scan}"
+[ -d "$SRC/lib" ] || SRC="$HERE/../../plex-for-kodi"
 [ -d "$SRC/lib" ] || { echo "no plex-for-kodi checkout at $SRC" >&2; exit 1; }
 
 IP="$("$HERE/box" --print-ip)"
 export SSHPASS="${MARTYGAMES_BOX_PASS:-coreelec}"
 
-# --delete-excluded as well as --delete: without it the excluded __pycache__
-# dirs survive on the box, rsync cannot remove the directory holding them, and
-# stale .pyc can still be imported for a .py that no longer exists.
-sshpass -e rsync -a --delete --delete-excluded \
+echo "deploying from $SRC ($(git -C "$SRC" branch --show-current 2>/dev/null || echo "not a git checkout"))"
+
+# Deliberately NOT --delete.
+#
+# It was, once. A --delete deploy of an unrelated subtitle change wiped
+# plugin.py, the Plex hubs, badges.py and the whole downloads subsystem off
+# the box, emptying the skin's home rows.
+#
+# The work was committed and pushed the whole time - on feat/plex-hubs, which
+# is checked out in a worktree, not in the checkout this script defaults to.
+# There are eight worktrees on that repo; SRC pointing at the main one says
+# nothing about which branch is in it. So --delete asked the box to match a
+# tree that was simply a different branch.
+#
+# Stale files left behind are a far smaller problem than deleted ones. If you
+# do want --delete, check the branch printed below is the one you mean and
+# dry-run it first.
+sshpass -e rsync -a \
   --exclude '.git' --exclude '__pycache__' --exclude '*.pyc' \
   -e "ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR" \
   "$SRC/" "root@$IP:/storage/.kodi/addons/script.plexmod/"
 
 echo "deployed to $IP - restart Kodi or re-enter Plex to pick it up"
+echo "note: files removed from the checkout are left on the box; clean those by hand"
