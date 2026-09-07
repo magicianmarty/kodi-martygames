@@ -162,18 +162,6 @@ def player_options(system_key):
 
 
 
-def clear_player_overrides():
-    """Drop any per-game player settings left on the home window.
-
-    They outlive the listing that set them, so without this a game launched
-    straight from a home row - which never runs this add-on - would inherit
-    whatever the last game opened through the detail page asked for.
-    """
-    home = xbmcgui.Window(10000)
-    for prop in PLAYER_PROPERTY.values():
-        home.clearProperty(prop)
-
-
 def _load():
     try:
         with open(STORE, encoding='utf-8') as fh:
@@ -229,6 +217,11 @@ def apply(system, title):
     """
     overrides = stored_for(system.key, title)
 
+    # Written on every apply, cleared values included, so the properties always
+    # describe the game whose page was opened last. Nothing else clears them:
+    # the home screen populates its shelves by calling this add-on ten times
+    # over, and a clear on those wiped the setting between opening a game's
+    # page and pressing Play.
     home = xbmcgui.Window(10000)
     for key, prop in PLAYER_PROPERTY.items():
         home.setProperty(prop, overrides.get(key, ''))

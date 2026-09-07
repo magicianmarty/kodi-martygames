@@ -425,11 +425,6 @@ def main():
     args = dict(parse_qsl(sys.argv[2][1:]))
     action = args.get('action')
 
-    # Browsing away from a game withdraws its settings, so they only ever
-    # apply to the game whose page set them.
-    if action not in ('info', 'settings'):
-        gamesettings.clear_player_overrides()
-
     if action == 'system':
         system = BY_KEY.get(args.get('key', ''))
         if not system:

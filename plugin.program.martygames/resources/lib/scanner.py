@@ -166,9 +166,70 @@ def scan_system(root, system):
                'system': system.key, 'core': system.core}
 
 
-def scan_all(root):
-    """Scan every known system present under root."""
+def _cache_path():
+    try:
+        import xbmcaddon
+        import xbmcvfs
+        profile = xbmcvfs.translatePath(
+            xbmcaddon.Addon().getAddonInfo('profile'))
+        return os.path.join(profile, 'library.json')
+    except Exception:                                  # noqa: BLE001
+        return None
+
+
+def _stamp(root):
+    """A cheap fingerprint of the ROM tree: each system directory's mtime.
+
+    Adding, removing or renaming a ROM changes the mtime of the directory it
+    is in, which is all this needs to notice. Editing a file in place does not,
+    but nothing here cares about a ROM's contents.
+    """
+    out = {}
+    for key in sorted(BY_KEY):
+        base = os.path.join(root, key)
+        try:
+            out[key] = os.path.getmtime(base)
+        except OSError:
+            pass
+    return out
+
+
+def scan_all(root, use_cache=True):
+    """Scan every known system present under root.
+
+    Cached to disk because the home screen is built from about a dozen
+    separate add-on invocations - each shelf, plus Recently Played and
+    Continue - and every one of them was walking the whole tree. At 242 games
+    that was free; at 8,000 it is nearly three seconds each, the screen takes
+    a minute to fill, and the box never drops below 75% CPU. It was enough
+    contention to stop an N64 game reaching its first frame of audio.
+
+    Each invocation is a fresh interpreter, so the cache has to be on disk.
+    """
+    path = _cache_path() if use_cache else None
+    stamp = _stamp(root)
+
+    if path:
+        try:
+            with open(path, encoding='utf-8') as fh:
+                cached = json.load(fh)
+            if cached.get('stamp') == stamp and cached.get('root') == root:
+                return cached['games']
+        except (OSError, ValueError, KeyError):
+            pass
+
     out = []
     for key in sorted(BY_KEY):
         out.extend(scan_system(root, BY_KEY[key]))
+
+    if path:
+        try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            tmp = path + '.tmp'
+            with open(tmp, 'w', encoding='utf-8') as fh:
+                json.dump({'root': root, 'stamp': stamp, 'games': out}, fh)
+            os.replace(tmp, path)
+        except OSError:
+            pass                                       # a slow library beats none
+
     return out
