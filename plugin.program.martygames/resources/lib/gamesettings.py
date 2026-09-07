@@ -160,12 +160,6 @@ def player_options(system_key):
     return options
 
 
-def _player_default(key):
-    if key == 'runahead':
-        return '0'
-    if key == 'stretchmode':
-        return 'normal'
-    return 'nearest'
 
 
 def clear_player_overrides():
@@ -215,7 +209,11 @@ def current(core, option, overrides):
     if option.key in overrides:
         return overrides[option.key]
     if option.key in PLAYER_PROPERTY:
-        return _player_default(option.key)
+        # Without an override we clear the property and Kodi falls back to
+        # <defaultgamesettings>, which cannot be read from here - so there is
+        # no honest value to show. Naming one would be guessing, in the one
+        # menu whose whole purpose is saying what is actually in force.
+        return ''
     try:
         return xbmcaddon.Addon(core).getSetting(option.key)
     except Exception:  # noqa: BLE001 - core may not be installed
@@ -271,10 +269,11 @@ def menu(system, title):
         rows = []
         for option in options:
             value = current(system.core, option, overrides)
-            # A core setting the user has never touched is absent from its
-            # settings.xml, which reads back as empty rather than as the
-            # default declared in the add-on.
-            shown = option.label_for(value) if value else 'Core default'
+            # An untouched core setting is simply absent from the core's
+            # settings.xml and reads back empty, and an unset player setting
+            # has no readable value at all. Either way the truth is "whatever
+            # the default is", and saying so beats inventing a value.
+            shown = option.label_for(value) if value else 'Default'
             mark = '[COLOR yellow]*[/COLOR] ' if option.key in overrides else '  '
             rows.append('%s%s:  [B]%s[/B]' % (mark, option.label, shown))
 
