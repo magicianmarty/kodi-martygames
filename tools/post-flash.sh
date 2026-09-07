@@ -94,7 +94,7 @@ $BOX 'if grep -q "Hardware rendering not implemented" /storage/.kodi/temp/kodi.l
 
 say "audio smoothing (1036, 1037)"
 $BOX 'log=/storage/.kodi/temp/kodi.log
-      flushes=$(grep -c "RetroPlayer\[AUDIO\]: Flushing" $log 2>/dev/null || echo 0)
+      flushes=$(grep -c "RetroPlayer\[AUDIO\]: Flushing" $log 2>/dev/null || true)
       echo "   flushes this session: $flushes  (was 2 per 90s before 1036)"
       grep -E "RetroPlayer\[AUDIO\]: Buffer .* ms, rate" $log 2>/dev/null | tail -4 | sed "s/^/   /" \
         || echo "   no rate-control lines yet - launch a game and give it 10s"'
@@ -107,7 +107,8 @@ $BOX 'log=/storage/.kodi/temp/kodi.log
 say "per-game settings reach RetroPlayer (1039)"
 # The three properties only exist in a patched build; their absence means the
 # image is older than the patches, not that nothing has set them.
-$BOX 'if strings /usr/lib/kodi/kodi.bin 2>/dev/null | grep -q "retroplayer.videofilter"; then
+# grep -a, not strings: CoreELEC ships no binutils.
+$BOX 'if grep -aq "retroplayer.videofilter" /usr/lib/kodi/kodi.bin 2>/dev/null; then
         echo "   ok    kodi.bin carries the launch-override properties"
       else
         echo "   FAIL  kodi.bin has no retroplayer.* properties - pre-1039 image"
