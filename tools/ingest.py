@@ -33,7 +33,24 @@ from resources.lib import scanner            # noqa: E402
 from resources.lib.systems import BY_KEY, SYSTEMS  # noqa: E402
 from titles import normalise                 # noqa: E402
 
-BOX = os.environ.get('MARTYGAMES_BOX', 'root@192.168.50.113')
+def _box_target():
+    """root@<address>, resolved the same way tools/box does.
+
+    The box is on DHCP and its lease has already moved once (.113 -> .115)
+    across a recovery power-cycle. A hardcoded address here does not fail
+    loudly - it either times out or, worse, finds something else on the subnet.
+    """
+    if os.environ.get('MARTYGAMES_BOX'):
+        return os.environ['MARTYGAMES_BOX']
+    try:
+        ip = subprocess.run([os.path.join(HERE, 'box'), '--print-ip'],
+                            capture_output=True, text=True, timeout=90).stdout.strip()
+    except (subprocess.SubprocessError, OSError):
+        ip = ''
+    return 'root@' + (ip or '192.168.50.115')
+
+
+BOX = _box_target()
 BOX_ROMS = '/storage/sdcard/roms'
 BOX_ARTWORK = '/storage/sdcard/artwork'
 CACHE = os.path.join(ROOT, '.cache')
@@ -244,6 +261,23 @@ def scp(src, dest):
         check=True, capture_output=True, text=True, env=env)
 
 
+def rsync(src, dest):
+    """Bulk copy to the box.
+
+    push() used to scp each entry on its own, which is fine for the handful of
+    games a normal ingest adds and useless for a set: a TOSEC Amiga import is
+    ~3,950 entries, and at one SSH handshake each the transfer is mostly
+    handshake. One rsync also makes a re-run cheap, since it skips what is
+    already there.
+    """
+    env = dict(os.environ, SSHPASS=os.environ.get('MARTYGAMES_BOX_PASS', 'coreelec'))
+    subprocess.run(
+        ['sshpass', '-e', 'rsync', '-a', '--info=stats1',
+         '-e', 'ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR',
+         src, dest],
+        check=True, env=env)
+
+
 def stage(sources, system_override, staging):
     """Unpack, name and lay out everything under a per-system staging tree."""
     staged = []
@@ -363,12 +397,10 @@ def push(staging, systems):
         src = os.path.join(staging, system)
         if os.path.isdir(src):
             ssh('mkdir -p %s/%s' % (BOX_ROMS, system))
-            for entry in sorted(os.listdir(src)):
-                scp(os.path.join(src, entry), '%s:%s/%s/' % (BOX, BOX_ROMS, system))
+            rsync(src + '/', '%s:%s/%s/' % (BOX, BOX_ROMS, system))
     ssh('mkdir -p %s' % BOX_ARTWORK)
     if os.path.isdir(ARTWORK_CACHE):
-        for entry in sorted(os.listdir(ARTWORK_CACHE)):
-            scp(os.path.join(ARTWORK_CACHE, entry), '%s:%s/' % (BOX, BOX_ARTWORK))
+        rsync(ARTWORK_CACHE + '/', '%s:%s/' % (BOX, BOX_ARTWORK))
     # The plugin reads metadata.json from beside the artwork, and an artwork
     # push used to overwrite it with a stale copy - so it goes last, always.
     if os.path.exists(METADATA):
@@ -382,6 +414,8 @@ def main():
     ap.add_argument('--system', help='force a system key (needed for .bin/.cue/.zip)')
     ap.add_argument('--dry-run', action='store_true', help='stage and report only')
     ap.add_argument('--no-push', action='store_true', help='skip copying to the box')
+    ap.add_argument('--no-enrich', action='store_true',
+                    help='skip artwork and metadata, just get the games across')
     args = ap.parse_args()
 
     src = os.path.expanduser(args.path)
@@ -419,9 +453,12 @@ def main():
         print('\ndry run: nothing copied, nothing fetched')
         return
 
-    print('\nenriching...')
-    art, meta = enrich(staging, systems)
-    print('  %d artwork file(s), %d metadata record(s) merged' % (art, meta))
+    if args.no_enrich:
+        print('\n--no-enrich: skipping artwork and metadata')
+    else:
+        print('\nenriching...')
+        art, meta = enrich(staging, systems)
+        print('  %d artwork file(s), %d metadata record(s) merged' % (art, meta))
 
     if args.no_push:
         print('\n--no-push: staged at %s' % staging)

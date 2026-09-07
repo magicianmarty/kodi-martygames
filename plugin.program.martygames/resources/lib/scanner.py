@@ -41,8 +41,12 @@ def _pick_dos_executable(folder, max_depth=2):
     alongside a tourncmp/ folder full of decoy tools. So search a couple of
     levels deep and score candidates rather than taking the first or largest.
     """
-    title_tokens = {t for t in re.split(r'\W+', clean_title(os.path.basename(folder)).lower())
-                    if len(t) >= 4}
+    words = [t for t in re.split(r'\W+', clean_title(os.path.basename(folder)).lower()) if t]
+    title_tokens = {t for t in words if len(t) >= 4}
+    # DOS names launchers by initials as often as by title: OMF.EXE for One
+    # Must Fall, UW.EXE for Ultima Underworld. Without this the pick is decided
+    # on size, and One Must Fall ships NETTERM.EXE at twenty times OMF.EXE.
+    initials = ''.join(w[0] for w in words if w[0].isalpha())
     best = None
 
     for root, dirs, files in os.walk(folder):
@@ -75,6 +79,8 @@ def _pick_dos_executable(folder, max_depth=2):
                 if tok in stem or (len(stem) >= 3 and tok.startswith(stem)):
                     score += 3
                     break
+            if len(initials) >= 2 and stem == initials:
+                score += 4
             if len(parent) >= 3 and stem.startswith(parent):
                 score += 2          # omf/omf21.exe
             # A subfolder named after the game holds the installed copy; the

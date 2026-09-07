@@ -41,10 +41,23 @@ SYSTEMS = [
            ('.nes', '.fds', '.unf'), 'Nintendo NES'),
     System('snes', 'SNES', 'game.libretro.snes9x',
            ('.sfc', '.smc', '.zip'), 'Nintendo SNES'),
-    # Needs hardware rendering: mupen64plus-nx is the only installed client that
-    # calls SET_HW_RENDER, so it does nothing until the FBO renderer works.
+    # Hardware rendering, via the FBO renderer. Set the core's rdp-plugin to
+    # gliden64 for it; angrylion is the software fallback and looks it.
     System('n64', 'Nintendo 64', 'game.libretro.mupen64plus-nx',
            ('.z64', '.n64', '.v64'), 'Nintendo 64'),
+    # Hardware rendering too. .cso is a compressed ISO and the format the
+    # collection is in; PPSSPP reads it directly, so nothing is unpacked.
+    System('psp', 'PSP', 'game.libretro.ppsspp',
+           ('.cso', '.iso', '.chd', '.pbp'), 'Sony PlayStation Portable'),
+    # Hardware rendering as well. .cdi and .gdi are the two disc formats the
+    # collection is in; Flycast reads both without unpacking.
+    System('dreamcast', 'Dreamcast', 'game.libretro.flycast',
+           ('.cdi', '.gdi', '.chd'), 'Sega Dreamcast'),
+    # Software rendering, and it will not start without a BIOS - the four
+    # regional ROMs are installed beside the core.
+    System('saturn', 'Saturn', 'game.libretro.beetle-saturn',
+           ('.cue', '.ccd', '.chd', '.toc'), 'Sega Saturn',
+           prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
     System('c64', 'Commodore 64', 'game.libretro.vice_x64',
            ('.d64', '.nib', '.t64', '.prg', '.crt', '.g64', '.tap'), 'Commodore 64'),
     System('dos', 'DOS', 'game.libretro.dosbox-pure',
@@ -72,7 +85,8 @@ DOS_EXE_BLOCKLIST = (
     'install', 'instl', 'setup', 'deice', 'unins', 'dosbox', 'config', 'readme',
     'sysinfo', 'edit', 'view', 'help',
     # DOS extenders and bundled utilities that sit next to the real game
-    'dos4gw', 'dos32a', 'dos32', 'setsound', 'smkplay', 'mssw', 'mss',
+    'dos4gw', '4gwpro', 'dos4g', 'dos32a', 'dos32', 'pmodew', 'zpmi',
+    'setsound', 'smkplay', 'mssw', 'mss',
     'patch', 'sbtest', 'modem', 'univbe', 'cwsdpmi', 'pkunzip', 'test',
     # manuals, intros, cheats and helpers that outweigh the real game on size
     'guide', 'info', 'intro', 'cheat', 'cht', 'trainer', 'mouse', 'order', 'manual',

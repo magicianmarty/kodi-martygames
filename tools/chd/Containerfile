@@ -1,0 +1,5 @@
+FROM docker.io/library/debian:trixie
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        mame-tools p7zip-full libarchive-tools \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /work
