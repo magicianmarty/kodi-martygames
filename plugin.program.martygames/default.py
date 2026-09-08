@@ -61,6 +61,13 @@ def set_view(view_id):
     window. So it only acts while the container really is this listing, and
     gives up the moment that stops being true.
     """
+    # A home-screen widget has no container of its own: the window is Home and
+    # Container.FolderPath is whatever Home is pointing at, so the wait below
+    # can never succeed and simply burns a Python thread for its whole budget.
+    # Eleven shelves did that at once and cost 180% CPU on an idle home screen.
+    if xbmc.getCondVisibility('Window.IsActive(home)'):
+        return
+
     arrived = False
     for _ in range(120):
         if xbmc.getCondVisibility('Control.IsVisible(%d)' % view_id):
