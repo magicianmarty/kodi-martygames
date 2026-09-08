@@ -181,7 +181,13 @@ def make_item(game):
     # file simply draws nothing, so a system can be added here before its icon
     # exists.
     li.setProperty('marty_system', game['system'])
-    li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
+    # RunPlugin, not PlayMedia: PlayMedia carries no game client, so Kodi picks
+    # a core by itself and .chd is claimed by seven of them. A Saturn disc
+    # launched from a home row landed on beetle-saturn rather than the yabause
+    # this system asks for, which is a different core, a different save file and
+    # in that case audio the box cannot keep up with.
+    li.setProperty('marty_click', 'RunPlugin(%s)' % quote(
+        url(action='play', path=game['path'], core=game['core'])))
     if system:
         li.addContextMenuItems([(
             'Emulator settings',
