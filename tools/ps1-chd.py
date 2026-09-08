@@ -67,6 +67,12 @@ def sh(cmd, **kw):
     return subprocess.run(cmd, capture_output=True, text=True, **kw)
 
 
+# Killing this script does not kill the chdman it is waiting on: podman run
+# detaches the container from the python process, so an interrupted or
+# duplicated run leaves containers converting in the background for hours,
+# competing for CPU with whatever comes next and making later runs "time out"
+# for no visible reason. Nine of them had accumulated over four hours before
+# anyone noticed. Check with `podman ps` before blaming a disc.
 def ensure_image():
     if sh(['podman', 'image', 'exists', IMAGE]).returncode != 0:
         subprocess.run(['podman', 'build', '-t', 'chdtools:trixie', CTX], check=True)
