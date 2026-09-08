@@ -65,7 +65,11 @@ SYSTEMS = [
            prefer=('.chd', '.gdi', '.cdi')),
     # Software rendering, and it will not start without a BIOS - the four
     # regional ROMs are installed beside the core.
-    System('saturn', 'Saturn', 'game.libretro.beetle-saturn',
+    # yabause, not beetle-saturn: Mednafen's core is accuracy-first and saturates
+    # an A73 at 97-99% on this box, which starves the audio - Panzer Dragoon ran
+    # at 45% and a full 60fps under yabause. beetle-saturn is still installed for
+    # anything yabause renders wrongly.
+    System('saturn', 'Saturn', 'game.libretro.yabause',
            ('.cue', '.ccd', '.chd', '.toc'), 'Sega Saturn',
            prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
     System('c64', 'Commodore 64', 'game.libretro.vice_x64',

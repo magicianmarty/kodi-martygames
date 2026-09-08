@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="game.controller.saturn"
+        name="Saturn Controller"
+        version="1.0.0"
+        provider-name="marty">
+    <extension point="kodi.game.controller" library="resources/layout.xml"/>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <summary lang="en_GB">Sega Saturn controller</summary>
+        <description lang="en_GB">The Sega Saturn control pad: a d-pad, six face buttons, two shoulder buttons and Start.</description>
+    </extension>
+</addon>

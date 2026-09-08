@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="game.controller.saturn.multitap"
+        name="Saturn Multitap"
+        version="1.0.0"
+        provider-name="marty">
+    <extension point="kodi.game.controller" library="resources/layout.xml"/>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <summary lang="en_GB">Sega Saturn multitap</summary>
+        <description lang="en_GB">The Sega Saturn 6Player multitap, which takes six control pads.</description>
+    </extension>
+</addon>
