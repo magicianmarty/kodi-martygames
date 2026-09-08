@@ -156,14 +156,35 @@ def scan_system(root, system):
             (os.path.splitext(first)[1].lower(), os.path.join(folder, first)))
 
     for title, files in sorted(groups.items()):
+        files = sorted(files, key=lambda ep: (_region_rank(ep[1]), ep[1]))
         for wanted in system.prefer:
             chosen = next((p for e, p in files if e == wanted), None)
             if chosen:
                 break
         else:
-            chosen = sorted(files)[0][1]
+            chosen = files[0][1]
         yield {'title': title, 'path': chosen,
                'system': system.key, 'core': system.core}
+
+
+# Regions we can actually read, best first. Anything unlisted sorts last.
+_REGIONS = ('usa', 'world', 'europe', 'australia', 'uk', 'canada')
+_REGION_RE = re.compile(r'[(\[]([^)\]]*)[)\]]')
+
+
+def _region_rank(path):
+    """Rank a file by how readable its release is.
+
+    Titles collapse by name, so "Fighting Vipers (Korea)" and
+    "Fighting Vipers (USA)" are one game and something has to choose. That was
+    a plain alphabetical sort, which put Korea first and quietly handed over
+    the Korean build of eight games we hold in English.
+    """
+    tags = ' '.join(_REGION_RE.findall(os.path.basename(path))).lower()
+    for i, region in enumerate(_REGIONS):
+        if region in tags:
+            return i
+    return len(_REGIONS)
 
 
 def _cache_path():
