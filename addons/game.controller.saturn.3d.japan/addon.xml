@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="game.controller.saturn.3d.japan"
+        name="Saturn 3D Control Pad (Japan)"
+        version="1.0.0"
+        provider-name="marty">
+    <extension point="kodi.game.controller" library="resources/layout.xml"/>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <assets>
+            <icon>resources/icon.png</icon>
+        </assets>
+        <summary lang="en_GB">Sega Saturn 3D Control Pad, Japanese</summary>
+        <description lang="en_GB">The Saturn 3D Control Pad: an analogue thumb pad and analogue L and R triggers alongside the standard d-pad, six face buttons and Start. YabaSanshiro imports this layout by name and will not load without it.</description>
+    </extension>
+</addon>
