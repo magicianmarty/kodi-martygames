@@ -87,7 +87,26 @@ DREAMCAST_FIRST = [
     'Shadow Man', 'Silver', 'Evolution', 'Time Stalkers', 'Illbleed',
 ]
 
-FIRST_BY_SYSTEM = {'psx': PSX_FIRST, 'dreamcast': DREAMCAST_FIRST}
+SATURN_FIRST = [
+    'Panzer Dragoon', 'Nights into Dreams', 'Guardian Heroes', 'Radiant',
+    'Shining Force III', 'Shining the Holy Ark', 'Dragon Force', 'Albert Odyssey',
+    'Burning Rangers', 'Virtua Fighter', 'Fighters Megamix', 'Fighting Vipers',
+    'Last Bronx', 'Virtua Cop', 'House of the Dead', 'Daytona', 'Sega Rally',
+    'Sonic R', 'Sonic Jam', 'Sonic 3D', 'Astal', 'Clockwork Knight',
+    'Bug!', 'Croc', 'Tomb Raider', 'Duke Nukem', 'Quake', 'Exhumed',
+    'Powerslave', 'Alien Trilogy', 'Resident Evil', 'D', 'Enemy Zero',
+    'Grandia', 'Magic Knight', 'Street Fighter', 'X-Men', 'Marvel Super Heroes',
+    'Darkstalkers', 'Vampire Savior', 'King of Fighters', 'Samurai Shodown',
+    'Metal Slug', 'Galactic Attack', 'Layer Section', 'Thunder Force',
+    'Battle Garegga', 'Saturn Bomberman', 'Worms', 'Command & Conquer',
+    'Wipeout', 'Manx TT', 'Sky Target', 'Die Hard Arcade', 'Christmas Nights',
+]
+
+FIRST_BY_SYSTEM = {'psx': PSX_FIRST, 'dreamcast': DREAMCAST_FIRST,
+                   'saturn': SATURN_FIRST}
+
+# names already sitting on the remote, so a resumed run does not redo them
+ALREADY_REMOTE = set()
 
 
 def priority(name, first=()):
@@ -98,10 +117,23 @@ def priority(name, first=()):
     return (1, 0, base.lower())
 
 
-def convert(archive, outdir, workroot):
+def push_away(path, remote):
+    """Send one finished disc to the remote and drop the local copy.
+
+    A full set is far larger than the scratch disk - Saturn is 250 GB against
+    105 GB free - so the output cannot simply pile up until the end.
+    """
+    r = sh(['rsync', '-a', '--partial', path, remote + '/'])
+    if r.returncode != 0:
+        return 'push failed: ' + r.stderr.strip()[:70]
+    os.remove(path)
+    return None
+
+
+def convert(archive, outdir, workroot, remote=None):
     name = os.path.splitext(os.path.basename(archive))[0]
     dest = os.path.join(outdir, name + '.chd')
-    if os.path.exists(dest):
+    if os.path.exists(dest) or name in ALREADY_REMOTE:
         return name, 'skipped', ''
 
     work = tempfile.mkdtemp(prefix='ps1-', dir=workroot)
@@ -121,7 +153,12 @@ def convert(archive, outdir, workroot):
             out = os.path.join(outdir, name + os.path.splitext(src)[1].lower())
             if not os.path.exists(out):
                 shutil.move(src, out)
-            return name, 'copied', '%d MB' % (os.path.getsize(out) >> 20)
+            size = os.path.getsize(out) >> 20
+            if remote:
+                err = push_away(out, remote)
+                if err:
+                    return name, 'failed', err
+            return name, 'copied', '%d MB' % size
 
         # Redump packs the cue beside its tracks, sometimes one folder down.
         # .ccd is CloneCD, which chdman reads as well - three Dreamcast discs
@@ -150,7 +187,12 @@ def convert(archive, outdir, workroot):
 
         os.makedirs(outdir, exist_ok=True)
         shutil.move(made, dest)
-        return name, 'converted', '%.0f MB' % (os.path.getsize(dest) / 1e6)
+        size = os.path.getsize(dest) / 1e6
+        if remote:
+            err = push_away(dest, remote)
+            if err:
+                return name, 'failed', err
+        return name, 'converted', '%.0f MB' % size
     except subprocess.TimeoutExpired:
         return name, 'failed', 'timed out'
     finally:
@@ -176,6 +218,34 @@ def write_m3u(outdir):
     return made
 
 
+def write_m3u_remote(remote, workdir):
+    """Playlists for a pushed set, built from the remote listing.
+
+    The discs are no longer on this machine, so write_m3u() has nothing to
+    read; ask the remote what it holds instead, then send the playlists back.
+    """
+    host, _, rpath = remote.partition(':')
+    listing = sh(['ssh', '-o', 'StrictHostKeyChecking=no', host,
+                  'ls -1 %s 2>/dev/null' % rpath])
+    sets = {}
+    for f in sorted(listing.stdout.splitlines()):
+        if not f.lower().endswith('.chd') or '(disc' not in f.lower():
+            continue
+        sets.setdefault(DISC.sub('', os.path.splitext(f)[0]), []).append(f)
+    made = 0
+    os.makedirs(workdir, exist_ok=True)
+    for title, discs in sets.items():
+        if len(discs) < 2:
+            continue
+        path = os.path.join(workdir, title + '.m3u')
+        with open(path, 'w') as fh:
+            fh.write(''.join(d + '\n' for d in sorted(discs)))
+        if sh(['rsync', '-a', path, remote + '/']).returncode == 0:
+            os.remove(path)
+            made += 1
+    return made
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -185,12 +255,22 @@ def main():
     ap.add_argument('--limit', type=int)
     ap.add_argument('--system', default='psx',
                     help='picks the title order and the ingest hint')
+    ap.add_argument('--push-to', metavar='USER@HOST:/PATH',
+                    help='rsync each finished disc there and delete it locally, '
+                         'for a set larger than the scratch disk')
     ap.add_argument('--exclude', action='append', default=[], metavar='TEXT',
                     help='skip archives whose name contains TEXT '
                          '(case-insensitive); repeatable, e.g. --exclude "(Japan)"')
     args = ap.parse_args()
 
     ensure_image()
+    if args.push_to:
+        host, _, rpath = args.push_to.partition(':')
+        listing = sh(['ssh', '-o', 'StrictHostKeyChecking=no', host,
+                      'ls -1 %s 2>/dev/null' % rpath])
+        ALREADY_REMOTE.update(os.path.splitext(l)[0]
+                              for l in listing.stdout.splitlines() if l.strip())
+        print('already on the remote: %d' % len(ALREADY_REMOTE))
     src = os.path.expanduser(args.src)
     skip = [t.lower() for t in args.exclude]
     names = [e for e in os.listdir(src) if e.lower().endswith(('.7z', '.zip'))]
@@ -209,7 +289,8 @@ def main():
     tally = {}
     done = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        futures = [pool.submit(convert, a, args.out, workroot) for a in archives]
+        futures = [pool.submit(convert, a, args.out, workroot, args.push_to)
+                   for a in archives]
         for fut in concurrent.futures.as_completed(futures):
             name, how, note = fut.result()
             tally[how] = tally.get(how, 0) + 1
@@ -219,7 +300,10 @@ def main():
                       % (done, len(archives), how, name[:58], note), flush=True)
 
     print('\n%s' % ', '.join('%s %d' % (k, v) for k, v in sorted(tally.items())))
-    print('playlists written: %d' % write_m3u(args.out))
+    if args.push_to:
+        print('playlists written: %d' % write_m3u_remote(args.push_to, args.out))
+    else:
+        print('playlists written: %d' % write_m3u(args.out))
     print('next: ingest.py %s --system %s' % (args.out, args.system))
 
 
