@@ -80,7 +80,73 @@ SYSTEMS = [
            ('.zip',), 'Arcade'),
     System('scummvm', 'ScummVM', 'game.libretro.scummvm',
            ('.scummvm',), 'ScummVM'),
+
+    # --- Sega, on cores already installed for Mega Drive ---------------------
+    # genplus and picodrive each already accept these; they are separate
+    # systems here only so they get their own label, artwork and shelf.
+    System('mastersystem', 'Master System', 'game.libretro.genplus',
+           ('.sms',), 'Sega Master System'),
+    System('gamegear', 'Game Gear', 'game.libretro.genplus',
+           ('.gg',), 'Sega Game Gear'),
+    System('sg1000', 'SG-1000', 'game.libretro.genplus',
+           ('.sg',), 'Sega SG-1000'),
+    # Needs the regional BIOS in the core's system directory, like Saturn does.
+    System('segacd', 'Sega CD', 'game.libretro.genplus',
+           ('.chd', '.cue', '.iso'), 'Sega CD',
+           prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
+    System('sega32x', '32X', 'game.libretro.picodrive',
+           ('.32x',), 'Sega 32X'),
+
+    # --- Nintendo handhelds --------------------------------------------------
+    System('gameboy', 'Game Boy', 'game.libretro.gambatte',
+           ('.gb', '.gbc'), 'Nintendo Game Boy'),
+    System('gba', 'Game Boy Advance', 'game.libretro.mgba',
+           ('.gba',), 'Nintendo Game Boy Advance'),
+    System('virtualboy', 'Virtual Boy', 'game.libretro.beetle-vb',
+           ('.vb',), 'Nintendo Virtual Boy'),
+
+    # --- SNK -----------------------------------------------------------------
+    # .zip and nothing else: fbneo takes MAME-style romsets, not loose files.
+    System('neogeo', 'Neo Geo', 'game.libretro.fbneo',
+           ('.zip',), 'SNK Neo Geo'),
+    System('ngp', 'Neo Geo Pocket', 'game.libretro.beetle-ngp',
+           ('.ngp', '.ngc'), 'SNK Neo Geo Pocket Color'),
+
+    # --- Atari ---------------------------------------------------------------
+    System('atari2600', 'Atari 2600', 'game.libretro.stella',
+           ('.a26', '.bin'), 'Atari 2600'),
+    System('atari7800', 'Atari 7800', 'game.libretro.prosystem',
+           ('.a78',), 'Atari 7800'),
+    System('atari800', 'Atari 8-bit', 'game.libretro.atari800',
+           ('.atr', '.xex', '.atx', '.cas'), 'Atari 800'),
+    System('lynx', 'Lynx', 'game.libretro.beetle-lynx',
+           ('.lnx',), 'Atari Lynx'),
+    System('jaguar', 'Jaguar', 'game.libretro.virtualjaguar',
+           ('.j64', '.jag'), 'Atari Jaguar'),
+
+    # --- home computers ------------------------------------------------------
+    System('spectrum', 'ZX Spectrum', 'game.libretro.fuse',
+           ('.tzx', '.tap', '.z80', '.sna', '.szx'), 'Sinclair ZX Spectrum'),
+    System('msx', 'MSX', 'game.libretro.bluemsx',
+           ('.rom', '.mx1', '.mx2', '.dsk', '.cas'), 'Microsoft MSX'),
+    System('amstrad', 'Amstrad CPC', 'game.libretro.cap32',
+           ('.dsk', '.sna', '.cdt', '.tap'), 'Amstrad CPC'),
+
+    # --- the rest ------------------------------------------------------------
+    System('threedo', '3DO', 'game.libretro.opera',
+           ('.chd', '.cue', '.iso'), 'Panasonic 3DO',
+           prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
+    System('pcfx', 'PC-FX', 'game.libretro.beetle-pcfx',
+           ('.chd', '.cue'), 'NEC PC-FX',
+           prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
+    System('wonderswan', 'WonderSwan', 'game.libretro.beetle-wswan',
+           ('.ws', '.wsc'), 'Bandai WonderSwan Color'),
+    System('vectrex', 'Vectrex', 'game.libretro.vecx',
+           ('.vec', '.bin'), 'GCE Vectrex'),
+    System('odyssey2', 'Odyssey 2', 'game.libretro.o2em',
+           ('.bin',), 'Magnavox Odyssey 2'),
 ]
+
 
 BY_KEY = {s.key: s for s in SYSTEMS}
 
