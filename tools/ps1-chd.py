@@ -110,9 +110,24 @@ def convert(archive, outdir, workroot):
         if r.returncode != 0:
             return name, 'failed', 'unpack: ' + r.stderr.strip()[:80]
 
+        # A .cdi is already one self-contained file and chdman will not read
+        # one, but flycast plays it directly - so pass it through rather than
+        # calling the disc a failure. Same for a bare .iso.
+        loose = [os.path.join(d, f) for d, _, fs in os.walk(work)
+                 for f in fs if f.lower().endswith(('.cdi', '.iso'))]
+        if loose and not any(f.lower().endswith(('.cue', '.gdi', '.ccd'))
+                             for _, _, fs in os.walk(work) for f in fs):
+            src = sorted(loose)[0]
+            out = os.path.join(outdir, name + os.path.splitext(src)[1].lower())
+            if not os.path.exists(out):
+                shutil.move(src, out)
+            return name, 'copied', '%d MB' % (os.path.getsize(out) >> 20)
+
         # Redump packs the cue beside its tracks, sometimes one folder down.
+        # .ccd is CloneCD, which chdman reads as well - three Dreamcast discs
+        # ship that way and were being discarded as "no cue sheet".
         cues = [os.path.join(d, f) for d, _, fs in os.walk(work)
-                for f in fs if f.lower().endswith(('.cue', '.gdi'))]
+                for f in fs if f.lower().endswith(('.cue', '.gdi', '.ccd'))]
         if not cues:
             return name, 'failed', 'no cue sheet'
         cue = sorted(cues)[0]
