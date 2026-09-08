@@ -151,6 +151,10 @@ def make_item(game):
             tag.setPlatform(system.platform)
     except AttributeError:
         pass  # older Kodi without InfoTagGame; the property above still works
+    # The skin draws marty/platform/<key>.png from this. A key with no badge
+    # file simply draws nothing, so a system can be added here before its icon
+    # exists.
+    li.setProperty('marty_system', game['system'])
     li.setProperty('marty_click', 'PlayMedia(%s)' % quote(game['path']))
     if system:
         li.addContextMenuItems([(
