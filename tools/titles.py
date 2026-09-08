@@ -28,7 +28,13 @@ def _fold_numerals(s):
 
 
 def normalise(name):
-    s = os.path.splitext(name)[0]
+    # splitext() splits at the last dot whatever it is, so it silently cut
+    # "Marvel vs. Capcom" down to "marvel vs" - and "Marvel vs. Capcom 2" to
+    # the same string, so neither could ever match. Same for Mr./Ms./Dr./St.
+    # and any title with initials. Only drop something shaped like a real
+    # extension.
+    root, ext = os.path.splitext(name)
+    s = root if re.fullmatch(r"\.[A-Za-z0-9]{1,5}", ext) else name
     s = _TAGS.sub(' ', s)                    # (World), [!], (1992)(Ocean)
     # libretro-thumbnails writes '&' as '_' for filesystem safety
     s = s.replace('&', ' and ').replace('_', ' and ')
