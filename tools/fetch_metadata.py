@@ -43,6 +43,7 @@ PLATFORMS = {
     'psp': ('Sony PSP',),
     'dreamcast': ('Sega Dreamcast',),
     'saturn': ('Sega Saturn',),
+    'tg16': ('TurboGrafx-16', 'TurboGrafx-CD'),
 }
 
 FIELDS = ('Name', 'Platform', 'Overview', 'Developer', 'Publisher', 'Genres',

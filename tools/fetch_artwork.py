@@ -40,6 +40,7 @@ REPOS = {
     'dos': 'DOS',
     'scummvm': 'ScummVM',
     'arcade': 'MAME',
+    'tg16': 'NEC_-_PC_Engine_-_TurboGrafx_16',
 }
 RAW = 'https://raw.githubusercontent.com/libretro-thumbnails/{repo}/master/{path}'
 TREE = 'https://api.github.com/repos/libretro-thumbnails/{repo}/git/trees/master?recursive=1'

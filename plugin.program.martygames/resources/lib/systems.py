@@ -39,6 +39,11 @@ SYSTEMS = [
            prefer=('.cue',), skip_exts=('.bin', '.img')),
     System('nes', 'NES', 'game.libretro.nestopia',
            ('.nes', '.fds', '.unf'), 'Nintendo NES'),
+    # HuCard and CD in one core - beetle-pce-fast is built with HAVE_CDROM=1,
+    # so TurboGrafx-CD works from the same entry.
+    System('tg16', 'TurboGrafx-16', 'game.libretro.beetle-pce-fast',
+           ('.pce', '.chd', '.cue', '.ccd', '.m3u'), 'NEC TurboGrafx-16',
+           prefer=('.chd', '.cue'), skip_exts=('.bin', '.img')),
     System('snes', 'SNES', 'game.libretro.snes9x',
            ('.sfc', '.smc', '.zip'), 'Nintendo SNES'),
     # Hardware rendering, via the FBO renderer. Set the core's rdp-plugin to
