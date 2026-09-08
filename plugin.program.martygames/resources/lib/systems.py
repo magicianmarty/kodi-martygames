@@ -51,8 +51,13 @@ SYSTEMS = [
            ('.cso', '.iso', '.chd', '.pbp'), 'Sony PlayStation Portable'),
     # Hardware rendering as well. .cdi and .gdi are the two disc formats the
     # collection is in; Flycast reads both without unpacking.
+    # prefer .chd: with no preference the fallback sorts by extension, so a
+    # leftover .cdi beat the CHD beside it - the same game at 777 MB instead of
+    # 98 MB, and unverified. .cdi stays last as the fallback for the few discs
+    # that only exist in that form.
     System('dreamcast', 'Dreamcast', 'game.libretro.flycast',
-           ('.cdi', '.gdi', '.chd'), 'Sega Dreamcast'),
+           ('.cdi', '.gdi', '.chd'), 'Sega Dreamcast',
+           prefer=('.chd', '.gdi', '.cdi')),
     # Software rendering, and it will not start without a BIOS - the four
     # regional ROMs are installed beside the core.
     System('saturn', 'Saturn', 'game.libretro.beetle-saturn',
