@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buttonmap>
+    <device name="Xbox Wireless Controller" provider="udev" vid="045E" pid="0B20" buttoncount="16" axiscount="8">
+
+        <configuration>
+            <appearance id="game.controller.default"/>
+        </configuration>
+        <controller id="game.controller.3do">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="c" button="7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="play" button="12"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="stop" button="11"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.amiga.cd32">
+
+            <feature name="red" button="1"/>
+            <feature name="blue" button="2"/>
+            <feature name="green" button="4"/>
+            <feature name="yellow" button="5"/>
+            <feature name="rewind" button="7"/>
+            <feature name="forward" button="8"/>
+            <feature name="select" button="11"/>
+            <feature name="play" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.amiga.pro.joystick">
+
+            <feature name="red" button="1"/>
+            <feature name="blue" button="2"/>
+            <feature name="green" button="4"/>
+            <feature name="yellow" button="5"/>
+            <feature name="select" button="11"/>
+            <feature name="play" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.amstrad.joystick">
+            <feature name="button1" button="1"/>
+            <feature name="button2" button="2"/>
+            <feature name="cat" button="5"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="mousetoggle" button="7"/>
+            <feature name="reset" button="11"/>
+            <feature name="return" button="12"/>
+            <feature name="right" axis="+6"/>
+            <feature name="run" button="4"/>
+            <feature name="stat" button="8"/>
+            <feature name="tape" axis="+5"/>
+            <feature name="up" axis="-7"/>
+            <feature name="vkbtoggle" axis="+4"/>
+        </controller>
+        <controller id="game.controller.atari.2600">
+            <feature name="bw" button="4"/>
+            <feature name="color" button="5"/>
+            <feature name="down" axis="+7"/>
+            <feature name="fire" button="1"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftdifficultya" button="7"/>
+            <feature name="leftdifficultyb" button="8"/>
+            <feature name="reset" button="11"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightdifficultya" axis="+5"/>
+            <feature name="rightdifficultyb" axis="+4"/>
+            <feature name="select" button="2"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.atari.5200">
+            <feature name="down" axis="+7"/>
+            <feature name="fire1" button="1"/>
+            <feature name="fire2" button="2"/>
+            <feature name="left" axis="-6"/>
+            <feature name="num0" button="5"/>
+            <feature name="num1" button="7"/>
+            <feature name="num2" button="8"/>
+            <feature name="num3" axis="+5"/>
+            <feature name="num4" axis="+4"/>
+            <feature name="num5" button="11"/>
+            <feature name="num6" button="13"/>
+            <feature name="num7" button="14"/>
+            <feature name="num8" button="15"/>
+            <feature name="pause" button="12"/>
+            <feature name="right" axis="+6"/>
+            <feature name="start" button="4"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.atari.7800.gamepad">
+            <feature name="button1" button="1"/>
+            <feature name="button2" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftdifficulty" button="5"/>
+            <feature name="pause" button="12"/>
+            <feature name="reset" button="11"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightdifficulty" button="7"/>
+            <feature name="select" button="4"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.atari.7800.proline">
+            <feature name="button1" button="1"/>
+            <feature name="button2" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftdifficulty" button="5"/>
+            <feature name="pause" button="12"/>
+            <feature name="reset" button="11"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightdifficulty" button="7"/>
+            <feature name="select" button="4"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.atari.800">
+            <feature name="down" axis="+7"/>
+            <feature name="escape" button="5"/>
+            <feature name="fire1" button="1"/>
+            <feature name="fire2" button="2"/>
+            <feature name="help" button="7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="menu" button="13"/>
+            <feature name="option" axis="+5"/>
+            <feature name="return" button="12"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="11"/>
+            <feature name="space" button="8"/>
+            <feature name="start" button="4"/>
+            <feature name="togglevkbd" axis="+4"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.atari.lynx">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="option1" axis="+5"/>
+            <feature name="option2" axis="+4"/>
+            <feature name="pause" button="12"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.default">
+
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="5"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="back" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="guide" button="13"/>
+            <feature name="leftthumb" button="14"/>
+            <feature name="rightthumb" button="15"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="rightstick">
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
+            </feature>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="righttrigger" axis="+4"/>
+        </controller>
+        <controller id="game.controller.dreamcast">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="5"/>
+            <feature name="analogstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.gameboy">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.gba">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.genesis.3button">
+
+            <feature name="a" button="5"/>
+            <feature name="b" button="1"/>
+            <feature name="c" button="2"/>
+            <feature name="mode" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.genesis.6button">
+
+            <feature name="a" button="5"/>
+            <feature name="b" button="1"/>
+            <feature name="c" button="2"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="7"/>
+            <feature name="z" button="8"/>
+            <feature name="mode" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.gravis.gamepad">
+
+            <feature name="red" button="1"/>
+            <feature name="blue" button="2"/>
+            <feature name="green" button="4"/>
+            <feature name="yellow" button="5"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.msx.joystick">
+            <feature name="button1" button="1"/>
+            <feature name="button2" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.n64">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="cdown" axis="+3"/>
+            <feature name="cleft" axis="-2"/>
+            <feature name="cright" axis="+2"/>
+            <feature name="cup" axis="-3"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+            <feature name="z" button="4"/>
+            <feature name="analogstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.nes">
+
+            <feature name="b" button="1"/>
+            <feature name="a" button="2"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.ngp">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="option" axis="+5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.odyssey2">
+            <feature name="action" button="1"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.pce">
+
+            <feature name="down" axis="+7"/>
+            <feature name="i" button="1"/>
+            <feature name="ii" button="2"/>
+            <feature name="iii" button="5"/>
+            <feature name="iv" button="4"/>
+            <feature name="left" axis="-6"/>
+            <feature name="mode" button="15"/>
+            <feature name="right" axis="+6"/>
+            <feature name="run" button="12"/>
+            <feature name="select" button="11"/>
+            <feature name="up" axis="-7"/>
+            <feature name="v" button="8"/>
+            <feature name="vi" button="7"/>
+        </controller>
+        <controller id="game.controller.pcfx">
+            <feature name="down" axis="+7"/>
+            <feature name="i" button="1"/>
+            <feature name="ii" button="2"/>
+            <feature name="iii" button="4"/>
+            <feature name="iv" button="5"/>
+            <feature name="left" axis="-6"/>
+            <feature name="mode1" axis="+5"/>
+            <feature name="mode2" axis="+4"/>
+            <feature name="right" axis="+6"/>
+            <feature name="run" button="12"/>
+            <feature name="select" button="11"/>
+            <feature name="up" axis="-7"/>
+            <feature name="v" button="7"/>
+            <feature name="vi" button="8"/>
+        </controller>
+        <controller id="game.controller.ps.dualanalog">
+
+            <feature name="cross" button="1"/>
+            <feature name="circle" button="2"/>
+            <feature name="triangle" button="4"/>
+            <feature name="square" button="5"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="analog" button="13"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="rightstick">
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.ps.dualshock">
+
+            <feature name="cross" button="1"/>
+            <feature name="circle" button="2"/>
+            <feature name="triangle" button="4"/>
+            <feature name="square" button="5"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="analog" button="13"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="rightstick">
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.ps.gamepad">
+
+            <feature name="cross" button="1"/>
+            <feature name="circle" button="2"/>
+            <feature name="triangle" button="4"/>
+            <feature name="square" button="5"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.psp">
+            <feature name="circle" button="2"/>
+            <feature name="cross" button="1"/>
+            <feature name="down" axis="+7"/>
+            <feature name="l" button="7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="r" button="8"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="11"/>
+            <feature name="square" button="4"/>
+            <feature name="start" button="12"/>
+            <feature name="triangle" button="5"/>
+            <feature name="up" axis="-7"/>
+            <feature name="analogstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.saturn">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="c" button="7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="5"/>
+            <feature name="y" axis="+5"/>
+            <feature name="z" axis="+4"/>
+        </controller>
+        <controller id="game.controller.saturn.3d.japan">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="c" button="7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="5"/>
+            <feature name="z" button="8"/>
+            <feature name="analogstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.saturn.3d.western">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="c" button="7"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="lefttrigger" axis="+5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="righttrigger" axis="+4"/>
+            <feature name="start" button="12"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="5"/>
+            <feature name="z" button="8"/>
+            <feature name="analogstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.snes">
+
+            <feature name="b" button="1"/>
+            <feature name="a" button="2"/>
+            <feature name="y" button="5"/>
+            <feature name="x" button="4"/>
+            <feature name="leftbumper" button="7"/>
+            <feature name="rightbumper" button="8"/>
+            <feature name="select" button="11"/>
+            <feature name="start" button="12"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="down" axis="+7"/>
+        </controller>
+        <controller id="game.controller.vectrex">
+            <feature name="button1" button="1"/>
+            <feature name="button2" button="2"/>
+            <feature name="button3" button="4"/>
+            <feature name="button4" button="5"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.ws">
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="start" button="12"/>
+            <feature name="xdown" axis="+7"/>
+            <feature name="xleft" axis="-6"/>
+            <feature name="xright" axis="+6"/>
+            <feature name="xup" axis="-7"/>
+            <feature name="ydown" axis="+3"/>
+            <feature name="yleft" axis="-2"/>
+            <feature name="yright" axis="+2"/>
+            <feature name="yup" axis="-3"/>
+        </controller>
+    </device>
+</buttonmap>

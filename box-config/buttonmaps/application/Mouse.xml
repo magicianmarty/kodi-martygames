@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buttonmap>
+    <device name="Mouse" provider="application">
+        <controller id="game.controller.genesis.mouse">
+            <feature name="left" mouse="left"/>
+            <feature name="middle" mouse="middle"/>
+            <feature name="right" mouse="right"/>
+            <feature name="start" mouse="button4"/>
+            <feature name="pointer">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.konami.justifier.snes">
+            <feature name="offscreen" mouse="right"/>
+            <feature name="start" mouse="middle"/>
+            <feature name="trigger" mouse="left"/>
+            <feature name="crosshair">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.mouse">
+            <feature name="button4" mouse="button4"/>
+            <feature name="button5" mouse="button5"/>
+            <feature name="horizwheelleft" mouse="horizwheelleft"/>
+            <feature name="horizwheelright" mouse="horizwheelright"/>
+            <feature name="left" mouse="left"/>
+            <feature name="middle" mouse="middle"/>
+            <feature name="right" mouse="right"/>
+            <feature name="wheeldown" mouse="wheeldown"/>
+            <feature name="wheelup" mouse="wheelup"/>
+            <feature name="pointer">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.pcfx.mouse">
+            <feature name="left" mouse="left"/>
+            <feature name="right" mouse="right"/>
+            <feature name="pointer">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.ps.guncon.japan">
+            <feature name="a" mouse="right"/>
+            <feature name="b" mouse="middle"/>
+            <feature name="offscreen" mouse="button4"/>
+            <feature name="trigger" mouse="left"/>
+            <feature name="crosshair">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.ps.guncon.western">
+            <feature name="a" mouse="right"/>
+            <feature name="b" mouse="middle"/>
+            <feature name="offscreen" mouse="button4"/>
+            <feature name="trigger" mouse="left"/>
+            <feature name="crosshair">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.ps.mouse">
+            <feature name="left" mouse="left"/>
+            <feature name="right" mouse="right"/>
+            <feature name="pointer">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.snes.mouse">
+            <feature name="left" mouse="left"/>
+            <feature name="right" mouse="right"/>
+            <feature name="pointer">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+        <controller id="game.controller.snes.super.scope">
+            <feature name="cursor" mouse="right"/>
+            <feature name="offscreen" mouse="middle"/>
+            <feature name="pause" mouse="button5"/>
+            <feature name="trigger" mouse="left"/>
+            <feature name="turbo" mouse="button4"/>
+            <feature name="crosshair">
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
+            </feature>
+        </controller>
+    </device>
+</buttonmap>

@@ -5,3 +5,6 @@ backup.log
 __pycache__/
 .repo-cache/
 state-after.txt
+
+# scratch for tools/gen-buttonmaps.py --harvest
+work/
