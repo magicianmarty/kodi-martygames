@@ -1,0 +1,19 @@
+{
+  "host": "192.168.50.76",
+  "stream": {
+    "resolution": "1080",
+    "fps": "60",
+    "bitrate": 20000,
+    "codec": "h264"
+  },
+  "games": [
+    { "title": "Shadow of War",           "app": "Shadow of War" },
+    { "title": "Red Dead Online",         "app": "Red Dead Online" },
+    { "title": "Company of Heroes 2",     "app": "Company of Heroes 2" },
+    { "title": "World of Tanks Blitz",    "app": "World of Tanks Blitz" },
+    { "title": "Battlefield Vietnam",     "app": "Battlefield Vietnam" },
+    { "title": "Jedi Academy",            "app": "Jedi Academy" },
+    { "title": "MechWarrior 4 Vengeance", "app": "MechWarrior 4 Vengeance" },
+    { "title": "Desktop",                 "app": "Desktop" }
+  ]
+}

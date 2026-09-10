@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 from urllib.parse import parse_qsl, urlencode
@@ -13,7 +14,7 @@ import xbmcgui
 import xbmcplugin
 import xbmcvfs
 
-from resources.lib import gamesettings, scanner
+from resources.lib import gamesettings, pcgames, scanner
 from resources.lib.systems import BY_KEY, SYSTEMS
 
 HANDLE = int(sys.argv[1])
@@ -28,6 +29,10 @@ PARENT_ITEMS = 1
 ARTWORK = os.path.normpath(os.path.join(ROMS, '..', 'artwork'))
 NO_COVER = os.path.join(xbmcvfs.translatePath(ADDON.getAddonInfo('path')),
                         'resources', 'media', 'no-cover.png')
+RESOURCES = os.path.join(xbmcvfs.translatePath(ADDON.getAddonInfo('path')),
+                         'resources')
+STREAM_SH = os.path.join(RESOURCES, 'stream.sh')
+PC_HOST, PC_STREAM, PC_GAMES = pcgames.load(RESOURCES)
 
 # Built by tools/fetch_metadata.py and cached beside the artwork, so a reinstall
 # of this add-on does not throw it away.
@@ -219,6 +224,48 @@ def make_item(game):
     return li
 
 
+def make_pc_item(game):
+    """A tile for a game on the Windows host, streamed in over Moonlight."""
+    li = xbmcgui.ListItem(label=game['title'])
+    li.setIsFolder(False)
+    li.setProperty('marty_system', pcgames.KEY)
+    li.setProperty('marty_click', 'RunPlugin(%s)' % quote(
+        url(action='stream', app=game['app'])))
+    art = {}
+    boxart = os.path.join(ARTWORK, pcgames.KEY, game['title'] + '.png')
+    if _has_art(pcgames.KEY, game['title']):
+        art.update(poster=boxart, thumb=boxart)
+    else:
+        art.update(poster=NO_COVER, thumb=NO_COVER, icon=NO_COVER)
+    snap = os.path.join(ARTWORK, 'snaps', pcgames.KEY, game['title'] + '.png')
+    if _has_art('snaps/' + pcgames.KEY, game['title']):
+        art['fanart'] = snap
+    li.setArt(art)
+    li.setProperty('marty_plot', '%s on %s' % (pcgames.PLATFORM, PC_HOST))
+    return li
+
+
+def list_pc():
+    xbmcplugin.setPluginCategory(HANDLE, pcgames.LABEL)
+    xbmcplugin.setContent(HANDLE, 'games')
+    for game in PC_GAMES:
+        xbmcplugin.addDirectoryItem(
+            HANDLE, url(action='stream', app=game['app']),
+            make_pc_item(game), isFolder=False)
+    xbmcplugin.endOfDirectory(HANDLE)
+
+
+def stream(app):
+    """Hand the app to Moonlight and get out of the way.
+
+    Detached on purpose: stream.sh SIGSTOPs kodi.bin while the stream runs, and
+    this function is a thread inside kodi.bin, so waiting on it would stop too.
+    """
+    log('streaming %s from %s' % (app, PC_HOST))
+    subprocess.Popen(pcgames.stream_args(STREAM_SH, app, PC_HOST, PC_STREAM),
+                     start_new_session=True)
+
+
 def describe(li, game, system):
     """Fill the hero area under a focused tile.
 
@@ -347,6 +394,12 @@ def list_root():
         li.setArt({'icon': 'DefaultAddonGame.png'})
         xbmcplugin.addDirectoryItem(
             HANDLE, url(action='system', key=system.key), li, isFolder=True)
+
+    if PC_GAMES:
+        li = xbmcgui.ListItem(label='%s  (%d)' % (pcgames.LABEL, len(PC_GAMES)))
+        li.setArt({'icon': 'DefaultAddonGame.png'})
+        xbmcplugin.addDirectoryItem(
+            HANDLE, url(action='pc'), li, isFolder=True)
 
     xbmcplugin.endOfDirectory(HANDLE)
 
@@ -543,6 +596,10 @@ def main():
         game_settings(args.get('key', ''), args.get('title', ''))
     elif action == 'play':
         play(args['path'], args['core'])
+    elif action == 'pc':
+        list_pc()
+    elif action == 'stream':
+        stream(args['app'])
     else:
         list_root()
 
