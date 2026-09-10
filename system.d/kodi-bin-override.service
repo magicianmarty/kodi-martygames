@@ -1,0 +1,16 @@
+[Unit]
+Description=Bind the locally built kodi.bin over the read-only image copy
+# / is squashfs, so a patched kodi.bin cannot replace the image one in place.
+# Reflashing for a Kodi patch costs an image build and a boot; this does not.
+Before=kodi.service
+After=storage.mount
+ConditionPathExists=/storage/kodi-martyedition/kodi.bin
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/mount --bind /storage/kodi-martyedition/kodi.bin /usr/lib/kodi/kodi.bin
+ExecStop=/bin/umount /usr/lib/kodi/kodi.bin
+
+[Install]
+WantedBy=multi-user.target
