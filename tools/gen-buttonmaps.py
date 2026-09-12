@@ -381,7 +381,8 @@ def main():
                "        <configuration/>"))
 
     # ---- joystick (extend the existing pad map)
-    xbox, xsrc = parse_controllers(os.path.join(HERE, "user-Xbox.xml"))
+    seed = os.environ.get("BUTTONMAP_SEED", os.path.join(HERE, "user-Xbox.xml"))
+    xbox, xsrc = parse_controllers(seed)
     dflt_simple, dflt_sticks = parse_bindings(xbox["game.controller.default"])
     js_sections, js_report = [], []
     for cid in sorted(set(xbox) | needed):
@@ -409,7 +410,7 @@ def main():
         js_report.append((cid, len(simple) + len(sticks), len(un), ",".join(un)))
     dev = re.search(r"<device ([^>]+)>", xsrc).group(1)
     cfg = re.search(r"(\s*<configuration>.*?</configuration>)", xsrc, re.S)
-    open(os.path.join(HERE, "out-Xbox.xml"), "w").write(
+    open(os.path.join(HERE, os.environ.get("BUTTONMAP_OUT", "out-Xbox.xml")), "w").write(
         render(dev, js_sections, cfg.group(1).rstrip("\n") if cfg else ""))
 
     # ---- mouse
