@@ -25,6 +25,7 @@ CRASHDIR = "/storage/.kodi/temp"
 LAUNCH_TIMEOUT = 45
 OBSERVE = 40
 TEARDOWN_TIMEOUT = 60
+AUDIO_SETTLE = 12
 POLL = 0.5
 
 # A game is "playing" in this window; anything else on top is a popup.
@@ -208,6 +209,8 @@ def run_case(case):
     windows, popups, gone = [], 0, 0
     prev = None
     a_path = a_ptr0 = a_t0 = a_rate = None
+    a_last = -1
+    settle_at = time.time() + AUDIO_SETTLE
     obs_end = time.time() + OBSERVE
     while time.time() < obs_end:
         w = window()
@@ -218,10 +221,14 @@ def run_case(case):
             prev = w
         if not players():
             gone += 1
-        if a_ptr0 is None:
-            a_path, p, a_rate = alsa_stream()
+        # Kodi reopens the ALSA sink while the game starts, which resets
+        # hw_ptr. Anchoring before that makes a healthy game read ~25% slow.
+        if time.time() > settle_at:
+            path_now, p, rate_now = alsa_stream()
             if p is not None:
-                a_ptr0, a_t0 = p, time.time()
+                if a_ptr0 is None or path_now != a_path or p < a_last:
+                    a_path, a_ptr0, a_t0, a_rate = path_now, p, time.time(), rate_now
+                a_last = p
         time.sleep(POLL)
 
     # hw_ptr runs at the sink's rate, so this measures whether audio kept
@@ -230,7 +237,7 @@ def run_case(case):
     path1, a_ptr1, _ = alsa_stream()
     a_t1 = time.time()
     if (a_ptr0 is not None and a_ptr1 is not None and path1 == a_path
-            and a_ptr1 > a_ptr0):
+            and a_ptr1 >= a_last and a_ptr1 > a_ptr0 and a_t1 - a_t0 > 8):
         rate = round((a_ptr1 - a_ptr0) / (a_t1 - a_t0))
         result["audio_frames_per_sec"] = rate
         result["audio_sink_rate"] = a_rate

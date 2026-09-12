@@ -4,6 +4,10 @@
      ActivateWindow(Home) and <back> to Home as well, which drops out of the
      game entirely. Rebind both so the button that opens the OSD closes it.
 
+     Kodi 22 has fourteen of these dialogs. Any window without a section here
+     inherits <global>, where back and guide are ActivateWindow(Home) - so B in
+     the settings menu did not close it, it left the game entirely.
+
      Directions are deliberately NOT bound: <global> already supplies them, and
      putting them under <FullscreenGame> would break gameplay - CPortInput
      registers its own keymap handler in front of the emulator's, so anything
@@ -57,4 +61,34 @@
       <back>Back</back>
     </joystick>
   </GameVideoRotation>
+  <GameVolume>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameVolume>
+  <GameAdvancedSettings>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameAdvancedSettings>
+  <GamePorts>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GamePorts>
+  <GameSaves>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameSaves>
+  <GameAchievements>
+    <joystick profile="game.controller.default">
+      <guide>Back</guide>
+      <back>Back</back>
+    </joystick>
+  </GameAchievements>
 </keymap>
